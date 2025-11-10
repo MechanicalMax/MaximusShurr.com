@@ -3,10 +3,13 @@ import Link from "next/link";
 
 // Social proof logos (replace with your actual logo paths)
 const socialProofLogos = [
-  { name: 'Corteva', src: '/logos/corteva.svg' },
-  { name: 'Purdue', src: '/logos/purdue.svg' },
-  { name: '16Tech', src: '/logos/16tech.svg' },
-  { name: 'Purdue Foundry', src: '/logos/purdue-foundry.svg' },
+  { name: 'Corteva', src: '/logos/Corteva.png' },
+  { name: 'Purdue', src: '/logos/Purdue.png' },
+  { name: 'Hughes Orthodontics LLC', src: '/logos/HughesOrthodontics.png' },
+  { name: 'LeafSpec LLC', src: '/logos/LeafSpecLLC.png' },
+  { name: 'The Sibley Center Makerspace', src: '/logos/Sibley.png' },
+  { name: 'Envision Center', src: '/logos/EnvisionCenter.png' },
+  { name: "Henni's Hairshop", src: '/logos/HennisHairshop.png' },
 ];
 
 // Narrative arc sections
@@ -126,11 +129,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
             {socialProofLogos.map((logo) => (
-              <div key={logo.name} className="h-12 w-auto grayscale opacity-70 hover:opacity-100 transition-opacity">
-                <div className="h-full w-32 bg-gray-200 rounded"></div>
-                {/* Replace with actual Image component when you have the logos */}
-                {/* <Image src={logo.src} alt={logo.name} width={120} height={48} className="h-12 w-auto" /> */}
-              </div>
+              <Image key={logo.name} src={logo.src} alt={logo.name} width={120} height={48} className="h-12 w-auto" />
             ))}
           </div>
         </div>
