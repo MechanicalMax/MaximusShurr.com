@@ -132,7 +132,7 @@ export default function Home() {
             <span className="text-[#FFBA4A]">I&apos;ll hand you a deployed solution.</span>
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I&apos;m Maximus Shurr, an engineer who moved from hardware to full-stack software for one reason: <span className="text-[#FFBA4A] font-bold">velocity</span>. I don't just write code—I ship complete products that solve real-world needs. <span className="italic">Your technical cofounder is waiting...</span>
+            I&apos;m Maximus Shurr, an engineer who moved from hardware to full-stack software for one reason: <span className="text-[#FFBA4A] font-bold">velocity</span>. I don&apos;t just write code—I ship complete products that solve real-world needs. <span className="italic">Your technical cofounder is waiting...</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
