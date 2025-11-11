@@ -18,7 +18,7 @@ export default function BookPage() {
           >
             ← Back to Home
           </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Let's Build Something Amazing</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Let&apos;s Build Something Amazing</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Schedule a free 30-minute consultation to discuss your project and how we can work together to bring your ideas to life.
           </p>
