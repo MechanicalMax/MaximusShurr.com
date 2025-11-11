@@ -12,23 +12,27 @@ const socialProofLogos = [
   { name: "Henni's Hairshop", src: '/logos/HennisHairshop.png' },
 ];
 
-// Narrative arc sections
-const narrativeSections = [
+// Narrative arc chapters
+const narrativeChapters : {title: string, story: string, text: string}[] = [
   {
-    title: "Mechanical Engineer",
-    description: "Started as a problem-solver in mechanical engineering, developing a strong foundation in analytical thinking and technical problem-solving."
+    title: "The Spark",
+    story: "Recording Mechanical Max",
+    text: "It started with an unsolved Rubik's Cube. At 10 years old, I taught myself how to solve it from YouTube. I wanted to share that feeling of empowerment, so I started Mechanical Max. However, the more focused I was on creating and sharing on my own path, the more I became isolated and different from the culture of hyper-competition, grades, and status at school."
   },
   {
-    title: "Full-Stack Developer",
-    description: "Transitioned into software development, mastering modern web technologies and full-stack architecture."
+    title: 'The "Right" Path',
+    story: 'Chasing Grades and Status',
+    text: "Through middle and high school, that peer pressure only grew stronger. For years, I had tried to follow the \"right\" path. I put my head down, chased the 100%, and ran for the student leadership, all because my community said that's what success was. I was trying to win a game I didn't even want to play, to get into an Ivy League school I knew nothing about. Growing up was a cycle of chasing grades, burning out, building a project, then feeling alone."
   },
   {
-    title: "Technical Leader",
-    description: "Led technical teams and projects, bridging the gap between business needs and technical implementation."
+    title: "The Pivot",
+    story: "Turning Pain into Growth",
+    text: "But eventually, this system broke. In my junior year, I lost two major elections, not on merit, but on politics. My \"one chance at a happy life\" Ivy League worldview was shattered. And it was the best thing that ever happened to me. I felt a new fire and freedom behind my sails. The system locked me out, so I carved a new path. I pivoted to the real world, noticing my orthodontist workflow was broken. I taught myself Python and automation, and built an in-house 3D printing lab, saving his practice over $10,000 a year. It was my first taste of genuine one-on-one service with an impact that would last well beyond any high school ribbon."
   },
   {
-    title: "Technical Co-founder",
-    description: "Now helping startups build and scale their MVPs with a focus on clean, maintainable, and scalable code."
+    title: "The Mission",
+    story: "Building What Matters",
+    text: "I brought that lesson to Purdue, where I mastered both physical and software engineering. I still have the honors GPA, but I see it as a footnote. My real education came from all the projects I did outside of class. And through building my first full-stack web app, \"Clairity Daily,\" I learned the only metric that truly matters is how well you serve others. My mission is to build products that help people become more resilient and find their own path, just like I had to. I'm here to create experiences that show people how to live happier, healthier, and more fulfilling lives."
   }
 ];
 
@@ -135,16 +139,41 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Narrative Arc */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-16">My Journey to Technical Leadership</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {narrativeSections.map((section, index) => (
-              <div key={index} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-2xl font-bold text-[#FFBA4A] mb-3">0{index + 1}</div>
-                <h3 className="text-xl font-semibold mb-2">{section.title}</h3>
-                <p className="text-gray-600">{section.description}</p>
+      {/* Narrative Arc (Responsive Sticky Scroll) */}
+      <section className="relative bg-gray-50">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <h2 className="text-3xl font-bold text-center mb-6">Meet Maximus</h2>
+          <svg className="w-24 h-24 m-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#FFBA4A" strokeWidth="2.088"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3C12.5523 3 13 3.44772 13 4V17.5858L18.2929 12.2929C18.6834 11.9024 19.3166 11.9024 19.7071 12.2929C20.0976 12.6834 20.0976 13.3166 19.7071 13.7071L12.7071 20.7071C12.3166 21.0976 11.6834 21.0976 11.2929 20.7071L4.29289 13.7071C3.90237 13.3166 3.90237 12.6834 4.29289 12.2929C4.68342 11.9024 5.31658 11.9024 5.70711 12.2929L11 17.5858V4C11 3.44772 11.4477 3 12 3Z" fill=""></path> </g></svg>
+
+          <div className="relative">
+            {narrativeChapters.map((section, index) => (
+              <div
+                key={index}
+                className="relative h-[160vh] flex items-center justify-center"
+              >
+                <div
+                  className="sticky top-[12vh] max-w-3xl w-full bg-white rounded-2xl shadow-xl border border-gray-100 transition-all duration-700 p-6 sm:p-8 flex flex-col text-center"
+                  style={{
+                    // make sure tall cards auto-expand on smaller screens
+                    minHeight: "70vh",
+                    maxHeight: "80vh",
+                  }}
+                >
+                  <div className="flex-1 overflow-y-auto px-1 sm:px-2">
+                    <h3 className="text-2xl font-bold mb-3">
+                      <span className="text-[#FFBA4A] text-4xl font-extrabold mr-2">
+                        {index + 1}.
+                      </span>
+                      {section.title}
+                    </h3>
+                    <h4 className="text-lg font-medium text-gray-600 mb-5">
+                      {section.story}
+                    </h4>
+                    <p className="text-gray-600 text-base leading-relaxed text-justify">
+                      {section.text}
+                    </p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
