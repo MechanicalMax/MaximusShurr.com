@@ -99,7 +99,7 @@ export default function Home() {
         <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
             Give me a messy problem. <br />
-            <span className="text-blue-600">I'll hand you a deployed solution.</span>
+            <span className="text-[#FFBA4A]">I'll hand you a deployed solution.</span>
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
             I'm Maximus Shurr, a Technical Co-founder who helps startups turn ideas into production-ready applications at startup speed.
@@ -107,7 +107,7 @@ export default function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
               href="/book"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
+              className="bg-[#FFBA4A] hover:bg-[#FFA726] text-gray-900 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
             >
               Book a Free Consultation
             </Link>
@@ -142,7 +142,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {narrativeSections.map((section, index) => (
               <div key={index} className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
-                <div className="text-2xl font-bold text-blue-600 mb-3">0{index + 1}</div>
+                <div className="text-2xl font-bold text-[#FFBA4A] mb-3">0{index + 1}</div>
                 <h3 className="text-xl font-semibold mb-2">{section.title}</h3>
                 <p className="text-gray-600">{section.description}</p>
               </div>
@@ -166,14 +166,14 @@ export default function Home() {
                 key={index}
                 className="block group"
               >
-                <div className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-blue-200 hover:shadow-lg transition-all duration-300">
+                <div className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#FFBA4A] hover:shadow-lg transition-all duration-300">
                   <div className="h-48 bg-gray-100 relative overflow-hidden">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <div className="text-gray-300 text-4xl font-bold">Project {index + 1}</div>
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-semibold mb-2 group-hover:text-[#FFBA4A] transition-colors">
                       {project.title}
                     </h3>
                     <p className="text-gray-600 mb-4">{project.description}</p>
@@ -193,7 +193,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-blue-600 text-white">
+      <section className="py-20 bg-[#FFBA4A] text-gray-900">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-6">Ready to build something amazing?</h2>
           <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">
@@ -201,7 +201,7 @@ export default function Home() {
           </p>
           <Link 
             href="/book"
-            className="inline-block bg-white text-blue-600 hover:bg-gray-100 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
+            className="inline-block bg-white text-gray-900 hover:bg-gray-100 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
           >
             Book a Free Consultation
           </Link>
