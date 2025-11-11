@@ -138,7 +138,7 @@ export default function Home() {
               href="/book"
               className="bg-[#FFBA4A] hover:bg-[#FFA726] text-gray-900 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
             >
-              Book a Free Consultation
+              Book Your Free Strategy Session
             </Link>
             <Link 
               href="#work"
@@ -274,15 +274,16 @@ export default function Home() {
       {/* Final CTA */}
       <section className="py-20 bg-[#FFBA4A] text-gray-900">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-6">Ready to build something amazing?</h2>
+          <h2 className="text-3xl font-bold mb-6">Ready to build?</h2>
           <p className="text-xl mb-10 max-w-2xl mx-auto opacity-90">
-            Let&apos;s spend 30 minutes defining your MVP&apos;s roadmap, for free.
+            Stop burning runway. Let&apos;s spend 30 minutes defining your MVP&apos;s core features, tech stack, and roadmap.
+            You&apos;ll walk away with an actionable plan, for free.
           </p>
           <Link 
             href="/book"
             className="inline-block bg-white text-gray-900 hover:bg-gray-100 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
           >
-            Book a Free Consultation
+            Book Your Free Strategy Session
           </Link>
         </div>
       </section>

@@ -3,8 +3,8 @@ import Link from 'next/link';
 import BookingInlineEmbed from '@/components/bookingInlineEmbed';
 
 export const metadata: Metadata = {
-  title: 'Book a Free Consultation | Maximus Shurr',
-  description: 'Schedule a 30-minute free consultation to discuss your project and how we can work together to bring your ideas to life.',
+  title: 'Book Your Free Strategy Session | Maximus Shurr',
+  description: 'Schedule a 30-minute free strategy session to plan meaningful steps toward bringing your ideas to life.',
 };
 
 export default function BookPage() {
@@ -18,9 +18,10 @@ export default function BookPage() {
           >
             ← Back to Home
           </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Let&apos;s Build Something Amazing</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Ready to build?</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Schedule a free 30-minute consultation to discuss your project and how we can work together to bring your ideas to life.
+            Stop burning runway. Let&apos;s spend 30 minutes defining your MVP&apos;s core features, tech stack, and roadmap.
+            You&apos;ll walk away with an actionable plan, for free.
           </p>
         </div>
       </header>
