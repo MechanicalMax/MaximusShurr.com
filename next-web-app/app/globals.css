@@ -24,3 +24,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@keyframes scroll-left-to-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-scroll-ltr {
+  animation: scroll-left-to-right 20s linear infinite;
+}
+
+@media (min-width: 640px) {
+  .animate-scroll-ltr {
+    animation-duration: 30s;
+  }
+}
+
+@media (min-width: 1024px) {
+  .animate-scroll-ltr {
+    animation-duration: 45s;
+  }
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}

@@ -124,14 +124,14 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-20">
+      <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
             Give me a messy problem. <br />
             <span className="text-[#FFBA4A]">I&apos;ll hand you a deployed solution.</span>
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I&apos;m Maximus Shurr, a Technical Co-founder who helps startups turn ideas into production-ready applications at startup speed.
+            I&apos;m Maximus Shurr, an engineer who moved from hardware to full-stack software for one reason: <span className="text-[#FFBA4A] font-bold">velocity</span>. I don't just write code—I ship complete products that solve real-world needs. <span className="italic">Your technical cofounder is waiting...</span>
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
@@ -151,15 +151,35 @@ export default function Home() {
       </section>
 
       {/* Social Proof Bar */}
-      <section className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-12 bg-white overflow-hidden relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <p className="text-center text-sm font-semibold uppercase text-gray-500 tracking-wider mb-8">
             Trusted by teams at
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-x-12 gap-y-8">
-            {socialProofLogos.map((logo) => (
-              <Image key={logo.name} src={logo.src} alt={logo.name} width={120} height={48} className="h-12 w-auto" />
-            ))}
+
+          {/* Outer container that holds scroll area + fixed fades */}
+          <div className="relative">
+            {/* Scrollable content */}
+            <div className="overflow-x-auto scrollbar-hide group">
+              <div className="flex animate-scroll-ltr group-hover:[animation-play-state:paused] w-max">
+                {[...socialProofLogos, ...socialProofLogos].map((logo, i) => (
+                  <div key={i} className="flex-shrink-0 mx-8">
+                    <Image
+                      src={logo.src}
+                      alt={logo.name}
+                      width={120}
+                      height={48}
+                      className="h-12 w-auto select-none"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Fixed gradient fades at edges */}
+            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10" />
           </div>
         </div>
       </section>
