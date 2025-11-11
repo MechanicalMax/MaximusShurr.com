@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import BookingInlineEmbed from '@/components/bookingInlineEmbed';
+import BookingInlineEmbed from '@/components/BookingInlineEmbed';
 
 export const metadata: Metadata = {
   title: 'Book Your Free Strategy Session | Maximus Shurr',
