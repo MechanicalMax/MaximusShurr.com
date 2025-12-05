@@ -40,7 +40,27 @@ const narrativeChapters : {title: string, story: string, text: string}[] = [
 
 export default async function Home() {
   // Fetch case studies dynamically from MDX files
-  const caseStudies = await getCaseStudies();
+  const allCaseStudies = await getCaseStudies();
+  
+  // Sort case studies by end date (most recent first)
+  // Parse dates in format "MMM YYYY" (e.g., "Jul 2025")
+  const caseStudies = allCaseStudies.sort((a, b) => {
+    const parseDate = (dateStr: string | null): Date => {
+      if (!dateStr) {
+        // Treat null/ongoing projects as current date (they appear first)
+        return new Date();
+      }
+      // Parse "MMM YYYY" format
+      return new Date(dateStr);
+    };
+    
+    const dateA = parseDate(a.frontmatter.end_date);
+    const dateB = parseDate(b.frontmatter.end_date);
+    
+    // Sort descending (most recent first)
+    return dateB.getTime() - dateA.getTime();
+  });
+  
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
       {/* Hero Section */}
