@@ -161,17 +161,15 @@ export default async function Home() {
                 className="block group"
               >
                 <div className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#FFBA4A] hover:shadow-lg transition-all duration-300">
-                  {caseStudy.frontmatter.cover_image && (
-                    <div className="h-48 bg-gray-100 relative overflow-hidden">
-                      <Image
-                        src={caseStudy.frontmatter.cover_image}
-                        alt={caseStudy.frontmatter.project_title}
-                        width={500}
-                        height={300}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                  )}
+                  <div className="h-48 bg-gray-100 relative overflow-hidden">
+                    <Image
+                      src={caseStudy.frontmatter.cover_image}
+                      alt={caseStudy.frontmatter.project_title}
+                      width={500}
+                      height={300}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-[#FFBA4A] transition-colors">
                       {caseStudy.frontmatter.project_title}

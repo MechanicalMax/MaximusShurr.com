@@ -17,7 +17,7 @@ function getSlugFromFilename(filename: string): string {
  */
 function validateFrontmatter(data: any, filename: string): void {
   const required = ['project_title', 'one_liner', 'project_type', 
-                    'status', 'tech_stack', 'start_date'];
+                    'status', 'tech_stack', 'start_date', 'cover_image'];
   
   for (const field of required) {
     if (!data[field]) {
@@ -32,6 +32,13 @@ function validateFrontmatter(data: any, filename: string): void {
     throw new Error(
       `Field "tech_stack" must be an array in ${filename}\n` +
       `Current value: ${typeof data.tech_stack}`
+    );
+  }
+  
+  if (typeof data.cover_image !== 'string' || data.cover_image.trim() === '') {
+    throw new Error(
+      `Field "cover_image" must be a non-empty string in ${filename}\n` +
+      `Current value: ${data.cover_image}`
     );
   }
 }

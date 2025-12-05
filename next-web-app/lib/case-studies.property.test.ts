@@ -68,10 +68,15 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       expect(fm.project_type).toBeDefined();
       expect(fm.status).toBeDefined();
       expect(fm.start_date).toBeDefined();
+      expect(fm.cover_image).toBeDefined();
       
       // tech_stack must be a non-empty array
       expect(Array.isArray(fm.tech_stack)).toBe(true);
       expect(fm.tech_stack.length).toBeGreaterThan(0);
+      
+      // cover_image must be a non-empty string
+      expect(typeof fm.cover_image).toBe('string');
+      expect(fm.cover_image.trim().length).toBeGreaterThan(0);
     }
   }, 10000);
 

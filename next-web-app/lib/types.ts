@@ -10,7 +10,7 @@ export interface CaseStudyFrontmatter {
   live_url: string | null;
   repo_url: string | null;
   cover_video_url: string | null;
-  cover_image: string | null;  // Path to cover image for tiles and social media
+  cover_image: string;  // Path to cover image for tiles and social media (REQUIRED)
   tech_stack: string[];
   start_date: string;
   end_date: string | null;

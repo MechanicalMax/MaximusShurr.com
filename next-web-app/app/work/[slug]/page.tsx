@@ -14,9 +14,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const caseStudy = await getCaseStudyBySlug(slug);
   if (!caseStudy) return {};
 
-  const ogImage = caseStudy.frontmatter.cover_image
-    ? `https://maximusshurr.com${caseStudy.frontmatter.cover_image}`
-    : 'https://maximusshurr.com/icon.jpg';
+  const ogImage = `https://maximusshurr.com${caseStudy.frontmatter.cover_image}`;
 
   return {
     title: `${caseStudy.frontmatter.project_title} | Maximus Shurr`,
