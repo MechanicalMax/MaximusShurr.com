@@ -1,12 +1,8 @@
 import type { NextConfig } from "next";
-import createMDX from '@next/mdx';
 
 const nextConfig: NextConfig = {
-  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
+  // No special MDX configuration needed when using next-mdx-remote
+  // MDX compilation happens at runtime via the serialize() function
 };
 
-const withMDX = createMDX({
-  // Add markdown plugins here if needed
-});
-
-export default withMDX(nextConfig);
+export default nextConfig;

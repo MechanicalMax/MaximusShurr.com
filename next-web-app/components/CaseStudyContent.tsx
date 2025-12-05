@@ -1,8 +1,7 @@
-import { MDXRemote } from 'next-mdx-remote';
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+import { MDXRemote } from 'next-mdx-remote/rsc';
 
 interface Props {
-  mdxSource: MDXRemoteSerializeResult;
+  content: string;
 }
 
 const components = {
@@ -29,11 +28,11 @@ const components = {
   em: (props: any) => <em className="italic" {...props} />,
 };
 
-export default function CaseStudyContent({ mdxSource }: Props) {
+export default function CaseStudyContent({ content }: Props) {
   return (
     <article className="py-12 bg-white">
       <div className="max-w-3xl mx-auto px-4">
-        <MDXRemote {...mdxSource} components={components} />
+        <MDXRemote source={content} components={components} />
       </div>
     </article>
   );

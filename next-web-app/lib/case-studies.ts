@@ -1,8 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
-import { CaseStudy, CaseStudyFrontmatter, CompiledCaseStudy } from './types';
+import { CaseStudy, CaseStudyFrontmatter } from './types';
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'case_studies');
 
@@ -78,11 +77,11 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
 }
 
 /**
- * Reads a single case study by slug and compiles MDX
+ * Reads a single case study by slug
  * @param slug - The filename (without .mdx extension) identifier for the case study
- * @returns The compiled case study if found, null otherwise
+ * @returns The case study if found, null otherwise
  */
-export async function getCaseStudyBySlug(slug: string): Promise<CompiledCaseStudy | null> {
+export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
   // Validate slug to prevent path traversal attacks
   if (!slug || slug.includes('..') || slug.includes('/') || slug.includes('\\')) {
     console.warn(`Invalid slug provided: ${slug}`);
@@ -98,18 +97,7 @@ export async function getCaseStudyBySlug(slug: string): Promise<CompiledCaseStud
       return null;
     }
 
-    // Compile MDX content using next-mdx-remote
-    const mdxSource = await serialize(caseStudy.content, {
-      mdxOptions: {
-        development: process.env.NODE_ENV === 'development',
-      },
-    });
-
-    return {
-      frontmatter: caseStudy.frontmatter,
-      mdxSource,
-      slug: caseStudy.slug,
-    };
+    return caseStudy;
   } catch (error) {
     console.error(`Error fetching case study by slug '${slug}':`, error);
     return null;
