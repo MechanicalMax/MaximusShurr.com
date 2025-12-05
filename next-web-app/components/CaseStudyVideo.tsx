@@ -34,18 +34,14 @@ export default function CaseStudyVideo({ url }: Props) {
   const embedUrl = getEmbedUrl(url);
 
   return (
-    <section className="py-12 bg-white">
-      <div className="max-w-4xl mx-auto px-4">
-        <div className="aspect-video">
-          <iframe
-            src={embedUrl}
-            className="w-full h-full rounded-lg shadow-lg"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            title="Case study video"
-          />
-        </div>
-      </div>
-    </section>
+    <div className="aspect-video">
+      <iframe
+        src={embedUrl}
+        className="w-full h-full rounded-lg shadow-lg"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title="Case study video"
+      />
+    </div>
   );
 }

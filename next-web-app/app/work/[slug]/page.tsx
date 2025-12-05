@@ -44,10 +44,12 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   return (
     <div className="min-h-screen bg-white">
-      <CaseStudyHeader frontmatter={caseStudy.frontmatter} />
-      {caseStudy.frontmatter.cover_video_url && (
-        <CaseStudyVideo url={caseStudy.frontmatter.cover_video_url} />
-      )}
+      <CaseStudyHeader 
+        frontmatter={caseStudy.frontmatter} 
+        videoEmbed={caseStudy.frontmatter.cover_video_url ? (
+          <CaseStudyVideo url={caseStudy.frontmatter.cover_video_url} />
+        ) : undefined}
+      />
       {caseStudy.frontmatter.testimonial && (
         <CaseStudyTestimonial testimonial={caseStudy.frontmatter.testimonial} />
       )}
