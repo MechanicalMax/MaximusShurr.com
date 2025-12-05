@@ -9,7 +9,7 @@ export default function CaseStudyHeader({ frontmatter }: Props) {
   return (
     <header className="bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
-        <Link href="/" className="text-gray-600 hover:text-gray-900 inline-block mb-6">
+        <Link href="/#work" className="text-gray-600 hover:text-gray-900 inline-block mb-6">
           ← Back to Portfolio
         </Link>
         

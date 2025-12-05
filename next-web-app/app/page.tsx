@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BookingCTA from "@/components/BookingCTA";
+import { getCaseStudies } from "@/lib/case-studies";
 
 // Social proof logos (replace with your actual logo paths)
 const socialProofLogos = [
@@ -37,91 +38,9 @@ const narrativeChapters : {title: string, story: string, text: string}[] = [
   }
 ];
 
-// Case Studies
-const caseStudies: {title:string, description:string, tags:string[], image:string}[] = [
-  // --- P1 Projects ---
-  {
-    title: "R&D Automation Engineer (Corteva)",
-    description:
-      "Built a custom IoT data rig and web app to automate R&D lab processes for a Fortune 500 company.",
-    tags: ["Python", "Django", "Linux", "IoT", "SOLIDWORKS"],
-    image: "/case-study-cards/MeWhenCorteva.jpg"
-  },
-  {
-    title: "Clairity Daily",
-    description:
-      "Founded and shipped a full-stack AI EdTech app from idea to launch in 70 days.",
-    tags: ["Next.js", "TypeScript", "Supabase", "GenAI"],
-    image: "/case-study-cards/MeWhenClairityDaily.png"
-  },
-  {
-    title: "Hughes Orthodontics",
-    description:
-      "Built an in-house 3D printing lab, automating workflows with Python to save the practice $10k+/year.",
-    tags: ["Python", "3D Printing", "CAD", "Workflow Automation"],
-    image: "/case-study-cards/MeWhenHughesOrthodontics.png"
-  },
-  // --- P2 Projects ---
-  {
-    title: "Makerspace Startup Intern (Sibley/XTern)",
-    description:
-      "Led product-to-market for a fishing caddy, cutting BOM by 80% and developing a robotics curriculum.",
-    tags: ["DFM", "SOLIDWORKS", "Project Mgmt", "Prototyping"],
-    image: "/case-study-cards/MeWhenSibley.JPG"
-  },
-  {
-    title: "Product R&D Intern (LeafSpec R&D)",
-    description:
-      "Engineered AgTech robotics with ROS, optimized 3D-printable scanners, and conducted market research at Cornell.",
-    tags: ["ROS", "Python", "SOLIDWORKS", "Market Research"],
-    image: "/case-study-cards/MeWhenLeafSpec.JPG"
-  },
-  {
-    title: "BOTIMUS (Battle Bot)",
-    description:
-      "Designed, built, and won a 3D-printed battle bot competition, beating teams of four in just 43 hours.",
-    tags: ["CAD", "Python", "IoT", "3D Printing"],
-    image: "/case-study-cards/MeWhenBotimus.JPG"
-  },
-  // --- P3 Projects ---
-  {
-    title: "Henni's Hairshop",
-    description:
-      "A 1-day website modernization to automate bookings and improve a local business's brand.",
-    tags: ["HTML", "CSS", "JavaScript"],
-    image: "/case-study-cards/MeWhenHennisHairshop.png"
-  },
-  {
-    title: "Rocket Data Collector PCB",
-    description:
-      "Taught myself PCB design and C++ in high school to build a custom data-logger for a rocket.",
-    tags: ["PCB Design", "C++", "Arduino", "Embedded Systems"],
-    image: "/case-study-cards/MeWhenRocketDataCollector.png"
-  },
-  {
-    title: "Mechanical Max LLC",
-    description:
-      "Grew an educational YouTube channel, managed sponsors, and freelanced CAD prototypes under NDA at 16.",
-    tags: ["YouTube", "CAD", "Prototyping"],
-    image: "/case-study-cards/MeWhenMechanicalMax.png"
-  },
-  {
-    title: "Unity C# Game Developer (Purdue Envision Center)",
-    description:
-      "Developed core mechanics for a VR/AR virtual lab simulating airborne bacteria sampling.",
-    tags: ["Unity", "C#", "VR/AR", "Asana"],
-    image: "/case-study-cards/MeWhenEnvision.JPG"
-  },
-  {
-    title: "AI Generated Door Lock",
-    description:
-      "Used generative design and FEA to engineer an un-breakable, 3D-printed door lock.",
-    tags: ["CAD", "FEA", "AI", "3D Printing"],
-    image: "/case-study-cards/MeWhenDoorLock.JPG"
-  },
-];
-
-export default function Home() {
+export default async function Home() {
+  // Fetch case studies dynamically from MDX files
+  const caseStudies = await getCaseStudies();
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
       {/* Hero Section */}
@@ -235,32 +154,33 @@ export default function Home() {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((caseStudy, index) => (
+            {caseStudies.map((caseStudy) => (
               <Link 
-                href="/book" 
-                key={index}
+                href={`/work/${caseStudy.slug}`}
+                key={caseStudy.slug}
                 className="block group"
               >
                 <div className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#FFBA4A] hover:shadow-lg transition-all duration-300">
-                  <div className="h-48 bg-gray-100 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
+                  {caseStudy.frontmatter.cover_image && (
+                    <div className="h-48 bg-gray-100 relative overflow-hidden">
                       <Image
-                        src={caseStudy.image}
-                        alt={caseStudy.title}
+                        src={caseStudy.frontmatter.cover_image}
+                        alt={caseStudy.frontmatter.project_title}
                         width={500}
-                        height={500}
-                        />
+                        height={300}
+                        className="object-cover w-full h-full"
+                      />
                     </div>
-                  </div>
+                  )}
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-[#FFBA4A] transition-colors">
-                      {caseStudy.title}
+                      {caseStudy.frontmatter.project_title}
                     </h3>
-                    <p className="text-gray-600 mb-4">{caseStudy.description}</p>
+                    <p className="text-gray-600 mb-4">{caseStudy.frontmatter.one_liner}</p>
                     <div className="flex flex-wrap gap-2">
-                      {caseStudy.tags.map((tag, i) => (
-                        <span key={i} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                          {tag}
+                      {caseStudy.frontmatter.tech_stack.map((tech) => (
+                        <span key={tech} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
+                          {tech}
                         </span>
                       ))}
                     </div>
