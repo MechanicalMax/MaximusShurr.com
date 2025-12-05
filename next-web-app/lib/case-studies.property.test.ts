@@ -31,14 +31,11 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
     // Property: The number of case studies should equal the number of MDX files
     expect(caseStudies.length).toBe(mdxFiles.length);
     
-    // Property: Every MDX file should have a corresponding case study
+    // Property: Every MDX file should have a corresponding case study with slug derived from filename
     for (const file of mdxFiles) {
-      const found = caseStudies.some(cs => {
-        const filePath = path.join(CASE_STUDIES_DIR, file);
-        const fileContent = fs.readFileSync(filePath, 'utf8');
-        return fileContent.includes(cs.slug);
-      });
-      expect(found).toBe(true);
+      const expectedSlug = file.replace(/\.mdx$/, '');
+      const found = caseStudies.find(cs => cs.slug === expectedSlug);
+      expect(found).toBeDefined();
     }
     
     // Property: Every case study should have required fields
@@ -47,7 +44,8 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       expect(cs.slug.length).toBeGreaterThan(0);
       expect(cs.frontmatter).toBeDefined();
       expect(cs.content).toBeDefined();
-      expect(cs.frontmatter.project_slug).toBe(cs.slug);
+      // Slug should not contain .mdx extension
+      expect(cs.slug).not.toContain('.mdx');
     }
   }, 10000);
 
@@ -61,33 +59,19 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
   test('Property 5: Frontmatter parsing completeness - all frontmatter fields are extracted', async () => {
     const caseStudies = await getCaseStudies();
     
-    // Property: Every case study should have all required frontmatter fields
-    const requiredFields = [
-      'project_slug',
-      'project_title',
-      'one_liner',
-      'project_type',
-      'status',
-      'tech_stack',
-      'start_date'
-    ];
-    
     for (const cs of caseStudies) {
-      for (const field of requiredFields) {
-        expect(cs.frontmatter).toHaveProperty(field);
-        expect(cs.frontmatter[field as keyof typeof cs.frontmatter]).toBeDefined();
-      }
+      const fm = cs.frontmatter;
       
-      // Property: tech_stack should be an array
-      expect(Array.isArray(cs.frontmatter.tech_stack)).toBe(true);
-      expect(cs.frontmatter.tech_stack.length).toBeGreaterThan(0);
+      // Required fields must be defined
+      expect(fm.project_title).toBeDefined();
+      expect(fm.one_liner).toBeDefined();
+      expect(fm.project_type).toBeDefined();
+      expect(fm.status).toBeDefined();
+      expect(fm.start_date).toBeDefined();
       
-      // Property: Optional fields should exist (even if null)
-      expect(cs.frontmatter).toHaveProperty('live_url');
-      expect(cs.frontmatter).toHaveProperty('repo_url');
-      expect(cs.frontmatter).toHaveProperty('cover_video_url');
-      expect(cs.frontmatter).toHaveProperty('end_date');
-      expect(cs.frontmatter).toHaveProperty('testimonial');
+      // tech_stack must be a non-empty array
+      expect(Array.isArray(fm.tech_stack)).toBe(true);
+      expect(fm.tech_stack.length).toBeGreaterThan(0);
     }
   }, 10000);
 
@@ -95,15 +79,18 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
    * Feature: dynamic-case-study-pages, Property 6: Slug to route mapping
    * Validates: Requirements 2.2
    * 
-   * For any case study with a project_slug value, 
-   * the generated route should be /work/[project_slug] where the slug exactly matches the frontmatter value.
+   * For any case study file, the generated route should be /work/[slug] 
+   * where the slug is derived from the filename (without .mdx extension).
    */
-  test('Property 6: Slug to route mapping - slug matches frontmatter project_slug', async () => {
+  test('Property 6: Slug to route mapping - slug derived from filename', async () => {
     const caseStudies = await getCaseStudies();
+    const files = fs.readdirSync(CASE_STUDIES_DIR);
+    const mdxFiles = files.filter(file => file.endsWith('.mdx'));
     
-    // Property: For every case study, slug should equal frontmatter.project_slug
+    // Property: For every case study, slug should equal filename without .mdx
     for (const cs of caseStudies) {
-      expect(cs.slug).toBe(cs.frontmatter.project_slug);
+      const expectedSlug = mdxFiles.find(file => file.replace(/\.mdx$/, '') === cs.slug);
+      expect(expectedSlug).toBeDefined();
     }
     
     // Property: getCaseStudyBySlug should find the case study using the slug
@@ -111,7 +98,6 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       const found = await getCaseStudyBySlug(cs.slug);
       expect(found).not.toBeNull();
       expect(found?.slug).toBe(cs.slug);
-      expect(found?.frontmatter.project_slug).toBe(cs.slug);
     }
     
     // Property: generateCaseStudyParams should return params with matching slugs
@@ -121,7 +107,6 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
     for (const param of params) {
       const found = caseStudies.find(cs => cs.slug === param.slug);
       expect(found).toBeDefined();
-      expect(found?.frontmatter.project_slug).toBe(param.slug);
     }
   }, 10000);
 

@@ -3,7 +3,6 @@
  */
 
 export interface CaseStudyFrontmatter {
-  project_slug: string;
   project_title: string;
   one_liner: string;
   project_type: string;

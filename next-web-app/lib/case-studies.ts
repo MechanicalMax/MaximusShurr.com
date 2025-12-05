@@ -30,15 +30,13 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
       const fileContents = fs.readFileSync(filePath, 'utf8');
       const { data, content } = matter(fileContents);
 
-      // Validate required fields
-      if (!data.project_slug) {
-        throw new Error(`Missing required field 'project_slug' in ${filename}`);
-      }
+      // Derive slug from filename (remove .mdx extension)
+      const slug = filename.replace(/\.mdx$/, '');
 
       return {
         frontmatter: data as CaseStudyFrontmatter,
         content,
-        slug: data.project_slug
+        slug
       };
     });
 
@@ -53,7 +51,7 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
 
 /**
  * Reads a single case study by slug
- * @param slug - The project_slug identifier for the case study
+ * @param slug - The filename (without .mdx extension) identifier for the case study
  * @returns The case study if found, null otherwise
  */
 export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null> {
