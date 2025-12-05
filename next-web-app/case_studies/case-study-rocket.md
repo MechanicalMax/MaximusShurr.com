@@ -1,0 +1,58 @@
+---
+project_slug: "rocket-data-collector"
+project_title: "Rocket Data Collector PCB"
+one_liner: "Leading a high school team to design, solder, and launch a custom flight computer that captured real-time telemetry."
+project_type: "Embedded Systems & Leadership"
+status: "Complete"
+live_url: null
+repo_url: null
+cover_video_url: null
+tech_stack: ["C++", "Arduino", "PCB Design", "Sensors", "Data Analysis"]
+start_date: "Sep 2021"
+end_date: "Apr 2022"
+
+testimonial: null
+---
+### Product Strategy: The "Business Thinking"
+
+This project started with a single question. My aerospace teacher asked the class, rhetorically, if it was possible to use an Arduino to track a rocket's flight path. Most students heard a comment; I heard a challenge.
+
+My strategy was **"Self-Directed Scale."** I realized that breadboards and wires wouldn't survive the G-force of a launch—we needed professional hardware. But I also knew I couldn't do it alone. I decided to master the skills first (PCB design, C++) and then act as the **Technical Lead**, teaching my friends how to solder and assemble the boards so we could launch as a team.
+
+### The Problem
+
+We needed to capture high-fidelity data in a high-stress environment.
+
+- **The Hardware Constraint:** Standard Arduino kits are bulky and fragile. A model rocket experiences violent acceleration and vibration that would rip standard wiring apart.
+
+- **The Data Challenge:** We needed to capture acceleration, gyroscopic data, temperature, and pressure simultaneously, writing it to memory fast enough (10Hz) to reconstruct the flight path later.
+
+- **The Knowledge Gap:** None of us knew how to design a Printed Circuit Board (PCB).
+
+### The Build
+
+I spent months outside of class teaching myself electrical engineering principles to build a custom solution.
+
+- **Custom PCB Architecture:**
+
+    - I designed a custom motherboard that integrated an **Arduino microcontroller** with an accelerometer, gyroscope, barometer, and temperature sensor.
+
+    - I engineered the board to fit precisely within the rocket's fuselage, ensuring the parachute could still deploy safely.
+
+- **Firmware Engineering:**
+
+    - I wrote the firmware in **C++**, optimizing the code to poll all sensors **10 times a second** and write the telemetry to an onboard SD card without latency.
+
+- **Team Leadership:**
+
+    - Once I validated the prototype, I didn't just build the rest myself. I set up a "soldering station" and taught two other students how to assemble the components. I transformed from a solo engineer into a manufacturing lead, ensuring quality control across our small fleet.
+
+### The Outcome
+
+This was my first long-term engineering success.
+
+- **Mission Success:** The PCB survived the launch and parachute deployment, successfully recording the flight trajectory.
+
+- **Data Validation:** We recovered the SD card and analyzed the flight path, proving that the rhetorical question had a very real answer.
+
+- **The "Why"**: This project taught me that engineering is a team sport. The joy wasn't just in the data; it was in seeing my friends successfully solder their first board and watching our collective hard work soar into the sky.

@@ -1,0 +1,52 @@
+---
+project_slug: "clairity-daily"
+project_title: "Clairity Daily"
+one_liner: "A 70-day sprint to build an AI-native learning platform that transformed my career from solo founder to mission-driven technical partner"
+project_type: "Software MVP"
+status: "Live"
+live_url: "https://clairitydaily.com"
+repo_url: null
+cover_video_url: null
+tech_stack: ["Next.js", "Vercel AI SDK", "Supabase", "Cursor", "v0", "Windsurf"]
+start_date: "Jun 2025"
+end_date: "Aug 2025"
+
+testimonial: null
+---
+### Product Strategy: The "Business Thinking"
+
+I didn't leave the corporate world to settle for another 9-to-5. After my time at Corteva, I realized I was craving more than just a paycheck—I wanted to work with passionate builders who are obsessed with solving real problems. I saw a massive disconnect in how people use AI: most were just "prompting," while a select few were "thinking" natively in AI.
+
+I set out to close that gap. My mission wasn't just to build an app; it was to empower people to live happier, healthier, more fulfilling lives by mastering the tools of the future.
+
+To do that, I had to walk the walk. I spent 70 days in a self-imposed "AI Bootcamp," testing one question: **Do I have what it takes to build entire full-stack apps on my own?** I wasn't just building a product; I was designing a career path defined by action, velocity, and impact.
+
+### The Problem
+
+I saw two barriers holding people back:
+
+- **The "User" Trap:** Most people are passive consumers of AI. They ask a question and accept the answer. I wanted to turn them into active engineers of their own tools, teaching them to reverse-engineer the "black box" of LLMs.
+
+- **The "Founder" Trap:** Too many people (myself included) wait for permission or the "perfect team" to build their ideas. I needed to prove that with the right focus, you can bridge the gap between "idea" and "execution" entirely on your own.
+
+### The Build
+
+This was pure velocity. I compressed a year's worth of learning into a single summer.
+
+- **The Game:** I created **"Bridge the Gap,"** a daily challenge that gamified AI literacy. Instead of consuming content, users had to deconstruct it—guessing the prompts and models behind the output.
+
+- **The AI Dev Suite:** I tried every AI-accelerated tool I could find—**Cursor**, **Windsurf**, **Claude Code**, and **v0**—to write production-grade code at lightning speed while maintaining security and architecture control.
+
+- **Full-Stack Execution:** I didn't just write the **Next.js** code. I designed the artwork, built the **Supabase** backend, set up the **Vercel AI Gateway**, and even hit the podcast circuit to promote it. I was in the arena every single day, turning a vision into a tangible reality.
+
+### The Outcome
+
+The app works perfectly, but the real product was *me*.
+
+- **The Reality Check:** While the code was clean and the design was slick, users didn't stick around. I learned the most valuable lesson of startups: **Validate before you build.** Passion is the fuel, but the market is the steering wheel.
+
+- **The Pivot to Partnership:** This "successful failure" got me into **Ignition**, a competitive startup incubator at **16 Tech**. There, I realized my true strength isn't just coming up with ideas—it's **executing them**.
+
+- **A New Mission:** I now use my technical velocity to help *other* founders build their dreams. I've realized that I'm happiest when I'm the technical partner who brings the visionary idea to life.
+
+- **The "Why":** Clarity Daily didn't become a unicorn, but it led me to a life I love. I now spend my days helping others create that sense of joy and wonder, ensuring they build scalable, value-driven products that actually make a difference.

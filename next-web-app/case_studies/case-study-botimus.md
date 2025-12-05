@@ -1,0 +1,60 @@
+---
+project_slug: "botimus"
+project_title: "BOTIMUS: 3D Printed Battlebot"
+one_liner: "A 43-hour solo engineering sprint that tested the limits of rapid prototyping, prioritization and my own endurance."
+project_type: "Robotics & IoT"
+status: "Destroyed"
+live_url: null
+repo_url: null
+cover_video_url: null
+tech_stack: ["Python", "SolidWorks", "IoT Electronics", "3D Printing", "Physics Simulations"]
+start_date: "Oct 2025"
+end_date: "Oct 2025"
+
+testimonial: null
+---
+### Product Strategy: The "Business Thinking"
+
+This wasn't just a toy design class project; it was an exercise in **Extreme Constraints.**
+
+Most students worked in teams of four over several weeks. I worked alone, with only three days on the clock. My strategy was **"Parallel Execution."** I couldn't afford the traditional "Design -> Build -> Test" waterfall. I had to design the electronics housing while the chassis was printing, and simulate the flipper physics in Python while the glue was drying.
+
+This project was about calculating the **Minimum Viable Product (MVP)** for combat. I used free-body diagrams to calculate the exact force needed to flip an opponent, ensuring I didn't waste a single gram of weight or amp of power on unnecessary features.
+
+### The Problem
+
+I faced a "David vs. Goliath" scenario on two fronts:
+
+- **The Resource Gap:** I was a solo engineer competing against teams with 4x the manpower and weeks of lead time.
+
+- **The Physics Constraint:** My bot was 3D printed (plastic). The competition included bots with metal saw blades. I needed to design a bot that could win through agility and leverage, not brute durability.
+
+- **The Human Limit:** I had 72 hours to do 100 hours of work.
+
+### The Build
+
+I treated this as a 43-hour hackathon, combining every skill in my arsenal.
+
+- **Simulation-Led Design:**
+
+    - Before touching CAD, I used **Python** to run physics simulations on the flipper mechanism. I calculated torque requirements and lever arm lengths to ensure the flipper would actually work under load.
+
+    - I used these calculations to drive the **SolidWorks** design, adhering to "Form Follows Function."
+
+- **Rapid Manufacturing:**
+
+    - I optimized my print settings for speed without sacrificing structural integrity, using the 3D printer as a "force multiplier" that ran while I slept (or tried to... it’s a studio apartment).
+
+    - I integrated **IoT electronics** for remote control, creating a custom responsive drive system.
+
+### The Outcome
+
+The result was a mix of triumph, disaster, and profound learning.
+
+- **The Victory:** Despite the odds, **I won my section**, defeating teams that had spent weeks on their builds. My "simulation-first" approach paid off in the arena.
+
+- **The Defeat:** In the finals, reality caught up. A metal-blade bot tore Botimus to pieces.
+
+- **The Human Lesson:** I was so "locked in" that I missed a virtual exam for another class. It was a wake-up call that **velocity has a cost**. I learned that true success isn't just about the product you build, but maintaining the balance required to keep building tomorrow.
+
+- **The "Why":** Botimus is gone, but the feeling remains. I proved to myself that when I give 100%, I can out-build teams and out-think constraints. It was the most "alive" I have ever felt as an engineer.
