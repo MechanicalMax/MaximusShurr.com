@@ -59,7 +59,7 @@ export default function ResumePage() {
 
             {/* Footer CTA */}
             <BookingCTA
-                title="Would you rather reach out directly?"
+                title="Wouldn&apos;t you rather reach out directly?"
                 description="Get to know me the best with a call or by checking out my socials."
                 buttonText="Book your call"
             />

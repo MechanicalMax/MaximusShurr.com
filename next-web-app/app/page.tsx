@@ -18,23 +18,23 @@ const socialProofLogos = [
 const narrativeChapters : {title: string, story: string, text: string}[] = [
   {
     title: "The Spark",
-    story: "Recording Mechanical Max",
-    text: "It started with an unsolved Rubik's Cube. At 10 years old, I taught myself how to solve it from YouTube. I wanted to share that feeling of empowerment, so I started Mechanical Max. However, the more focused I was on creating and sharing on my own path, the more I became isolated and different from the culture of hyper-competition, grades, and status at school."
+    story: "It wasn't just a puzzle. It was a realization.",
+    text: "At 10 years old, I taught myself to solve a Rubik's Cube. But the thrill wasn't in the plastic or the stickers—it was in the feeling of empowerment. it was proof that I could figure anything out if I tried hard enough. I wanted everyone to feel that sense of agency. I started \"Mechanical Max\" not to show off, but to lift others up and show them that they were capable of more than they thought."
   },
   {
     title: 'The "Right" Path',
-    story: 'Chasing Grades and Status',
-    text: "Through middle and high school, that peer pressure only grew stronger. For years, I had tried to follow the \"right\" path. I put my head down, chased the 100%, and ran for the student leadership, all because my community said that's what success was. I was trying to win a game I didn't even want to play, to get into an Ivy League school I knew nothing about. Growing up was a cycle of chasing grades, burning out, building a project, then feeling alone."
+    story: 'I know what it\'s like to chase the wrong metrics.',
+    text: "For years, I was stuck in the \"performance trap.\" I chased grades, status, and leadership titles because I thought external validation was the only path to success. I was running a race I didn't want to enter, burning myself out to impress admissions officers at universities I knew nothing about. I understand the pain of living for a résumé instead of a purpose."
   },
   {
     title: "The Pivot",
     story: "Turning Pain into Growth",
-    text: "But eventually, this system broke. In my junior year, I lost two major elections, not on merit, but on politics. My \"one chance at a happy life\" Ivy League worldview was shattered. And it was the best thing that ever happened to me. I felt a new fire and freedom behind my sails. The system locked me out, so I carved a new path. I pivoted to the real world, noticing my orthodontist workflow was broken. I taught myself Python and automation, and built an in-house 3D printing lab, saving his practice over $10,000 a year. It was my first taste of genuine one-on-one service with an impact that would last well beyond any high school ribbon."
+    text: "In high school, I lost a humiliating election. At the time, it felt like my future had shattered. In reality, it was the moment I became free. I stopped looking for permission and started looking for service. I pivoted to the real world, finding a local orthodontist with a broken workflow. I didn't just save him $10k in ARR and build him a 3D printing lab; I gave him back his time. That was my wake-up call: true fulfillment comes from how deeply you serve, not a shiny award."
   },
   {
     title: "The Mission",
     story: "Building What Matters",
-    text: "I brought that lesson to Purdue, where I mastered both physical and software engineering. I still have the honors GPA, but I see it as a footnote. My real education came from all the projects I did outside of class. And through building my first full-stack web app, \"Clairity Daily,\" I learned the only metric that truly matters is how well you serve others. My mission is to build products that help people become more resilient and find their own path, just like I had to. I'm here to create experiences that show people how to live happier, healthier, and more fulfilling lives."
+    text: "At Purdue, I refined my technical toolkit, balancing rigorous mechanical engineering coursework with practical software development. Whether I'm designing physical products or deploying full-stack web apps, my goal is unchanged: to build tools that help people live happier, healthier, more fulfilling lives. I am not looking for a \"gig.\" I am looking for partners who want to use technology to amplify wisdom and create genuine human transformation. Most apps distract us; I build apps that center us."
   }
 ];
 
@@ -47,11 +47,11 @@ export default async function Home() {
       <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            Give me a messy problem. <br />
-            <span className="text-[#FFBA4A]">I&apos;ll hand you a deployed solution.</span>
+            <span className="text-[#FFBA4A]">You Change Lives<br /></span>
+            I build the technology that scales your impact
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I&apos;m Maximus Shurr, an engineer who moved from hardware to full-stack software for one reason: <span className="text-[#FFBA4A] font-bold">velocity</span>. I don&apos;t just write code—I ship complete products that solve real-world needs. <span className="italic">Your technical cofounder is waiting...</span>
+            I am Maximus Shurr. I don't just write code; I translate vision into reality. As an engineer who moved from hardware to software, I bring a rare combination of velocity and purpose to every project. You have the methodology and the message. I have the technical blueprint to get it into the hands of the people who need it most. Let's build a platform worthy of your mission.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
