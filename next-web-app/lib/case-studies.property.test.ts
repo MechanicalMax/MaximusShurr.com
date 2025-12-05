@@ -2,6 +2,7 @@ import * as fc from 'fast-check';
 import { getCaseStudies, getCaseStudyBySlug, generateCaseStudyParams } from './case-studies';
 import fs from 'fs';
 import path from 'path';
+import { describe, test, expect } from 'vitest';
 
 /**
  * Property-based tests for case study data layer
@@ -22,7 +23,7 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
   test('Property 18: Case study discovery - all valid MDX files are discovered', async () => {
     // Get actual files in the directory
     const files = fs.readdirSync(CASE_STUDIES_DIR);
-    const mdxFiles = files.filter(file => file.endsWith('.md') || file.endsWith('.mdx'));
+    const mdxFiles = files.filter(file => file.endsWith('.mdx'));
     
     // Get case studies from our function
     const caseStudies = await getCaseStudies();

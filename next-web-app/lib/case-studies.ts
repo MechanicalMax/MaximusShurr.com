@@ -18,7 +18,7 @@ export async function getCaseStudies(): Promise<CaseStudy[]> {
     }
 
     const files = fs.readdirSync(CASE_STUDIES_DIR);
-    const mdxFiles = files.filter(file => file.endsWith('.md') || file.endsWith('.mdx'));
+    const mdxFiles = files.filter(file => file.endsWith('.mdx'));
 
     if (mdxFiles.length === 0) {
       console.warn('No case study files found in case_studies directory');
