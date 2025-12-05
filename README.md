@@ -15,19 +15,20 @@ This repository contains the complete source code for my personal portfolio.
 
 This site is my digital home base, designed to showcase my journey as a full-stack developer and mechanical engineer. It's built to be a high-velocity conversion engine that reflects my "Cofounder" brand: I don't just write code; I ship complete, value-driven products.
 
-### ⚡️ Current Status: Milestone 1 (MVP for 16Tech Ignition Speaking Event)
+### ⚡️ Current Status: Milestone 2 Complete - Dynamic Case Study System
 
 This project is under active development.
 
-The current live version (V1) is a professional "digital business card" launched specifically for the 16Tech Ignition collegiate founder pitch.
+**Milestone 2 is now complete!** The site now features a fully dynamic case study system with:
 
-The V1 site features:
+- Dynamic `/work/[slug]` pages for all 12 case studies
+- MDX-based content management with YAML frontmatter
+- Automatic homepage tile generation from case study files
+- SEO optimization with Open Graph and Twitter Card metadata
+- Responsive design across mobile, tablet, and desktop
+- Property-based testing for data integrity
 
-- A complete, static homepage with my full narrative and project portfolio.
-- A high-conversion `/book` page funneling all interest to my calendar.
-- A simple `/resume` page with my PDF resume.
-
-To maximize lead capture from this event, all project tiles temporarily point to the `/book` page. Dynamic case study pages are the next milestone.
+All project tiles now link to their respective case study pages, showcasing detailed project narratives with rich metadata, tech stacks, timelines, and testimonials.
 
 ## Project Roadmap
 
@@ -39,35 +40,82 @@ To maximize lead capture from this event, all project tiles temporarily point to
 
   - (Target: 16Tech Ignition Pitch)
 
-- ➡️ **Milestone 2: The "First Dynamic Slice"**
+- ✅ **Milestone 2: Dynamic Case Study System**
 
   - Build the dynamic `[slug]` page template for case studies.
 
-  - Content: Ship the first P1 Case Study (video + `.mdx` file).
+  - Implement MDX-based content management with frontmatter parsing.
 
-  - Tech: Update the homepage to link the first tile to its case study page.
+  - Create reusable UI components (Header, Video, Testimonial, Content).
+
+  - Update homepage to dynamically generate tiles from case study files.
+
+  - Add comprehensive property-based testing for data integrity.
 
   - Launch the `/resume` utility page.
 
-- 📅 **Milestone 3: The "Rollout"**
+  - Implement responsive design and SEO optimization.
 
-  - Iteratively create and ship all P1, P2, and P3 case studies (videos + `.mdx` content).
+- ➡️ **Milestone 3: Content Enhancement & Polish**
 
-  - The site will come to life dynamically as each case study is completed.
+  - **Video Production:** Create and embed professional case study videos for all projects.
+
+  - **Media Assets:** Upload high-quality images, diagrams, and screenshots for each case study.
+
+  - **Homepage UX:** Polish the homepage experience with improved animations, transitions, and visual hierarchy.
+
+  - **Content Refinement:** Expand and refine case study narratives with deeper technical details and business outcomes.
+
+  - **Performance Optimization:** Implement advanced image optimization and lazy loading.
+
+- 📅 **Milestone 4: Advanced Features**
+
+  - Add filtering and search functionality for case studies.
 
 ## Tech Stack
 
 This portfolio is intentionally built as a portfolio piece itself, demonstrating a modern, professional, and scalable web stack.
 
-| Category       | Technology           |
-|----------------|----------------------|
-| Framework      | Next.js (App Router) |
-| Language       | TypeScript           |
-| Styling        | Tailwind CSS         |
-| Content        | MDX                  |
-| Deployment     | Vercel               |
+| Category       | Technology                    |
+|----------------|-------------------------------|
+| Framework      | Next.js 16 (App Router)       |
+| Language       | TypeScript                    |
+| Styling        | Tailwind CSS v4               |
+| Content        | MDX with next-mdx-remote      |
+| Parsing        | gray-matter (YAML frontmatter)|
+| Testing        | Vitest + fast-check (PBT)     |
+| Deployment     | Vercel                        |
 
-> **Note:** Content is managed locally as code—no external CMS is needed.
+> **Note:** Content is managed locally as code—no external CMS is needed. All case studies are authored as MDX files with YAML frontmatter for maximum developer control and version history.
+
+## Project Structure
+
+```
+MaximusShurr.com/
+└── next-web-app/                 # Main Next.js application
+    ├── app/                      # App Router pages
+    │   ├── page.tsx              # Homepage with dynamic case study tiles
+    │   ├── work/[slug]/          # Dynamic case study pages
+    │   ├── book/                 # Booking/contact page
+    │   ├── resume/               # Resume page
+    │   └── not-found.tsx         # Custom 404 page
+    ├── components/               # Reusable React components
+    │   ├── CaseStudyHeader.tsx   # Project metadata display
+    │   ├── CaseStudyVideo.tsx    # YouTube video embed
+    │   ├── CaseStudyTestimonial.tsx # Client testimonials
+    │   └── CaseStudyContent.tsx  # MDX content renderer
+    ├── lib/                      # Core business logic
+    │   ├── case-studies.ts       # Case study data fetching & validation
+    │   ├── types.ts              # TypeScript interfaces
+    │   └── *.test.ts             # Property-based tests
+    ├── case_studies/             # MDX content files
+    │   ├── corteva-automation-engineer.mdx
+    │   ├── clairity-daily.mdx
+    │   └── ... (12 total)
+    └── public/                   # Static assets
+        ├── case-study-cards/     # Cover images
+        └── logos/                # Company logos
+```
 
 ## Getting Started
 
@@ -82,9 +130,9 @@ This portfolio is intentionally built as a portfolio piece itself, demonstrating
    git clone https://github.com/MechanicalMax/MaximusShurr.com.git
    ```
 
-2. **Navigate to the project directory**
+2. **Navigate to the Next.js app directory**
    ```bash
-   cd MaximusShurr.com
+   cd MaximusShurr.com/next-web-app
    ```
 
 3. **Install dependencies**
@@ -103,6 +151,91 @@ This portfolio is intentionally built as a portfolio piece itself, demonstrating
 
 5. **Open your browser**
    Visit [http://localhost:3000](http://localhost:3000) to view the site locally.
+
+### Running Tests
+
+```bash
+cd next-web-app
+npm test
+# or
+yarn test
+```
+
+The test suite includes property-based tests using fast-check to verify:
+- Case study discovery and parsing
+- Frontmatter validation
+- Slug-to-route mapping
+- Invalid input handling
+
+### Building for Production
+
+```bash
+cd next-web-app
+npm run build
+# or
+yarn build
+```
+
+This generates static HTML for all pages, including all 12 case study routes.
+
+## Adding New Case Studies
+
+Case studies are authored as MDX files in `next-web-app/case_studies/`. Each file includes YAML frontmatter for metadata and Markdown content for the narrative.
+
+### File Naming Convention
+- Use kebab-case: `project-name.mdx`
+- The filename (without `.mdx`) becomes the URL slug: `/work/project-name`
+
+### Frontmatter Structure
+
+```yaml
+---
+project_title: "Your Project Title"
+one_liner: "A compelling one-sentence description"
+project_type: "Web App | Mobile App | Hardware | Hybrid"
+status: "Complete | In Progress | Ongoing"
+live_url: "https://example.com" # or null
+repo_url: "https://github.com/..." # or null
+cover_video_url: "https://youtube.com/..." # or null
+cover_image: "/case-study-cards/image.jpg"
+tech_stack: ["React", "Node.js", "PostgreSQL"]
+start_date: "Jan 2025"
+end_date: "Jul 2025" # or null for ongoing
+testimonial:
+  text: "Quote from client or manager"
+  author: "John Doe"
+  role: "CEO, Company Name"
+# or testimonial: null
+---
+```
+
+### Content Sections
+
+After the frontmatter, structure your case study with these recommended sections:
+
+```markdown
+### Product Strategy: The "Business Thinking"
+
+Explain the strategic approach and business context...
+
+### The Problem
+
+Describe the challenge or opportunity...
+
+### The Build
+
+Detail the technical implementation...
+
+### The Outcome
+
+Share results, metrics, and impact...
+```
+
+The system automatically:
+- Generates the case study page at `/work/[slug]`
+- Creates a homepage tile with cover image and metadata
+- Sorts projects by end date (most recent first)
+- Handles SEO metadata and social media previews
 
 ## License
 

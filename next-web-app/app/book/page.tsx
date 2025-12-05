@@ -18,10 +18,10 @@ export default function BookPage() {
           >
             ← Back to Home
           </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Ready to build?</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Your Message Deserves a Modern Platform</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Stop burning runway. Let&apos;s spend 30 minutes defining your MVP&apos;s core features, tech stack, and roadmap.
-            You&apos;ll walk away with an actionable plan, for free.
+            Don&apos;t let technical hurdles bottleneck your impact. You provide the vision; I&apos;ll provide the velocity.
+            Let&apos;s spend 30 minutes mapping out how we can turn your curriculum into a scalable digital product.
           </p>
         </div>
       </header>
