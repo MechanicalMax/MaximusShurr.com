@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getCaseStudyBySlug, generateCaseStudyParams } from '@/lib/case-studies';
+import { getCaseStudyBySlug, getCaseStudyWithMediaBySlug, generateCaseStudyParams } from '@/lib/case-studies';
 import CaseStudyHeader from '@/components/CaseStudyHeader';
 import CaseStudyVideo from '@/components/CaseStudyVideo';
 import CaseStudyTestimonial from '@/components/CaseStudyTestimonial';
@@ -36,24 +36,26 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const caseStudy = await getCaseStudyBySlug(slug);
+  const caseStudyWithMedia = await getCaseStudyWithMediaBySlug(slug);
 
-  if (!caseStudy) {
+  if (!caseStudyWithMedia) {
     notFound();
   }
 
   return (
     <div className="min-h-screen bg-white">
       <CaseStudyHeader 
-        frontmatter={caseStudy.frontmatter} 
-        videoEmbed={caseStudy.frontmatter.cover_video_url ? (
-          <CaseStudyVideo url={caseStudy.frontmatter.cover_video_url} />
+        frontmatter={caseStudyWithMedia.frontmatter}
+        carouselData={caseStudyWithMedia.carouselData}
+        slug={slug}
+        videoEmbed={caseStudyWithMedia.frontmatter.cover_video_url ? (
+          <CaseStudyVideo url={caseStudyWithMedia.frontmatter.cover_video_url} />
         ) : undefined}
       />
-      {caseStudy.frontmatter.testimonial && (
-        <CaseStudyTestimonial testimonial={caseStudy.frontmatter.testimonial} />
+      {caseStudyWithMedia.frontmatter.testimonial && (
+        <CaseStudyTestimonial testimonial={caseStudyWithMedia.frontmatter.testimonial} />
       )}
-      <CaseStudyContent content={caseStudy.content} />
+      <CaseStudyContent content={caseStudyWithMedia.content} />
     </div>
   );
 }

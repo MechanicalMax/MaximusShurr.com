@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { CaseStudy, CaseStudyFrontmatter, CarouselData, MediaAsset, CaseStudyWithMedia } from './types';
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'case_studies');
-const ASSETS_DIR = path.join(process.cwd(), 'next-web-app', 'public', 'work');
+const ASSETS_DIR = path.join(process.cwd(), 'public', 'work');
 
 /**
  * Extracts slug from filename (removes .mdx extension)
