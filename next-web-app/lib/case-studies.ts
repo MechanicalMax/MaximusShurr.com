@@ -1,9 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { CaseStudy, CaseStudyFrontmatter } from './types';
+import { CaseStudy, CaseStudyFrontmatter, CarouselData, MediaAsset, CaseStudyWithMedia } from './types';
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'case_studies');
+const ASSETS_DIR = path.join(process.cwd(), 'next-web-app', 'public', 'work');
 
 /**
  * Extracts slug from filename (removes .mdx extension)
@@ -123,5 +124,114 @@ export async function generateCaseStudyParams() {
   } catch (error) {
     console.error('Error generating case study params:', error);
     return [];
+  }
+}
+
+/**
+ * Converts filename to human-readable caption by replacing hyphens with spaces
+ * @param filename - The filename to convert (with or without extension)
+ * @returns Caption text with hyphens converted to spaces
+ */
+function filenameToCaption(filename: string): string {
+  // Remove extension if present
+  const nameWithoutExt = filename.replace(/\.(webp|webm)$/i, '');
+  // Convert hyphens to spaces
+  return nameWithoutExt.replace(/-/g, ' ');
+}
+
+/**
+ * Discovers and processes all media assets in a case study folder
+ * @param slug - Case study identifier
+ * @returns Structured carousel data with sorted media assets
+ */
+export async function getCarouselData(slug: string): Promise<CarouselData> {
+  // Validate slug to prevent path traversal attacks
+  if (!slug || slug.includes('..') || slug.includes('/') || slug.includes('\\')) {
+    console.warn(`Invalid slug provided to getCarouselData: ${slug}`);
+    return {
+      hasIcon: false,
+      hasYoutube: false,
+      media: []
+    };
+  }
+
+  const assetFolderPath = path.join(ASSETS_DIR, slug);
+
+  // Check if asset folder exists
+  if (!fs.existsSync(assetFolderPath)) {
+    console.warn(`Asset folder not found for slug: ${slug}`);
+    return {
+      hasIcon: false,
+      hasYoutube: false,
+      media: []
+    };
+  }
+
+  try {
+    const files = fs.readdirSync(assetFolderPath);
+    
+    // Filter for valid media files (.webp and .webm)
+    const mediaFiles = files.filter(file => {
+      const ext = path.extname(file).toLowerCase();
+      return (ext === '.webp' || ext === '.webm') && file !== 'icon.webp';
+    });
+
+    // Create MediaAsset objects
+    const mediaAssets: MediaAsset[] = mediaFiles.map(filename => {
+      const ext = path.extname(filename).toLowerCase() as '.webp' | '.webm';
+      return {
+        filename,
+        path: `/work/${slug}/${filename}`,
+        type: ext === '.webp' ? 'image' : 'video',
+        caption: filenameToCaption(filename),
+        extension: ext
+      };
+    });
+
+    // Get case study to check for YouTube URL
+    const caseStudy = await getCaseStudyBySlug(slug);
+    const coverVideoUrl = caseStudy?.frontmatter?.cover_video_url;
+    const hasYoutube = !!(coverVideoUrl && (coverVideoUrl.includes('youtube.com') || coverVideoUrl.includes('youtu.be')));
+    const youtubeUrl = hasYoutube ? coverVideoUrl : undefined;
+
+    // Sort media according to slide hierarchy:
+    // 1. YouTube embed (if exists) - handled separately, not in media array
+    // 2. thumbnail.webp (if exists)
+    // 3. Images (alphabetically, excluding thumbnail.webp)
+    // 4. Videos (alphabetically)
+    const sortedMedia: MediaAsset[] = [];
+    
+    // First, add thumbnail.webp if it exists (this will be slide #1 if no YouTube, or slide #2 if YouTube exists)
+    const thumbnailIndex = mediaAssets.findIndex(asset => asset.filename === 'thumbnail.webp');
+    if (thumbnailIndex !== -1) {
+      sortedMedia.push(mediaAssets[thumbnailIndex]);
+      mediaAssets.splice(thumbnailIndex, 1);
+    }
+
+    // Then add remaining images alphabetically (excluding thumbnail.webp which was already added)
+    const images = mediaAssets.filter(asset => asset.type === 'image').sort((a, b) => a.filename.localeCompare(b.filename));
+    sortedMedia.push(...images);
+
+    // Finally add videos alphabetically
+    const videos = mediaAssets.filter(asset => asset.type === 'video').sort((a, b) => a.filename.localeCompare(b.filename));
+    sortedMedia.push(...videos);
+
+    // Check for social proof indicators
+    const hasIcon = files.includes('icon.webp');
+
+    return {
+      hasIcon,
+      hasYoutube,
+      youtubeUrl,
+      media: sortedMedia
+    };
+
+  } catch (error) {
+    console.error(`Error processing carousel data for slug '${slug}':`, error);
+    return {
+      hasIcon: false,
+      hasYoutube: false,
+      media: []
+    };
   }
 }
