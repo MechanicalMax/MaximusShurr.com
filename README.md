@@ -24,6 +24,8 @@ This project is under active development.
 - Dynamic `/work/[slug]` pages for all 12 case studies
 - MDX-based content management with YAML frontmatter
 - Automatic homepage tile generation from case study files
+- **Flexible Media Carousel System** - Automatically generates interactive carousels from asset folders
+- **Inline Media References** - Reference any carousel asset within markdown content
 - SEO optimization with Open Graph and Twitter Card metadata
 - Responsive design across mobile, tablet, and desktop
 - Property-based testing for data integrity
@@ -103,7 +105,9 @@ MaximusShurr.com/
     │   ├── CaseStudyHeader.tsx   # Project metadata display
     │   ├── CaseStudyVideo.tsx    # YouTube video embed
     │   ├── CaseStudyTestimonial.tsx # Client testimonials
-    │   └── CaseStudyContent.tsx  # MDX content renderer
+    │   ├── CaseStudyContent.tsx  # MDX content renderer
+    │   ├── MediaCarousel.tsx     # Automatic media carousel
+    │   └── InlineImage.tsx       # Inline media references
     ├── lib/                      # Core business logic
     │   ├── case-studies.ts       # Case study data fetching & validation
     │   ├── types.ts              # TypeScript interfaces
@@ -114,7 +118,9 @@ MaximusShurr.com/
     │   └── ... (12 total)
     └── public/                   # Static assets
         ├── case-study-cards/     # Cover images
-        └── logos/                # Company logos
+        ├── logos/                # Company logos
+        └── work/                 # Case study media assets
+            └── [slug]/           # Auto-generated carousels
 ```
 
 ## Getting Started
@@ -165,6 +171,9 @@ The test suite includes property-based tests using fast-check to verify:
 - Case study discovery and parsing
 - Frontmatter validation
 - Slug-to-route mapping
+- Media carousel generation and filtering
+- Caption generation consistency
+- Social proof detection accuracy
 - Invalid input handling
 
 ### Building for Production
@@ -177,6 +186,56 @@ yarn build
 ```
 
 This generates static HTML for all pages, including all 12 case study routes.
+
+## Flexible Media Carousel System
+
+The site features an automatic media carousel system that generates interactive carousels from asset folders without manual configuration. This follows a "what you see is what you get" principle where folder contents directly determine carousel behavior.
+
+### How It Works
+
+1. **Automatic Discovery**: The system scans `public/work/[slug]/` folders for media files
+2. **Smart Filtering**: Includes all `.webp` and `.webm` files while excluding `icon.webp` from carousels
+3. **Intelligent Ordering**: Applies hierarchy - YouTube → Thumbnail → Videos (A-Z) → Images (A-Z)
+4. **Caption Generation**: Converts filenames to human-readable captions (hyphens become spaces)
+5. **Social Proof Detection**: Automatically detects icons and YouTube videos for UI badges
+
+### Media Asset Structure
+
+```
+public/work/[slug]/
+├── thumbnail.webp      # Required - Carousel slide #2, card thumbnail
+├── icon.webp          # Optional - Social proof indicator (excluded from carousel)
+├── Circuit-Design.webp # Media asset - becomes carousel slide
+├── Demo-Day.webm      # Video asset - becomes carousel slide
+└── Final-Product.webp # Media asset - becomes carousel slide
+```
+
+### Slide Hierarchy
+
+The carousel automatically orders slides according to this hierarchy:
+
+1. **YouTube Embed** (if `cover_video_url` exists in frontmatter) - Slide #1
+2. **Thumbnail** (`thumbnail.webp`) - Slide #2 (or #1 if no YouTube)
+3. **Videos** (all `.webm` files) - Alphabetically sorted
+4. **Images** (all `.webp` files except `thumbnail.webp` and `icon.webp`) - Alphabetically sorted
+
+### Inline Media References
+
+Within your MDX content, you can reference any carousel asset using the `InlineImage` component:
+
+```jsx
+<InlineImage filename="Circuit-Design.webp" alt="Circuit board layout" />
+```
+
+This automatically resolves to the current case study's asset folder and applies Next.js image optimization.
+
+### Video Features
+
+Videos in the carousel automatically include:
+- Autoplay (muted for user experience)
+- Loop playback
+- Responsive sizing
+- Fallback handling for loading failures
 
 ## Adding New Case Studies
 
