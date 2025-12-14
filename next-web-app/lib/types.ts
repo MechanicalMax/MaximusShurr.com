@@ -10,7 +10,6 @@ export interface CaseStudyFrontmatter {
   live_url: string | null;
   repo_url: string | null;
   cover_video_url: string | null;
-  cover_image: string;  // Path to cover image for tiles and social media (REQUIRED)
   tech_stack: string[];
   start_date: string;
   end_date: string | null;
@@ -54,6 +53,15 @@ export interface CarouselData {
 
 export interface CaseStudyWithMedia extends CaseStudy {
   carouselData: CarouselData;
+}
+
+/**
+ * Extended case study interface for homepage display
+ * Includes auto-discovered thumbnail and icon paths
+ */
+export interface CaseStudyForHomepage extends CaseStudy {
+  thumbnailPath: string | null;  // Auto-discovered from /work/[slug]/thumbnail.webp
+  iconPath: string | null;       // Auto-discovered from /work/[slug]/icon.webp
 }
 
 /**

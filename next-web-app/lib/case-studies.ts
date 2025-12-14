@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { CaseStudy, CaseStudyFrontmatter, CarouselData, MediaAsset, CaseStudyWithMedia } from './types';
+import { CaseStudy, CaseStudyFrontmatter, CarouselData, MediaAsset, CaseStudyWithMedia, CaseStudyForHomepage } from './types';
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'case_studies');
 const ASSETS_DIR = path.join(process.cwd(), 'public', 'work');
@@ -23,7 +23,7 @@ function validateFrontmatter(data: unknown, filename: string): void {
 
   const dataObj = data as Record<string, unknown>;
   const required = ['project_title', 'one_liner', 'project_type', 
-                    'status', 'tech_stack', 'start_date', 'cover_image'];
+                    'status', 'tech_stack', 'start_date'];
   
   for (const field of required) {
     if (!dataObj[field]) {
@@ -41,12 +41,7 @@ function validateFrontmatter(data: unknown, filename: string): void {
     );
   }
   
-  if (typeof dataObj.cover_image !== 'string' || dataObj.cover_image.trim() === '') {
-    throw new Error(
-      `Field "cover_image" must be a non-empty string in ${filename}\n` +
-      `Current value: ${dataObj.cover_image}`
-    );
-  }
+
 }
 
 /**
@@ -276,5 +271,66 @@ export async function getCarouselData(slug: string): Promise<CarouselData> {
       hasYoutube: false,
       media: []
     };
+  }
+}
+
+/**
+ * Gets case studies with auto-discovered thumbnail and icon paths for homepage display
+ * @returns Array of case studies with thumbnail and icon paths
+ */
+export async function getCaseStudiesForHomepage(): Promise<CaseStudyForHomepage[]> {
+  try {
+    const caseStudies = await getCaseStudies();
+    
+    return caseStudies.map(caseStudy => {
+      const assetFolderPath = path.join(ASSETS_DIR, caseStudy.slug);
+      
+      // Check if thumbnail.webp exists
+      const thumbnailPath = fs.existsSync(path.join(assetFolderPath, 'thumbnail.webp')) 
+        ? `/work/${caseStudy.slug}/thumbnail.webp`
+        : null;
+      
+      // Check if icon.webp exists
+      const iconPath = fs.existsSync(path.join(assetFolderPath, 'icon.webp'))
+        ? `/work/${caseStudy.slug}/icon.webp`
+        : null;
+      
+      return {
+        ...caseStudy,
+        thumbnailPath,
+        iconPath
+      };
+    });
+  } catch (error) {
+    console.error('Error getting case studies for homepage:', error);
+    return [];
+  }
+}
+
+/**
+ * Gets all social proof logos from case study folders that have icon.webp
+ * @returns Array of social proof logo objects with name and src
+ */
+export async function getSocialProofLogos(): Promise<Array<{ name: string; src: string }>> {
+  try {
+    const caseStudies = await getCaseStudies();
+    const logos: Array<{ name: string; src: string }> = [];
+    
+    for (const caseStudy of caseStudies) {
+      const assetFolderPath = path.join(ASSETS_DIR, caseStudy.slug);
+      const iconPath = path.join(assetFolderPath, 'icon.webp');
+      
+      if (fs.existsSync(iconPath)) {
+        logos.push({
+          name: caseStudy.frontmatter.project_title,
+          src: `/work/${caseStudy.slug}/icon.webp`
+        });
+      }
+    }
+    
+    return logos;
+  } catch (error) {
+    console.error('Error getting social proof logos:', error);
+    return [];
   }
 }

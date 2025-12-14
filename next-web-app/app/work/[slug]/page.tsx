@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { getCaseStudyBySlug, getCaseStudyWithMediaBySlug, generateCaseStudyParams } from '@/lib/case-studies';
+import { getCaseStudyWithMediaBySlug, generateCaseStudyParams } from '@/lib/case-studies';
 import CaseStudyHeader from '@/components/CaseStudyHeader';
 import CaseStudyTestimonial from '@/components/CaseStudyTestimonial';
 import CaseStudyContent from '@/components/CaseStudyContent';
@@ -10,24 +10,28 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const caseStudy = await getCaseStudyBySlug(slug);
-  if (!caseStudy) return {};
+  const caseStudyWithMedia = await getCaseStudyWithMediaBySlug(slug);
+  if (!caseStudyWithMedia) return {};
 
-  const ogImage = `https://maximusshurr.com${caseStudy.frontmatter.cover_image}`;
+  // Use thumbnail from media folder for social media images
+  const thumbnailAsset = caseStudyWithMedia.carouselData.media.find(asset => asset.filename === 'thumbnail.webp');
+  const ogImage = thumbnailAsset 
+    ? `https://maximusshurr.com${thumbnailAsset.path}`
+    : `https://maximusshurr.com/work/${slug}/thumbnail.webp`; // fallback
 
   return {
-    title: `${caseStudy.frontmatter.project_title} | Maximus Shurr`,
-    description: caseStudy.frontmatter.one_liner,
+    title: `${caseStudyWithMedia.frontmatter.project_title} | Maximus Shurr`,
+    description: caseStudyWithMedia.frontmatter.one_liner,
     openGraph: {
-      title: caseStudy.frontmatter.project_title,
-      description: caseStudy.frontmatter.one_liner,
+      title: caseStudyWithMedia.frontmatter.project_title,
+      description: caseStudyWithMedia.frontmatter.one_liner,
       images: [{ url: ogImage }],
       type: 'article',
     },
     twitter: {
       card: 'summary_large_image',
-      title: caseStudy.frontmatter.project_title,
-      description: caseStudy.frontmatter.one_liner,
+      title: caseStudyWithMedia.frontmatter.project_title,
+      description: caseStudyWithMedia.frontmatter.one_liner,
       images: [ogImage],
     },
   };

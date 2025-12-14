@@ -1,5 +1,5 @@
 import * as fc from 'fast-check';
-import { getCaseStudies, getCaseStudyBySlug, generateCaseStudyParams, getCarouselData, getCaseStudyWithMediaBySlug } from './case-studies';
+import { getCaseStudies, getCaseStudyBySlug, generateCaseStudyParams, getCarouselData, getCaseStudyWithMediaBySlug, getCaseStudiesForHomepage, getSocialProofLogos } from './case-studies';
 import fs from 'fs';
 import path from 'path';
 import { describe, test, expect } from 'vitest';
@@ -10,7 +10,7 @@ import { describe, test, expect } from 'vitest';
  */
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'case_studies');
-const ASSETS_DIR = path.join(process.cwd(), 'next-web-app', 'public', 'work');
+const ASSETS_DIR = path.join(process.cwd(), 'public', 'work');
 
 describe('Case Studies Data Layer - Property-Based Tests', () => {
   
@@ -69,15 +69,10 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       expect(fm.project_type).toBeDefined();
       expect(fm.status).toBeDefined();
       expect(fm.start_date).toBeDefined();
-      expect(fm.cover_image).toBeDefined();
       
       // tech_stack must be a non-empty array
       expect(Array.isArray(fm.tech_stack)).toBe(true);
       expect(fm.tech_stack.length).toBeGreaterThan(0);
-      
-      // cover_image must be a non-empty string
-      expect(typeof fm.cover_image).toBe('string');
-      expect(fm.cover_image.trim().length).toBeGreaterThan(0);
     }
   }, 10000);
 
@@ -246,20 +241,21 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
             
             // Test the caption generation property on existing files
             for (const asset of carouselData.media) {
-              const expectedCaption = asset.filename
-                .replace(/\.(webp|webm)$/i, '') // Remove extension
-                .replace(/-/g, ' '); // Convert hyphens to spaces
+              // Special case: thumbnail.webp gets project title as caption
+              if (asset.filename === 'thumbnail.webp') {
+                // Property: Thumbnail caption should be the project title
+                const caseStudy = await getCaseStudyBySlug(realSlug);
+                expect(asset.caption).toBe(caseStudy?.frontmatter?.project_title || 'Project Overview');
+              } else {
+                // Property: Other files get filename-based captions
+                const originalWithoutExt = asset.filename.replace(/\.(webp|webm)$/i, '');
+                const expectedCaption = originalWithoutExt.replace(/-/g, ' ');
+                
+                expect(asset.caption).toBe(expectedCaption);
+              }
               
-              // Property: Caption should be filename without extension with hyphens converted to spaces
-              expect(asset.caption).toBe(expectedCaption);
-              
-              // Property: Caption should not contain hyphens
+              // Property: Caption should not contain hyphens (applies to all)
               expect(asset.caption.includes('-')).toBe(false);
-              
-              // Property: Caption should preserve all other characters
-              const originalWithoutExt = asset.filename.replace(/\.(webp|webm)$/i, '');
-              const captionWithHyphens = asset.caption.replace(/ /g, '-');
-              expect(captionWithHyphens).toBe(originalWithoutExt);
             }
           }
         }
@@ -397,5 +393,73 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       ),
       { numRuns: 100 }
     );
+  }, 30000);
+
+  /**
+   * Feature: homepage-media-integration, Property: Homepage thumbnail discovery
+   * Validates: Auto-discovery of thumbnails from media folders
+   * 
+   * For any case study with a thumbnail.webp file in its media folder,
+   * the homepage system should automatically discover and use it
+   */
+  test('Property: Homepage thumbnail discovery - thumbnails are auto-discovered from media folders', async () => {
+    const caseStudiesForHomepage = await getCaseStudiesForHomepage();
+    
+    for (const cs of caseStudiesForHomepage) {
+      const assetFolderPath = path.join(ASSETS_DIR, cs.slug);
+      const thumbnailExists = fs.existsSync(path.join(assetFolderPath, 'thumbnail.webp'));
+      
+      // Property: thumbnailPath should match actual file existence
+      if (thumbnailExists) {
+        expect(cs.thumbnailPath).toBe(`/work/${cs.slug}/thumbnail.webp`);
+      } else {
+        expect(cs.thumbnailPath).toBeNull();
+      }
+      
+      // Property: iconPath should match actual icon.webp existence
+      const iconExists = fs.existsSync(path.join(assetFolderPath, 'icon.webp'));
+      if (iconExists) {
+        expect(cs.iconPath).toBe(`/work/${cs.slug}/icon.webp`);
+      } else {
+        expect(cs.iconPath).toBeNull();
+      }
+    }
+  }, 30000);
+
+  /**
+   * Feature: homepage-media-integration, Property: Social proof logo discovery
+   * Validates: Auto-discovery of social proof logos from case study folders
+   * 
+   * For any case study folder containing icon.webp, 
+   * the system should include it in the social proof logos array
+   */
+  test('Property: Social proof logo discovery - icons are auto-discovered for social proof', async () => {
+    const socialProofLogos = await getSocialProofLogos();
+    const caseStudies = await getCaseStudies();
+    
+    // Get all case studies that actually have icon.webp files
+    const expectedLogos = caseStudies.filter(cs => {
+      const assetFolderPath = path.join(ASSETS_DIR, cs.slug);
+      return fs.existsSync(path.join(assetFolderPath, 'icon.webp'));
+    });
+    
+    // Property: Number of social proof logos should match number of case studies with icons
+    expect(socialProofLogos.length).toBe(expectedLogos.length);
+    
+    // Property: Each logo should correspond to a case study with an icon
+    for (const logo of socialProofLogos) {
+      const matchingCaseStudy = expectedLogos.find(cs => cs.frontmatter.project_title === logo.name);
+      expect(matchingCaseStudy).toBeDefined();
+      
+      if (matchingCaseStudy) {
+        expect(logo.src).toBe(`/work/${matchingCaseStudy.slug}/icon.webp`);
+      }
+    }
+    
+    // Property: All case studies with icons should be represented in social proof
+    for (const cs of expectedLogos) {
+      const matchingLogo = socialProofLogos.find(logo => logo.name === cs.frontmatter.project_title);
+      expect(matchingLogo).toBeDefined();
+    }
   }, 30000);
 });

@@ -117,10 +117,8 @@ MaximusShurr.com/
     │   ├── clairity-daily.mdx
     │   └── ... (12 total)
     └── public/                   # Static assets
-        ├── case-study-cards/     # Cover images
-        ├── logos/                # Company logos
         └── work/                 # Case study media assets
-            └── [slug]/           # Auto-generated carousels
+            └── [slug]/           # Auto-discovered media & social proof
 ```
 
 ## Getting Started
@@ -198,17 +196,24 @@ The site features an automatic media carousel system that generates interactive 
 3. **Intelligent Ordering**: Applies hierarchy - YouTube → Thumbnail → Videos (A-Z) → Images (A-Z)
 4. **Caption Generation**: Converts filenames to human-readable captions (hyphens become spaces)
 5. **Social Proof Detection**: Automatically detects icons and YouTube videos for UI badges
+6. **Homepage Integration**: Thumbnails and social proof icons are automatically sourced from media folders
 
 ### Media Asset Structure
 
 ```
 public/work/[slug]/
-├── thumbnail.webp      # Required - Carousel slide #2, card thumbnail
-├── icon.webp          # Optional - Social proof indicator (excluded from carousel)
+├── thumbnail.webp      # Required - Homepage card thumbnail & carousel slide #2
+├── icon.webp          # Optional - Homepage social proof badge (excluded from carousel)
 ├── Circuit-Design.webp # Media asset - becomes carousel slide
 ├── Demo-Day.webm      # Video asset - becomes carousel slide
 └── Final-Product.webp # Media asset - becomes carousel slide
 ```
+
+**Key Changes from Previous System:**
+- ✅ **Thumbnails**: Now auto-discovered from `thumbnail.webp` in media folders (no more `cover_image` frontmatter)
+- ✅ **Social Proof Icons**: Now auto-discovered from `icon.webp` in media folders (no more centralized `/logos/` directory)
+- ✅ **Homepage Integration**: Homepage tiles automatically use discovered thumbnails and icons
+- ✅ **Zero Configuration**: No manual path specification needed in frontmatter
 
 ### Slide Hierarchy
 
@@ -256,7 +261,6 @@ status: "Complete | In Progress | Ongoing"
 live_url: "https://example.com" # or null
 repo_url: "https://github.com/..." # or null
 cover_video_url: "https://youtube.com/..." # or null
-cover_image: "/case-study-cards/image.jpg"
 tech_stack: ["React", "Node.js", "PostgreSQL"]
 start_date: "Jan 2025"
 end_date: "Jul 2025" # or null for ongoing
@@ -267,6 +271,8 @@ testimonial:
 # or testimonial: null
 ---
 ```
+
+**Note:** The `cover_image` field has been removed from frontmatter. Thumbnails are now automatically discovered from `thumbnail.webp` files in the corresponding `/work/[slug]/` media folder. Social proof logos are also automatically discovered from `icon.webp` files in the same folders.
 
 ### Content Sections
 
