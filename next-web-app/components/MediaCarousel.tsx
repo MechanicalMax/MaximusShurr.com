@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import { CarouselData } from '@/lib/types';
@@ -11,6 +11,8 @@ interface MediaCarouselProps {
 
 export default function MediaCarousel({ carouselData }: MediaCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loadedSlides, setLoadedSlides] = useState<Set<number>>(new Set([0])); // Track which slides have been loaded
+  const videoRefs = useRef<Map<number, HTMLVideoElement>>(new Map()); // Track video elements for management
   
   // Define slide types
   type SlideData = 
@@ -42,17 +44,27 @@ export default function MediaCarousel({ carouselData }: MediaCarouselProps) {
 
   const totalSlides = slides.length;
 
-  const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev + 1) % totalSlides);
-  }, [totalSlides]);
-
-  const prevSlide = useCallback(() => {
-    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
-  }, [totalSlides]);
-
   const goToSlide = useCallback((index: number) => {
     setCurrentSlide(index);
-  }, []);
+    // Mark adjacent slides for lazy loading (current, previous, next)
+    setLoadedSlides(prev => {
+      const newLoaded = new Set(prev);
+      newLoaded.add(index);
+      if (index > 0) newLoaded.add(index - 1);
+      if (index < totalSlides - 1) newLoaded.add(index + 1);
+      return newLoaded;
+    });
+  }, [totalSlides]);
+
+  const nextSlide = useCallback(() => {
+    const newIndex = (currentSlide + 1) % totalSlides;
+    goToSlide(newIndex);
+  }, [currentSlide, totalSlides, goToSlide]);
+
+  const prevSlide = useCallback(() => {
+    const newIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+    goToSlide(newIndex);
+  }, [currentSlide, totalSlides, goToSlide]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -68,6 +80,43 @@ export default function MediaCarousel({ carouselData }: MediaCarouselProps) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [nextSlide, prevSlide]);
 
+  // Video management: pause all videos except current slide
+  useEffect(() => {
+    videoRefs.current.forEach((video, slideIndex) => {
+      if (slideIndex === currentSlide) {
+        // Play current video if it exists
+        video.play().catch(() => {
+          // Ignore autoplay failures (browser policy)
+        });
+      } else {
+        // Pause non-current videos
+        video.pause();
+      }
+    });
+  }, [currentSlide]);
+
+  // Initialize lazy loading for adjacent slides
+  useEffect(() => {
+    const loadAdjacentSlides = () => {
+      setLoadedSlides(prev => {
+        const newLoaded = new Set(prev);
+        const hasChanges = !newLoaded.has(currentSlide) || 
+          (currentSlide > 0 && !newLoaded.has(currentSlide - 1)) ||
+          (currentSlide < totalSlides - 1 && !newLoaded.has(currentSlide + 1));
+        
+        if (hasChanges) {
+          newLoaded.add(currentSlide);
+          if (currentSlide > 0) newLoaded.add(currentSlide - 1);
+          if (currentSlide < totalSlides - 1) newLoaded.add(currentSlide + 1);
+          return newLoaded;
+        }
+        return prev;
+      });
+    };
+
+    loadAdjacentSlides();
+  }, [currentSlide, totalSlides]);
+
   if (totalSlides === 0) {
     return null;
   }
@@ -80,23 +129,79 @@ export default function MediaCarousel({ carouselData }: MediaCarouselProps) {
       <div className="relative aspect-video bg-black">
         {/* Slide content will be rendered here by sub-components */}
         <div className="absolute inset-0 flex items-center justify-center">
-          {currentSlideData.type === 'youtube' && (
-            <YouTubeSlide url={currentSlideData.url} />
-          )}
-          {currentSlideData.type === 'image' && (
-            <ImageSlide 
-              filename={currentSlideData.filename}
-              path={currentSlideData.path}
-              caption={currentSlideData.caption}
-            />
-          )}
-          {currentSlideData.type === 'video' && (
-            <VideoSlide 
-              filename={currentSlideData.filename}
-              path={currentSlideData.path}
-            />
+          {loadedSlides.has(currentSlide) ? (
+            <>
+              {currentSlideData.type === 'youtube' && (
+                <YouTubeSlide url={currentSlideData.url} />
+              )}
+              {currentSlideData.type === 'image' && (
+                <ImageSlide 
+                  filename={currentSlideData.filename}
+                  path={currentSlideData.path}
+                  caption={currentSlideData.caption}
+                  priority={currentSlide === 0} // Only prioritize first slide
+                />
+              )}
+              {currentSlideData.type === 'video' && (
+                <VideoSlide 
+                  filename={currentSlideData.filename}
+                  path={currentSlideData.path}
+                  isActive={true}
+                  onVideoRef={(video) => {
+                    if (video) {
+                      videoRefs.current.set(currentSlide, video);
+                    } else {
+                      videoRefs.current.delete(currentSlide);
+                    }
+                  }}
+                />
+              )}
+            </>
+          ) : (
+            // Loading placeholder for lazy-loaded slides
+            <div className="w-full h-full flex items-center justify-center bg-gray-800 text-white">
+              <div className="text-center">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-white mx-auto mb-2"></div>
+                <p className="text-sm">Loading slide...</p>
+              </div>
+            </div>
           )}
         </div>
+
+        {/* Pre-render adjacent slides for smooth transitions (hidden) */}
+        {slides.map((slide, index) => {
+          if (index === currentSlide || !loadedSlides.has(index)) return null;
+          
+          return (
+            <div key={index} className="absolute inset-0 opacity-0 pointer-events-none">
+              {slide.type === 'youtube' && (
+                <YouTubeSlide url={slide.url} />
+              )}
+              {slide.type === 'image' && (
+                <ImageSlide 
+                  filename={slide.filename}
+                  path={slide.path}
+                  caption={slide.caption}
+                  priority={false}
+                />
+              )}
+              {slide.type === 'video' && (
+                <VideoSlide 
+                  filename={slide.filename}
+                  path={slide.path}
+                  isActive={false}
+                  onVideoRef={(video) => {
+                    if (video) {
+                      videoRefs.current.set(index, video);
+                    } else {
+                      videoRefs.current.delete(index);
+                    }
+                  }}
+                />
+              )}
+            </div>
+          );
+        })}
 
         {/* Navigation arrows */}
         {totalSlides > 1 && (
@@ -206,10 +311,11 @@ function YouTubeSlide({ url }: { url: string }) {
   );
 }
 
-function ImageSlide({ filename, path, caption }: { 
+function ImageSlide({ filename, path, caption, priority = false }: { 
   filename: string; 
   path: string; 
-  caption: string; 
+  caption: string;
+  priority?: boolean;
 }) {
   const [imageError, setImageError] = useState(false);
   
@@ -233,15 +339,17 @@ function ImageSlide({ filename, path, caption }: {
         className="object-contain"
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
         onError={() => setImageError(true)}
-        priority={false}
+        priority={priority}
       />
     </div>
   );
 }
 
-function VideoSlide({ filename, path }: { 
+function VideoSlide({ filename, path, isActive, onVideoRef }: { 
   filename: string; 
-  path: string; 
+  path: string;
+  isActive: boolean;
+  onVideoRef: (video: HTMLVideoElement | null) => void;
 }) {
   const [videoError, setVideoError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -268,9 +376,10 @@ function VideoSlide({ filename, path }: {
         </div>
       )}
       <video
+        ref={onVideoRef}
         src={path}
         className="w-full h-full object-contain"
-        autoPlay
+        autoPlay={isActive}
         loop
         muted
         playsInline

@@ -244,17 +244,20 @@ export async function getCarouselData(slug: string): Promise<CarouselData> {
     // First, add thumbnail.webp if it exists (this will be slide #1 if no YouTube, or slide #2 if YouTube exists)
     const thumbnailIndex = mediaAssets.findIndex(asset => asset.filename === 'thumbnail.webp');
     if (thumbnailIndex !== -1) {
-      sortedMedia.push(mediaAssets[thumbnailIndex]);
+      const thumbnailAsset = mediaAssets[thumbnailIndex];
+      // Use case study title as caption for thumbnail instead of filename
+      thumbnailAsset.caption = caseStudy?.frontmatter?.project_title || 'Project Overview';
+      sortedMedia.push(thumbnailAsset);
       mediaAssets.splice(thumbnailIndex, 1);
     }
 
-    // Then add remaining images alphabetically (excluding thumbnail.webp which was already added)
-    const images = mediaAssets.filter(asset => asset.type === 'image').sort((a, b) => a.filename.localeCompare(b.filename));
-    sortedMedia.push(...images);
-
-    // Finally add videos alphabetically
+    // Then add videos alphabetically
     const videos = mediaAssets.filter(asset => asset.type === 'video').sort((a, b) => a.filename.localeCompare(b.filename));
     sortedMedia.push(...videos);
+
+    // Finally add remaining images alphabetically (excluding thumbnail.webp which was already added)
+    const images = mediaAssets.filter(asset => asset.type === 'image').sort((a, b) => a.filename.localeCompare(b.filename));
+    sortedMedia.push(...images);
 
     // Check for social proof indicators
     const hasIcon = files.includes('icon.webp');
