@@ -29,7 +29,7 @@ export interface CaseStudy {
 
 export interface CompiledCaseStudy {
   frontmatter: CaseStudyFrontmatter;
-  mdxSource: any;  // MDXRemoteSerializeResult from next-mdx-remote
+  mdxSource: unknown;  // MDXRemoteSerializeResult from next-mdx-remote
   slug: string;
 }
 

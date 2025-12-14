@@ -11,9 +11,9 @@
  * - Skips already-optimized assets
  */
 
-const { execFileSync } = require("child_process");
-const { readdirSync, statSync, existsSync } = require("fs");
-const { join, extname, basename, dirname } = require("path");
+import { execFileSync } from "child_process";
+import { readdirSync, statSync, existsSync } from "fs";
+import { join, extname, basename, dirname } from "path";
 
 /* ================================
    Configuration

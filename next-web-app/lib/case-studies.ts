@@ -16,12 +16,17 @@ function getSlugFromFilename(filename: string): string {
 /**
  * Validates frontmatter has all required fields
  */
-function validateFrontmatter(data: any, filename: string): void {
+function validateFrontmatter(data: unknown, filename: string): void {
+  if (!data || typeof data !== 'object') {
+    throw new Error(`Invalid frontmatter in ${filename}: must be an object`);
+  }
+
+  const dataObj = data as Record<string, unknown>;
   const required = ['project_title', 'one_liner', 'project_type', 
                     'status', 'tech_stack', 'start_date', 'cover_image'];
   
   for (const field of required) {
-    if (!data[field]) {
+    if (!dataObj[field]) {
       throw new Error(
         `Missing required field "${field}" in ${filename}\n` +
         `Please add this field to the frontmatter.`
@@ -29,17 +34,17 @@ function validateFrontmatter(data: any, filename: string): void {
     }
   }
   
-  if (!Array.isArray(data.tech_stack)) {
+  if (!Array.isArray(dataObj.tech_stack)) {
     throw new Error(
       `Field "tech_stack" must be an array in ${filename}\n` +
-      `Current value: ${typeof data.tech_stack}`
+      `Current value: ${typeof dataObj.tech_stack}`
     );
   }
   
-  if (typeof data.cover_image !== 'string' || data.cover_image.trim() === '') {
+  if (typeof dataObj.cover_image !== 'string' || dataObj.cover_image.trim() === '') {
     throw new Error(
       `Field "cover_image" must be a non-empty string in ${filename}\n` +
-      `Current value: ${data.cover_image}`
+      `Current value: ${dataObj.cover_image}`
     );
   }
 }

@@ -71,7 +71,7 @@ export default async function Home() {
             I build the technology that scales your impact
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I am Maximus Shurr. I don't just write code; I translate vision into reality. As an engineer who moved from hardware to software, I bring a rare combination of velocity and purpose to every project. You have the methodology and the message. I have the technical blueprint to get it into the hands of the people who need it most. Let's build a platform worthy of your mission.
+            I am Maximus Shurr. I don&apos;t just write code; I translate vision into reality. As an engineer who moved from hardware to software, I bring a rare combination of velocity and purpose to every project. You have the methodology and the message. I have the technical blueprint to get it into the hands of the people who need it most. Let&apos;s build a platform worthy of your mission.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
