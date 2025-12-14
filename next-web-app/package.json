@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest --run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "optimize-case-study-assets": "node scripts/optimize-case-study-assets.js"
   },
   "dependencies": {
     "@types/mdx": "^2.0.13",

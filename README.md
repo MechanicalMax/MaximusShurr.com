@@ -231,6 +231,36 @@ Detail the technical implementation...
 Share results, metrics, and impact...
 ```
 
+### Media Asset Optimization (Required)
+All media **must be optimized before committing.**
+
+This project includes a dedicated npm script that automatically optimizes all case study media in-place, converting files to web-ready formats while preserving human-readable filenames.
+
+#### Run the optimizer
+```
+npm run optimize-case-study-assets
+```
+
+#### What the script does
+- Converts images → WebP
+- Converts videos → WebM (VP9)
+- Strips original file extensions from output names
+  - Example: Melodi Piano Project.PNG → Melodi Piano Project.webp
+- Enforces a maximum width (1920px)
+- Removes audio tracks from videos
+- Writes optimized files in the same directory as the originals
+- Leaves raw source files untouched (but ignored by Git)
+
+#### Git policy
+- ✅ Optimized .webp / .webm files are committed
+- ❌ Raw .png, .jpg, .mov, .mp4 files are ignored
+- Raw assets may exist locally but are never checked into the repository
+
+This ensures:
+- Fast load times
+- Small repository size
+- Deterministic, repeatable media processing
+
 The system automatically:
 - Generates the case study page at `/work/[slug]`
 - Creates a homepage tile with cover image and metadata

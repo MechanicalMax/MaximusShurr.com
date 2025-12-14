@@ -1,2 +1,5 @@
 .vscode/
 .kiro/
+
+# macOS noise
+.DS_Store

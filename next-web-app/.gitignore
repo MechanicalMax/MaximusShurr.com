@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Raw media (case study sources)
+public/work/**/*.jpg
+public/work/**/*.jpeg
+public/work/**/*.png
+public/work/**/*.heic
+public/work/**/*.mov
+public/work/**/*.mp4
+public/work/**/*.JPG
+public/work/**/*.PNG
+public/work/**/*.MOV
+public/work/**/*.MP4
