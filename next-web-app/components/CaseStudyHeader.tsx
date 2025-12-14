@@ -5,11 +5,9 @@ import MediaCarousel from './MediaCarousel';
 interface Props {
   frontmatter: CaseStudyFrontmatter;
   carouselData: CarouselData;
-  slug: string;
-  videoEmbed?: React.ReactNode;
 }
 
-export default function CaseStudyHeader({ frontmatter, carouselData, slug, videoEmbed }: Props) {
+export default function CaseStudyHeader({ frontmatter, carouselData }: Props) {
   return (
     <header className="bg-gray-50 py-8 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,7 +15,7 @@ export default function CaseStudyHeader({ frontmatter, carouselData, slug, video
           ← Back to Portfolio
         </Link>
 
-        <MediaCarousel carouselData={carouselData} slug={slug} />
+        <MediaCarousel carouselData={carouselData} />
         
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6">{frontmatter.project_title}</h1>
         <p className="text-lg sm:text-xl text-gray-600 mt-4">{frontmatter.one_liner}</p>

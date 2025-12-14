@@ -7,10 +7,9 @@ import { CarouselData } from '@/lib/types';
 
 interface MediaCarouselProps {
   carouselData: CarouselData;
-  slug: string;
 }
 
-export default function MediaCarousel({ carouselData, slug }: MediaCarouselProps) {
+export default function MediaCarousel({ carouselData }: MediaCarouselProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   // Define slide types
@@ -89,15 +88,12 @@ export default function MediaCarousel({ carouselData, slug }: MediaCarouselProps
               filename={currentSlideData.filename}
               path={currentSlideData.path}
               caption={currentSlideData.caption}
-              slug={slug}
             />
           )}
           {currentSlideData.type === 'video' && (
             <VideoSlide 
               filename={currentSlideData.filename}
               path={currentSlideData.path}
-              caption={currentSlideData.caption}
-              slug={slug}
             />
           )}
         </div>
@@ -210,11 +206,10 @@ function YouTubeSlide({ url }: { url: string }) {
   );
 }
 
-function ImageSlide({ filename, path, caption, slug }: { 
+function ImageSlide({ filename, path, caption }: { 
   filename: string; 
   path: string; 
   caption: string; 
-  slug: string; 
 }) {
   const [imageError, setImageError] = useState(false);
   
@@ -244,11 +239,9 @@ function ImageSlide({ filename, path, caption, slug }: {
   );
 }
 
-function VideoSlide({ filename, path, caption, slug }: { 
+function VideoSlide({ filename, path }: { 
   filename: string; 
   path: string; 
-  caption: string; 
-  slug: string; 
 }) {
   const [videoError, setVideoError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

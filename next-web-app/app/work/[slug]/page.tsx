@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { getCaseStudyBySlug, getCaseStudyWithMediaBySlug, generateCaseStudyParams } from '@/lib/case-studies';
 import CaseStudyHeader from '@/components/CaseStudyHeader';
-import CaseStudyVideo from '@/components/CaseStudyVideo';
 import CaseStudyTestimonial from '@/components/CaseStudyTestimonial';
 import CaseStudyContent from '@/components/CaseStudyContent';
 
@@ -47,10 +46,6 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       <CaseStudyHeader 
         frontmatter={caseStudyWithMedia.frontmatter}
         carouselData={caseStudyWithMedia.carouselData}
-        slug={slug}
-        videoEmbed={caseStudyWithMedia.frontmatter.cover_video_url ? (
-          <CaseStudyVideo url={caseStudyWithMedia.frontmatter.cover_video_url} />
-        ) : undefined}
       />
       {caseStudyWithMedia.frontmatter.testimonial && (
         <CaseStudyTestimonial testimonial={caseStudyWithMedia.frontmatter.testimonial} />

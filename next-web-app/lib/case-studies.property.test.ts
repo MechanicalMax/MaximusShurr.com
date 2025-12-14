@@ -234,10 +234,6 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
           
           filename += extension;
           
-          // Create a test slug and get carousel data
-          const testSlug = 'test-slug';
-          
-          // Mock the file system for this test by creating a temporary asset
           // We'll test the caption generation logic by examining real carousel data
           const caseStudies = await getCaseStudies();
           const realSlug = caseStudies.find(cs => {
