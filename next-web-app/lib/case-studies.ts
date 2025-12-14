@@ -113,6 +113,41 @@ export async function getCaseStudyBySlug(slug: string): Promise<CaseStudy | null
 }
 
 /**
+ * Reads a single case study by slug with carousel data
+ * @param slug - The filename (without .mdx extension) identifier for the case study
+ * @returns The case study with carousel data if found, null otherwise
+ */
+export async function getCaseStudyWithMediaBySlug(slug: string): Promise<CaseStudyWithMedia | null> {
+  // Validate slug to prevent path traversal attacks
+  if (!slug || slug.includes('..') || slug.includes('/') || slug.includes('\\')) {
+    console.warn(`Invalid slug provided: ${slug}`);
+    return null;
+  }
+
+  try {
+    const caseStudies = await getCaseStudies();
+    const caseStudy = caseStudies.find(cs => cs.slug === slug);
+    
+    if (!caseStudy) {
+      console.warn(`Case study not found for slug: ${slug}`);
+      return null;
+    }
+
+    // Get carousel data for this case study
+    const carouselData = await getCarouselData(slug);
+
+    // Return extended case study with media data
+    return {
+      ...caseStudy,
+      carouselData
+    };
+  } catch (error) {
+    console.error(`Error fetching case study with media by slug '${slug}':`, error);
+    return null;
+  }
+}
+
+/**
  * Generates static params for all case study pages
  * Used by Next.js generateStaticParams() for static site generation
  * @returns Array of objects with slug parameter for each case study

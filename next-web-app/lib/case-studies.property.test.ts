@@ -1,5 +1,5 @@
 import * as fc from 'fast-check';
-import { getCaseStudies, getCaseStudyBySlug, generateCaseStudyParams, getCarouselData } from './case-studies';
+import { getCaseStudies, getCaseStudyBySlug, generateCaseStudyParams, getCarouselData, getCaseStudyWithMediaBySlug } from './case-studies';
 import fs from 'fs';
 import path from 'path';
 import { describe, test, expect } from 'vitest';
@@ -312,5 +312,94 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
         expect(carouselData.youtubeUrl).toBeUndefined();
       }
     }
+  }, 30000);
+
+  /**
+   * Feature: flexible-media-carousel, Property 11: Data Structure Consistency
+   * Validates: Requirements 7.1
+   * 
+   * For any asset folder processing, the server-side utility should return a structured 
+   * CarouselData object with media array and boolean flags (hasIcon, hasYoutube)
+   */
+  test('Property 11: Data Structure Consistency - getCaseStudyWithMediaBySlug returns structured data', async () => {
+    // Get all existing case study slugs
+    const caseStudies = await getCaseStudies();
+    
+    // Test each case study
+    for (const cs of caseStudies) {
+      const caseStudyWithMedia = await getCaseStudyWithMediaBySlug(cs.slug);
+      
+      // Property: Function should return a CaseStudyWithMedia object
+      expect(caseStudyWithMedia).not.toBeNull();
+      expect(caseStudyWithMedia).toBeDefined();
+      
+      if (caseStudyWithMedia) {
+        // Property: Should contain all original case study properties
+        expect(caseStudyWithMedia.slug).toBe(cs.slug);
+        expect(caseStudyWithMedia.frontmatter).toEqual(cs.frontmatter);
+        expect(caseStudyWithMedia.content).toBe(cs.content);
+        
+        // Property: Should contain carouselData with correct structure
+        expect(caseStudyWithMedia.carouselData).toBeDefined();
+        expect(typeof caseStudyWithMedia.carouselData.hasIcon).toBe('boolean');
+        expect(typeof caseStudyWithMedia.carouselData.hasYoutube).toBe('boolean');
+        expect(Array.isArray(caseStudyWithMedia.carouselData.media)).toBe(true);
+        
+        // Property: Media array should contain valid MediaAsset objects
+        for (const asset of caseStudyWithMedia.carouselData.media) {
+          expect(typeof asset.filename).toBe('string');
+          expect(typeof asset.path).toBe('string');
+          expect(['image', 'video']).toContain(asset.type);
+          expect(typeof asset.caption).toBe('string');
+          expect(['.webp', '.webm']).toContain(asset.extension);
+          
+          // Property: Path should be correctly formatted
+          expect(asset.path).toBe(`/work/${cs.slug}/${asset.filename}`);
+        }
+        
+        // Property: YouTube URL should be defined only when hasYoutube is true
+        if (caseStudyWithMedia.carouselData.hasYoutube) {
+          expect(caseStudyWithMedia.carouselData.youtubeUrl).toBeDefined();
+          expect(typeof caseStudyWithMedia.carouselData.youtubeUrl).toBe('string');
+        } else {
+          expect(caseStudyWithMedia.carouselData.youtubeUrl).toBeUndefined();
+        }
+      }
+    }
+  }, 30000);
+
+  /**
+   * Test error handling for invalid slugs in getCaseStudyWithMediaBySlug
+   */
+  test('Property: getCaseStudyWithMediaBySlug handles invalid slugs gracefully', async () => {
+    await fc.assert(
+      fc.asyncProperty(
+        fc.string().filter(s => s.includes('..') || s.includes('/') || s.includes('\\')),
+        async (invalidSlug) => {
+          const result = await getCaseStudyWithMediaBySlug(invalidSlug);
+          expect(result).toBeNull();
+        }
+      ),
+      { numRuns: 100 }
+    );
+  }, 30000);
+
+  /**
+   * Test error handling for non-existent slugs in getCaseStudyWithMediaBySlug
+   */
+  test('Property: getCaseStudyWithMediaBySlug returns null for non-existent slugs', async () => {
+    const caseStudies = await getCaseStudies();
+    const validSlugs = new Set(caseStudies.map(cs => cs.slug));
+    
+    await fc.assert(
+      fc.asyncProperty(
+        fc.string().filter(s => !validSlugs.has(s) && !s.includes('..') && !s.includes('/') && !s.includes('\\')),
+        async (nonExistentSlug) => {
+          const result = await getCaseStudyWithMediaBySlug(nonExistentSlug);
+          expect(result).toBeNull();
+        }
+      ),
+      { numRuns: 100 }
+    );
   }, 30000);
 });
