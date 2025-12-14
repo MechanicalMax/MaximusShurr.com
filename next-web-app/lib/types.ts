@@ -32,3 +32,50 @@ export interface CompiledCaseStudy {
   mdxSource: any;  // MDXRemoteSerializeResult from next-mdx-remote
   slug: string;
 }
+
+/**
+ * Media carousel system type definitions
+ */
+
+export interface MediaAsset {
+  filename: string;
+  path: string;
+  type: 'image' | 'video';
+  caption: string;
+  extension: '.webp' | '.webm';
+}
+
+export interface CarouselData {
+  hasIcon: boolean;
+  hasYoutube: boolean;
+  youtubeUrl?: string;
+  media: MediaAsset[];
+}
+
+export interface CaseStudyWithMedia extends CaseStudy {
+  carouselData: CarouselData;
+}
+
+/**
+ * Validation and error handling types
+ */
+
+export interface ValidationResult {
+  isValid: boolean;
+  errors: ValidationError[];
+  warnings: ValidationWarning[];
+}
+
+export interface ValidationError {
+  type: 'missing_file' | 'invalid_format' | 'security_violation' | 'corrupted_file';
+  message: string;
+  filename?: string;
+  path?: string;
+}
+
+export interface ValidationWarning {
+  type: 'missing_thumbnail' | 'large_file_size' | 'deprecated_format';
+  message: string;
+  filename?: string;
+  path?: string;
+}
