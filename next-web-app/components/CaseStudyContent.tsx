@@ -1,4 +1,5 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import InlineImage from './InlineImage';
 
 interface Props {
   content: string;
@@ -26,6 +27,7 @@ const components = {
   ),
   strong: (props: any) => <strong className="font-bold text-gray-900" {...props} />,
   em: (props: any) => <em className="italic" {...props} />,
+  InlineImage: InlineImage,
 };
 
 export default function CaseStudyContent({ content }: Props) {
