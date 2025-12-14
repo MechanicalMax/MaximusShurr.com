@@ -1,24 +1,21 @@
 import Link from 'next/link';
-import { CaseStudyFrontmatter } from '@/lib/types';
+import { CaseStudyFrontmatter, CarouselData } from '@/lib/types';
+import MediaCarousel from './MediaCarousel';
 
 interface Props {
   frontmatter: CaseStudyFrontmatter;
-  videoEmbed?: React.ReactNode;
+  carouselData: CarouselData;
 }
 
-export default function CaseStudyHeader({ frontmatter, videoEmbed }: Props) {
+export default function CaseStudyHeader({ frontmatter, carouselData }: Props) {
   return (
     <header className="bg-gray-50 py-8 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link href="/#work" className="text-gray-600 hover:text-gray-900 inline-block mb-6 min-h-[44px] min-w-[44px] flex items-center">
           ← Back to Portfolio
         </Link>
-        
-        {videoEmbed && (
-          <div className="mb-8">
-            {videoEmbed}
-          </div>
-        )}
+
+        <MediaCarousel carouselData={carouselData} />
         
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6">{frontmatter.project_title}</h1>
         <p className="text-lg sm:text-xl text-gray-600 mt-4">{frontmatter.one_liner}</p>

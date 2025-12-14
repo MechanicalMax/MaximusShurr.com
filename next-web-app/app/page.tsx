@@ -1,18 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import BookingCTA from "@/components/BookingCTA";
-import { getCaseStudies } from "@/lib/case-studies";
-
-// Social proof logos (replace with your actual logo paths)
-const socialProofLogos = [
-  { name: 'Corteva', src: '/logos/Corteva.png' },
-  { name: 'Purdue', src: '/logos/Purdue.png' },
-  { name: 'Hughes Orthodontics LLC', src: '/logos/HughesOrthodontics.png' },
-  { name: 'LeafSpec LLC', src: '/logos/LeafSpecLLC.png' },
-  { name: 'The Sibley Center Makerspace', src: '/logos/Sibley.png' },
-  { name: 'Envision Center', src: '/logos/EnvisionCenter.png' },
-  { name: "Henni's Hairshop", src: '/logos/HennisHairshop.png' },
-];
+import { getCaseStudiesForHomepage, getSocialProofLogos } from "@/lib/case-studies";
 
 // Narrative arc chapters
 const narrativeChapters : {title: string, story: string, text: string}[] = [
@@ -39,8 +28,11 @@ const narrativeChapters : {title: string, story: string, text: string}[] = [
 ];
 
 export default async function Home() {
-  // Fetch case studies dynamically from MDX files
-  const allCaseStudies = await getCaseStudies();
+  // Fetch case studies with auto-discovered thumbnails and icons
+  const allCaseStudies = await getCaseStudiesForHomepage();
+  
+  // Fetch social proof logos from case study folders
+  const socialProofLogos = await getSocialProofLogos();
   
   // Sort case studies by end date (most recent first)
   // Parse dates in format "MMM YYYY" (e.g., "Jul 2025")
@@ -71,7 +63,7 @@ export default async function Home() {
             I build the technology that scales your impact
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I am Maximus Shurr. I don't just write code; I translate vision into reality. As an engineer who moved from hardware to software, I bring a rare combination of velocity and purpose to every project. You have the methodology and the message. I have the technical blueprint to get it into the hands of the people who need it most. Let's build a platform worthy of your mission.
+            I am Maximus Shurr. I don&apos;t just write code; I translate vision into reality. As an engineer who moved from hardware to software, I bring a rare combination of velocity and purpose to every project. You have the methodology and the message. I have the technical blueprint to get it into the hands of the people who need it most. Let&apos;s build a platform worthy of your mission.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
@@ -182,13 +174,19 @@ export default async function Home() {
               >
                 <div className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#FFBA4A] hover:shadow-lg transition-all duration-300">
                   <div className="h-48 bg-gray-100 relative overflow-hidden">
-                    <Image
-                      src={caseStudy.frontmatter.cover_image}
-                      alt={caseStudy.frontmatter.project_title}
-                      width={500}
-                      height={300}
-                      className="object-cover w-full h-full"
-                    />
+                    {caseStudy.thumbnailPath ? (
+                      <Image
+                        src={caseStudy.thumbnailPath}
+                        alt={caseStudy.frontmatter.project_title}
+                        width={500}
+                        height={300}
+                        className="object-cover w-full h-full"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        <span className="text-sm">No thumbnail available</span>
+                      </div>
+                    )}
                   </div>
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2 group-hover:text-[#FFBA4A] transition-colors">

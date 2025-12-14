@@ -8,9 +8,11 @@
     "start": "next start",
     "lint": "eslint",
     "test": "vitest --run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "optimize-case-study-assets": "node scripts/optimize-case-study-assets.js"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@types/mdx": "^2.0.13",
     "gray-matter": "^4.0.3",
     "next": "^16.0.10",
