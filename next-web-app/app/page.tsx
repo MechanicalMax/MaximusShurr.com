@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import BookingCTA from "@/components/BookingCTA";
-import { getCaseStudiesForHomepage, getSocialProofLogos } from "@/lib/case-studies";
+import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
+import { getSocialProofLogos, getFeaturedCaseStudies } from "@/lib/case-studies";
 
 // Narrative arc chapters
 const narrativeChapters : {title: string, story: string, text: string}[] = [
@@ -28,30 +29,12 @@ const narrativeChapters : {title: string, story: string, text: string}[] = [
 ];
 
 export default async function Home() {
-  // Fetch case studies with auto-discovered thumbnails and icons
-  const allCaseStudies = await getCaseStudiesForHomepage();
+  // Fetch featured case studies for the featured section
+  const featuredCaseStudies = await getFeaturedCaseStudies();
   
   // Fetch social proof logos from case study folders
   const socialProofLogos = await getSocialProofLogos();
-  
-  // Sort case studies by end date (most recent first)
-  // Parse dates in format "MMM YYYY" (e.g., "Jul 2025")
-  const caseStudies = allCaseStudies.sort((a, b) => {
-    const parseDate = (dateStr: string | null): Date => {
-      if (!dateStr) {
-        // Treat null/ongoing projects as current date (they appear first)
-        return new Date();
-      }
-      // Parse "MMM YYYY" format
-      return new Date(dateStr);
-    };
-    
-    const dateA = parseDate(a.frontmatter.end_date);
-    const dateB = parseDate(b.frontmatter.end_date);
-    
-    // Sort descending (most recent first)
-    return dateB.getTime() - dateA.getTime();
-  });
+
   
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
@@ -73,7 +56,7 @@ export default async function Home() {
               Book Your Free Strategy Session
             </Link>
             <Link 
-              href="#case-studies"
+              href="/case-study"
               className="bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200"
             >
               View Case Studies
@@ -157,56 +140,30 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Case Study Cards */}
-      <section id="case-studies" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-4">Featured Case Studies</h2>
-          <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-            I&apos;ve helped build and ship products across various industries, from agtech to edtech and beyond.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((caseStudy) => (
-              <Link 
-                href={`/case-study/${caseStudy.slug}`}
-                key={caseStudy.slug}
-                className="block group"
+      {/* Featured Case Studies Section */}
+      <div id="case-studies" className="bg-gradient-to-br from-gray-50 to-gray-100">
+        <FeaturedCaseStudies caseStudies={featuredCaseStudies} />
+        
+        {/* View Case Studies Button */}
+        <section className="pb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Link 
+              href="/case-study"
+              className="inline-flex items-center bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200 hover:shadow-lg"
+            >
+              <span className="mr-2">View All Case Studies</span>
+              <svg 
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
               >
-                <div className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#FFBA4A] hover:shadow-lg transition-all duration-300">
-                  <div className="h-48 bg-gray-100 relative overflow-hidden">
-                    {caseStudy.thumbnailPath ? (
-                      <Image
-                        src={caseStudy.thumbnailPath}
-                        alt={caseStudy.frontmatter.project_title}
-                        width={500}
-                        height={300}
-                        className="object-cover w-full h-full"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        <span className="text-sm">No thumbnail available</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-[#FFBA4A] transition-colors">
-                      {caseStudy.frontmatter.project_title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">{caseStudy.frontmatter.one_liner}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {caseStudy.frontmatter.tech_stack.map((tech) => (
-                        <span key={tech} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Final CTA */}
       <BookingCTA />

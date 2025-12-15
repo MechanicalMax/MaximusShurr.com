@@ -50,7 +50,10 @@ export default async function CaseStudyPage() {
 
       {/* Featured Case Studies Section */}
       {featuredCaseStudies.length > 0 && (
-        <FeaturedCaseStudies caseStudies={featuredCaseStudies} />
+        <FeaturedCaseStudies 
+          caseStudies={featuredCaseStudies} 
+          className="bg-gradient-to-br from-gray-50 to-gray-100"
+        />
       )}
 
       {/* Filters and Grid Section */}

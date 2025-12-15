@@ -4,9 +4,10 @@ import { CaseStudy } from '@/lib/types';
 
 interface Props {
   caseStudies: CaseStudy[];
+  className?: string;
 }
 
-export default function FeaturedCaseStudies({ caseStudies }: Props) {
+export default function FeaturedCaseStudies({ caseStudies, className = "" }: Props) {
   if (caseStudies.length === 0) {
     return null;
   }
@@ -43,7 +44,7 @@ export default function FeaturedCaseStudies({ caseStudies }: Props) {
   };
 
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section className={`py-16 ${className}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Case Studies</h2>
