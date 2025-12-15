@@ -68,6 +68,7 @@ export default function RootLayout({
                 {/* Text Links */}
                 <div className="flex flex-wrap gap-4 justify-end w-full sm:w-auto">
                   <Link href="/" className="text-white hover:text-gray-300">Home</Link>
+                  <Link href="/case-study" className="text-white hover:text-gray-300">Case Studies</Link>
                   <Link href="/book" className="text-white hover:text-gray-300">Book</Link>
                   <Link href="/resume" className="text-white hover:text-gray-300">Resume</Link>
                 </div>
