@@ -77,6 +77,38 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
   }, 10000);
 
   /**
+   * Property: MDX files must not contain deprecated cover_image field
+   * Validates: Ensures cover_image is completely removed from all case studies
+   * 
+   * For any MDX file, the frontmatter should not contain the deprecated cover_image field.
+   * This ensures we've fully migrated to the new media carousel system.
+   */
+  test('Property: MDX files must not contain deprecated cover_image field', async () => {
+    // Read all MDX files directly to check their raw content
+    const files = fs.readdirSync(CASE_STUDIES_DIR);
+    const mdxFiles = files.filter(file => file.endsWith('.mdx'));
+    
+    for (const file of mdxFiles) {
+      const filePath = path.join(CASE_STUDIES_DIR, file);
+      const content = fs.readFileSync(filePath, 'utf-8');
+      
+      // Property: MDX file content should not contain cover_image field
+      expect(content).not.toMatch(/^cover_image:/m);
+      expect(content).not.toMatch(/^\s*cover_image\s*:/m);
+      
+      // Also check that the parsed frontmatter doesn't have cover_image
+      const caseStudies = await getCaseStudies();
+      const caseStudy = caseStudies.find(cs => cs.slug === file.replace(/\.mdx$/, ''));
+      
+      if (caseStudy) {
+        // Property: Frontmatter object should not have cover_image property
+        expect(caseStudy.frontmatter).not.toHaveProperty('cover_image');
+        expect((caseStudy.frontmatter as Record<string, unknown>).cover_image).toBeUndefined();
+      }
+    }
+  }, 10000);
+
+  /**
    * Feature: dynamic-case-study-pages, Property 6: Slug to route mapping
    * Validates: Requirements 2.2
    * 
