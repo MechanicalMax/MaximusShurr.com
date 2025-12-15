@@ -4,7 +4,7 @@ import BookingInlineEmbed from '@/components/BookingInlineEmbed';
 
 export const metadata: Metadata = {
   title: 'Book Your Free Strategy Session | Maximus Shurr',
-  description: 'Schedule a 30-minute free strategy session to plan meaningful steps toward bringing your ideas to life.',
+  description: 'You understand your industry. I understand the engineering required to scale it. Whether you need to automate a physical workflow or deploy a digital platform, I provide the blueprint.',
 };
 
 export default function BookPage() {
@@ -18,10 +18,10 @@ export default function BookPage() {
           >
             ← Back to Home
           </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Your Message Deserves a Modern Platform</h1>
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Don&apos;t Let Technical Hurdles Bottleneck Your Impact.</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Don&apos;t let technical hurdles bottleneck your impact. You provide the vision; I&apos;ll provide the velocity.
-            Let&apos;s spend 30 minutes mapping out how we can turn your curriculum into a scalable digital product.
+            You understand your industry. I understand the engineering required to scale it. Whether you need to automate a physical workflow or deploy a digital platform, I provide the blueprint.
+            Let&apos;s spend 30 minutes mapping out how we can turn your vision into a deployed reality.
           </p>
         </div>
       </header>

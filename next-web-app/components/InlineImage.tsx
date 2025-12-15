@@ -48,7 +48,7 @@ export default function InlineImage({ filename, alt, className = '' }: InlineIma
   }
 
   // Resolve path to current case study's asset folder
-  const imagePath = `/work/${slug}/${filename}`;
+  const imagePath = `/case-study/${slug}/${filename}`;
   
   // Generate alt text from filename if not provided
   const altText = alt || filename.replace(/\.(webp|webm|jpg|jpeg|png|gif)$/i, '').replace(/-/g, ' ');

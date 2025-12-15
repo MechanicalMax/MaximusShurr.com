@@ -18,6 +18,7 @@ export interface CaseStudyFrontmatter {
     author: string;
     role: string;
   } | null;
+  isFeatured?: boolean;
 }
 
 export interface CaseStudy {
@@ -60,8 +61,8 @@ export interface CaseStudyWithMedia extends CaseStudy {
  * Includes auto-discovered thumbnail and icon paths
  */
 export interface CaseStudyForHomepage extends CaseStudy {
-  thumbnailPath: string | null;  // Auto-discovered from /work/[slug]/thumbnail.webp
-  iconPath: string | null;       // Auto-discovered from /work/[slug]/icon.webp
+  thumbnailPath: string | null;  // Auto-discovered from /case-study/[slug]/thumbnail.webp
+  iconPath: string | null;       // Auto-discovered from /case-study/[slug]/icon.webp
 }
 
 /**

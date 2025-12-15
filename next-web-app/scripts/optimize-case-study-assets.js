@@ -3,7 +3,7 @@
 /**
  * Case Study Asset Optimizer
  *
- * - Recursively scans public/work/**
+ * - Recursively scans public/case-study/**
  * - Images → WebP
  * - Videos → WebM
  * - Outputs stay in the SAME directory as the source
@@ -19,7 +19,7 @@ import { join, extname, basename, dirname } from "path";
    Configuration
 ================================ */
 
-const ROOT_DIR = join(process.cwd(), "public", "work");
+const ROOT_DIR = join(process.cwd(), "public", "case-study");
 
 const MAX_WIDTH = 1920;
 const IMAGE_QUALITY = 85;

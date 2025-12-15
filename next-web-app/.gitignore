@@ -41,13 +41,13 @@ yarn-error.log*
 next-env.d.ts
 
 # Raw media (case study sources)
-public/work/**/*.jpg
-public/work/**/*.jpeg
-public/work/**/*.png
-public/work/**/*.heic
-public/work/**/*.mov
-public/work/**/*.mp4
-public/work/**/*.JPG
-public/work/**/*.PNG
-public/work/**/*.MOV
-public/work/**/*.MP4
+public/case-study/**/*.jpg
+public/case-study/**/*.jpeg
+public/case-study/**/*.png
+public/case-study/**/*.heic
+public/case-study/**/*.mov
+public/case-study/**/*.mp4
+public/case-study/**/*.JPG
+public/case-study/**/*.PNG
+public/case-study/**/*.MOV
+public/case-study/**/*.MP4

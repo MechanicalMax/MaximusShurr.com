@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import BookingCTA from "@/components/BookingCTA";
-import { getCaseStudiesForHomepage, getSocialProofLogos } from "@/lib/case-studies";
+import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
+import { getSocialProofLogos, getFeaturedCaseStudies } from "@/lib/case-studies";
 
 // Narrative arc chapters
 const narrativeChapters : {title: string, story: string, text: string}[] = [
@@ -11,47 +12,29 @@ const narrativeChapters : {title: string, story: string, text: string}[] = [
     text: "At 10 years old, I taught myself to solve a Rubik's Cube. But the thrill wasn't in the plastic or the stickers—it was in the feeling of empowerment. it was proof that I could figure anything out if I tried hard enough. I wanted everyone to feel that sense of agency. I started \"Mechanical Max\" not to show off, but to lift others up and show them that they were capable of more than they thought."
   },
   {
-    title: 'The "Right" Path',
-    story: 'I know what it\'s like to chase the wrong metrics.',
-    text: "For years, I was stuck in the \"performance trap.\" I chased grades, status, and leadership titles because I thought external validation was the only path to success. I was running a race I didn't want to enter, burning myself out to impress admissions officers at universities I knew nothing about. I understand the pain of living for a résumé instead of a purpose."
+    title: 'The Lesson',
+    story: 'I stopped chasing titles and started chasing impact.',
+    text: "For years, I was stuck in the \"performance trap.\" I chased grades and elections, thinking external validation was the only path. But when I lost a major election, the system broke for me. It was a wake-up call. I realized that a résumé is not a legacy. True fulfillment comes from service. I stopped looking for permission to lead and started looking for problems to solve."
   },
   {
     title: "The Pivot",
-    story: "Turning Pain into Growth",
-    text: "In high school, I lost a humiliating election. At the time, it felt like my future had shattered. In reality, it was the moment I became free. I stopped looking for permission and started looking for service. I pivoted to the real world, finding a local orthodontist with a broken workflow. I didn't just save him $10k in ARR and build him a 3D printing lab; I gave him back his time. That was my wake-up call: true fulfillment comes from how deeply you serve, not a shiny award."
+    story: "Fluent in Hardware, Dangerous in Software",
+    text: "Most developers fear hardware. Most mechanical engineers fear code. I live in the middle. My background isnt just theory; its getting my hands dirty in R&D labs and writing Python scripts to automate physical machines. Whether its IoT, 3D printing workflows, or Next.js web apps, I understand how to make the digital world talk to the physical one."
   },
   {
     title: "The Mission",
-    story: "Building What Matters",
-    text: "At Purdue, I refined my technical toolkit, balancing rigorous mechanical engineering coursework with practical software development. Whether I'm designing physical products or deploying full-stack web apps, my goal is unchanged: to build tools that help people live happier, healthier, more fulfilling lives. I am not looking for a \"gig.\" I am looking for partners who want to use technology to amplify wisdom and create genuine human transformation. Most apps distract us; I build apps that center us."
+    story: "Velocity with Purpose",
+    text: "I am not looking for a \"gig.\" I am looking for partners who want to use technology to create sustainable good. I balance the rigorous physics of engineering with the infinite scalability of software. My goal is simple: To build tools that help people live happier, healthier, more fulfilling lives. Most apps distract us; I build technology that allows us to be more."
   }
 ];
 
 export default async function Home() {
-  // Fetch case studies with auto-discovered thumbnails and icons
-  const allCaseStudies = await getCaseStudiesForHomepage();
+  // Fetch featured case studies for the featured section
+  const featuredCaseStudies = await getFeaturedCaseStudies();
   
   // Fetch social proof logos from case study folders
   const socialProofLogos = await getSocialProofLogos();
-  
-  // Sort case studies by end date (most recent first)
-  // Parse dates in format "MMM YYYY" (e.g., "Jul 2025")
-  const caseStudies = allCaseStudies.sort((a, b) => {
-    const parseDate = (dateStr: string | null): Date => {
-      if (!dateStr) {
-        // Treat null/ongoing projects as current date (they appear first)
-        return new Date();
-      }
-      // Parse "MMM YYYY" format
-      return new Date(dateStr);
-    };
-    
-    const dateA = parseDate(a.frontmatter.end_date);
-    const dateB = parseDate(b.frontmatter.end_date);
-    
-    // Sort descending (most recent first)
-    return dateB.getTime() - dateA.getTime();
-  });
+
   
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
@@ -59,11 +42,11 @@ export default async function Home() {
       <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            <span className="text-[#FFBA4A]">You Change Lives<br /></span>
-            I build the technology that scales your impact
+            <span className="text-[#FFBA4A]">You Have the Vision<br /></span>
+            I build the technology that connects the <em>digital</em> and <em>physical</em> worlds
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I am Maximus Shurr. I don&apos;t just write code; I translate vision into reality. As an engineer who moved from hardware to software, I bring a rare combination of velocity and purpose to every project. You have the methodology and the message. I have the technical blueprint to get it into the hands of the people who need it most. Let&apos;s build a platform worthy of your mission.
+            I am Maximus Shurr. I don&apos;t just write code; I engineer realities. As a Mechanical Engineer and Full-Stack Developer, I possess the rare ability to translate physical operations into scalable digital software. You bring the mission. I bring the velocity. Let&apos;s build a platform that doesn&apos;t just work—it transforms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
@@ -73,10 +56,10 @@ export default async function Home() {
               Book Your Free Strategy Session
             </Link>
             <Link 
-              href="#work"
+              href="/case-study"
               className="bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200"
             >
-              View My Work
+              View Case Studies
             </Link>
           </div>
         </div>
@@ -157,56 +140,30 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Case Study Cards */}
-      <section id="work" className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-4">Selected Portfolio</h2>
-          <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
-            I&apos;ve helped build and ship products across various industries, from agtech to edtech and beyond.
-          </p>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((caseStudy) => (
-              <Link 
-                href={`/work/${caseStudy.slug}`}
-                key={caseStudy.slug}
-                className="block group"
+      {/* Featured Case Studies Section */}
+      <div id="case-studies" className="bg-gradient-to-br from-gray-50 to-gray-100">
+        <FeaturedCaseStudies caseStudies={featuredCaseStudies} />
+        
+        {/* View Case Studies Button */}
+        <section className="pb-16">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <Link 
+              href="/case-study"
+              className="inline-flex items-center bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200 hover:shadow-lg"
+            >
+              <span className="mr-2">View All Case Studies</span>
+              <svg 
+                className="w-4 h-4 group-hover:translate-x-1 transition-transform" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
               >
-                <div className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 hover:border-[#FFBA4A] hover:shadow-lg transition-all duration-300">
-                  <div className="h-48 bg-gray-100 relative overflow-hidden">
-                    {caseStudy.thumbnailPath ? (
-                      <Image
-                        src={caseStudy.thumbnailPath}
-                        alt={caseStudy.frontmatter.project_title}
-                        width={500}
-                        height={300}
-                        className="object-cover w-full h-full"
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        <span className="text-sm">No thumbnail available</span>
-                      </div>
-                    )}
-                  </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2 group-hover:text-[#FFBA4A] transition-colors">
-                      {caseStudy.frontmatter.project_title}
-                    </h3>
-                    <p className="text-gray-600 mb-4">{caseStudy.frontmatter.one_liner}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {caseStudy.frontmatter.tech_stack.map((tech) => (
-                        <span key={tech} className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Final CTA */}
       <BookingCTA />
