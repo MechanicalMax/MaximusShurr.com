@@ -12,19 +12,19 @@ const narrativeChapters : {title: string, story: string, text: string}[] = [
     text: "At 10 years old, I taught myself to solve a Rubik's Cube. But the thrill wasn't in the plastic or the stickers—it was in the feeling of empowerment. it was proof that I could figure anything out if I tried hard enough. I wanted everyone to feel that sense of agency. I started \"Mechanical Max\" not to show off, but to lift others up and show them that they were capable of more than they thought."
   },
   {
-    title: 'The "Right" Path',
-    story: 'I know what it\'s like to chase the wrong metrics.',
-    text: "For years, I was stuck in the \"performance trap.\" I chased grades, status, and leadership titles because I thought external validation was the only path to success. I was running a race I didn't want to enter, burning myself out to impress admissions officers at universities I knew nothing about. I understand the pain of living for a résumé instead of a purpose."
+    title: 'The Lesson',
+    story: 'I stopped chasing titles and started chasing impact.',
+    text: "For years, I was stuck in the \"performance trap.\" I chased grades and elections, thinking external validation was the only path. But when I lost a major election, the system broke for me. It was a wake-up call. I realized that a résumé is not a legacy. True fulfillment comes from service. I stopped looking for permission to lead and started looking for problems to solve."
   },
   {
     title: "The Pivot",
-    story: "Turning Pain into Growth",
-    text: "In high school, I lost a humiliating election. At the time, it felt like my future had shattered. In reality, it was the moment I became free. I stopped looking for permission and started looking for service. I pivoted to the real world, finding a local orthodontist with a broken workflow. I didn't just save him $10k in ARR and build him a 3D printing lab; I gave him back his time. That was my wake-up call: true fulfillment comes from how deeply you serve, not a shiny award."
+    story: "Fluent in Hardware, Dangerous in Software",
+    text: "Most developers fear hardware. Most mechanical engineers fear code. I live in the middle. My background isnt just theory; its getting my hands dirty in R&D labs and writing Python scripts to automate physical machines. Whether its IoT, 3D printing workflows, or Next.js web apps, I understand how to make the digital world talk to the physical one."
   },
   {
     title: "The Mission",
-    story: "Building What Matters",
-    text: "At Purdue, I refined my technical toolkit, balancing rigorous mechanical engineering coursework with practical software development. Whether I'm designing physical products or deploying full-stack web apps, my goal is unchanged: to build tools that help people live happier, healthier, more fulfilling lives. I am not looking for a \"gig.\" I am looking for partners who want to use technology to amplify wisdom and create genuine human transformation. Most apps distract us; I build apps that center us."
+    story: "Velocity with Purpose",
+    text: "I am not looking for a \"gig.\" I am looking for partners who want to use technology to create sustainable good. I balance the rigorous physics of engineering with the infinite scalability of software. My goal is simple: To build tools that help people live happier, healthier, more fulfilling lives. Most apps distract us; I build technology that allows us to be more."
   }
 ];
 
@@ -42,11 +42,11 @@ export default async function Home() {
       <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            <span className="text-[#FFBA4A]">You Change Lives<br /></span>
-            I build the technology that scales your impact
+            <span className="text-[#FFBA4A]">You Have the Vision<br /></span>
+            I build the technology that connects the <em>digital</em> and <em>physical</em> worlds
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I am Maximus Shurr. I don&apos;t just write code; I translate vision into reality. As an engineer who moved from hardware to software, I bring a rare combination of velocity and purpose to every project. You have the methodology and the message. I have the technical blueprint to get it into the hands of the people who need it most. Let&apos;s build a platform worthy of your mission.
+            I am Maximus Shurr. I don&apos;t just write code; I engineer realities. As a Mechanical Engineer and Full-Stack Developer, I possess the rare ability to translate physical operations into scalable digital software. You bring the mission. I bring the velocity. Let&apos;s build a platform that doesn&apos;t just work—it transforms.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 

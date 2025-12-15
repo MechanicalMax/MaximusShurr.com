@@ -8,8 +8,8 @@ interface BookingCTAProps {
 }
 
 export default function BookingCTA({
-  title = "Your message deserves a platform.",
-  description = "Don't let technical hurdles bottleneck your impact. You provide the vision; I'll provide the velocity. Let's spend 30 minutes mapping out how we can turn your curriculum into a scalable digital product.",
+  title = "Don't Let Technical Hurdles Bottleneck Your Impact.",
+  description = "You understand your industry. I understand the engineering required to scale it. Whether you need to automate a physical workflow or deploy a digital platform, I provide the blueprint.\nLet's spend 30 minutes mapping out how we can turn your vision into a deployed reality.",
   buttonText = "Book Your Free Strategy Session",
   className = "",
 }: BookingCTAProps) {

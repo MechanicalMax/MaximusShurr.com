@@ -9,17 +9,18 @@ const roboto = Roboto({
   weight: ["400", "500", "700"],
 });
 
+const defaultTitle = "Maximus Shurr - The Mission-Driven Technical Partner";
+const defaultDescription = "Maximus Shurr turns ideas into production-ready applications that help people live happier, healthier, and more fulfilling lives.";
+
 export const metadata: Metadata = {
-  title: "Maximus Shurr",
-  description:
-    "Maximus Shurr turns ideas into production-ready applications that help people live happier, healthier, and more fulfilling lives.",
+  title: defaultTitle,
+  description: defaultDescription,
 
   metadataBase: new URL("https://www.maximusshurr.com"),
 
   openGraph: {
-    title: "Maximus Shurr - Full Product Development",
-    description:
-      "Turning ideas into production-ready applications that help people live happier, healthier, and more fulfilling lives.",
+    title: defaultTitle,
+    description: defaultDescription,
     url: "https://www.maximusshurr.com",
     siteName: "Maximus Shurr",
     images: [
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
         url: "/icon.jpg",
         width: 1200,
         height: 630,
-        alt: "Maximus Shurr - Full Product Development",
+        alt: "Maximus Shurr",
       },
     ],
     locale: "en_US",
@@ -36,9 +37,8 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "Maximus Shurr - Full Product Development",
-    description:
-      "Turning ideas into production-ready applications that help people live happier, healthier, and more fulfilling lives.",
+    title: defaultTitle,
+    description: defaultDescription,
     images: ["/icon.jpg"],
   },
 
@@ -63,7 +63,7 @@ export default function RootLayout({
         <nav className="bg-gray-900">
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center py-4">
-              <div className="text-white font-bold text-2xl mr-4">Maximus Shurr</div>
+              <div className="text-white font-bold text-2xl mr-4">Maximus Shurr <br></br><em className="opacity-50 text-xl">The Mission Driven Technical Partner</em></div>
               <div className="flex flex-wrap justify-end gap-4 items-center">
                 {/* Text Links */}
                 <div className="flex flex-wrap gap-4 justify-end w-full sm:w-auto">
