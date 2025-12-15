@@ -18,6 +18,7 @@ export interface CaseStudyFrontmatter {
     author: string;
     role: string;
   } | null;
+  isFeatured?: boolean;
 }
 
 export interface CaseStudy {

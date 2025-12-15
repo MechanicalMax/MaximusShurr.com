@@ -334,3 +334,31 @@ export async function getSocialProofLogos(): Promise<Array<{ name: string; src: 
     return [];
   }
 }
+
+/**
+ * Gets case studies that are marked as featured
+ * @returns Array of case studies with isFeatured: true
+ */
+export async function getFeaturedCaseStudies(): Promise<CaseStudy[]> {
+  try {
+    const caseStudies = await getCaseStudies();
+    return caseStudies.filter(caseStudy => caseStudy.frontmatter.isFeatured === true);
+  } catch (error) {
+    console.error('Error getting featured case studies:', error);
+    return [];
+  }
+}
+
+/**
+ * Gets case studies that are not marked as featured
+ * @returns Array of case studies with isFeatured: false or undefined
+ */
+export async function getNonFeaturedCaseStudies(): Promise<CaseStudy[]> {
+  try {
+    const caseStudies = await getCaseStudies();
+    return caseStudies.filter(caseStudy => caseStudy.frontmatter.isFeatured !== true);
+  } catch (error) {
+    console.error('Error getting non-featured case studies:', error);
+    return [];
+  }
+}
