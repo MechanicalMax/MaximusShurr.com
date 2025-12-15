@@ -17,7 +17,7 @@ export default function CaseStudyHeader({ frontmatter, carouselData }: Props) {
 
         <MediaCarousel carouselData={carouselData} />
         
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6">{frontmatter.project_title}</h1>
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mt-6 text-gray-900">{frontmatter.project_title}</h1>
         <p className="text-lg sm:text-xl text-gray-600 mt-4">{frontmatter.one_liner}</p>
         
         <div className="flex flex-wrap gap-3 sm:gap-4 mt-6">
