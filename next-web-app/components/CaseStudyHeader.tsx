@@ -11,8 +11,8 @@ export default function CaseStudyHeader({ frontmatter, carouselData }: Props) {
   return (
     <header className="bg-gray-50 py-8 sm:py-12">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Link href="/#work" className="text-gray-600 hover:text-gray-900 inline-block mb-6 min-h-[44px] min-w-[44px] flex items-center">
-          ← Back to Portfolio
+        <Link href="/case-study" className="text-gray-600 hover:text-gray-900 inline-block mb-6 min-h-[44px] min-w-[44px] flex items-center">
+          ← Back to Case Studies
         </Link>
 
         <MediaCarousel carouselData={carouselData} />

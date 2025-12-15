@@ -10,7 +10,7 @@ import { describe, test, expect } from 'vitest';
  */
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'case_studies');
-const ASSETS_DIR = path.join(process.cwd(), 'public', 'work');
+const ASSETS_DIR = path.join(process.cwd(), 'public', 'case-study');
 
 describe('Case Studies Data Layer - Property-Based Tests', () => {
   
@@ -80,7 +80,7 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
    * Feature: dynamic-case-study-pages, Property 6: Slug to route mapping
    * Validates: Requirements 2.2
    * 
-   * For any case study file, the generated route should be /work/[slug] 
+   * For any case study file, the generated route should be /case-study/[slug] 
    * where the slug is derived from the filename (without .mdx extension).
    */
   test('Property 6: Slug to route mapping - slug derived from filename', async () => {
@@ -346,7 +346,7 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
           expect(['.webp', '.webm']).toContain(asset.extension);
           
           // Property: Path should be correctly formatted
-          expect(asset.path).toBe(`/work/${cs.slug}/${asset.filename}`);
+          expect(asset.path).toBe(`/case-study/${cs.slug}/${asset.filename}`);
         }
         
         // Property: YouTube URL should be defined only when hasYoutube is true
@@ -411,7 +411,7 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       
       // Property: thumbnailPath should match actual file existence
       if (thumbnailExists) {
-        expect(cs.thumbnailPath).toBe(`/work/${cs.slug}/thumbnail.webp`);
+        expect(cs.thumbnailPath).toBe(`/case-study/${cs.slug}/thumbnail.webp`);
       } else {
         expect(cs.thumbnailPath).toBeNull();
       }
@@ -419,7 +419,7 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       // Property: iconPath should match actual icon.webp existence
       const iconExists = fs.existsSync(path.join(assetFolderPath, 'icon.webp'));
       if (iconExists) {
-        expect(cs.iconPath).toBe(`/work/${cs.slug}/icon.webp`);
+        expect(cs.iconPath).toBe(`/case-study/${cs.slug}/icon.webp`);
       } else {
         expect(cs.iconPath).toBeNull();
       }
@@ -452,7 +452,7 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       expect(matchingCaseStudy).toBeDefined();
       
       if (matchingCaseStudy) {
-        expect(logo.src).toBe(`/work/${matchingCaseStudy.slug}/icon.webp`);
+        expect(logo.src).toBe(`/case-study/${matchingCaseStudy.slug}/icon.webp`);
       }
     }
     

@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const thumbnailAsset = caseStudyWithMedia.carouselData.media.find(asset => asset.filename === 'thumbnail.webp');
   const ogImage = thumbnailAsset 
     ? `https://maximusshurr.com${thumbnailAsset.path}`
-    : `https://maximusshurr.com/work/${slug}/thumbnail.webp`; // fallback
+    : `https://maximusshurr.com/case-study/${slug}/thumbnail.webp`; // fallback
 
   return {
     title: `${caseStudyWithMedia.frontmatter.project_title} | Maximus Shurr`,

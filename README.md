@@ -15,13 +15,21 @@ This repository contains the complete source code for my personal portfolio.
 
 This site is my digital home base, designed to showcase my journey as a full-stack developer and mechanical engineer. It's built to be a high-velocity conversion engine that reflects my "Cofounder" brand: I don't just write code; I ship complete, value-driven products.
 
-### ⚡️ Current Status: Milestone 2 Complete - Dynamic Case Study System
+### ⚡️ Current Status: Milestone 3 In Progress - Case Study Refactor Complete
 
 This project is under active development.
 
-**Milestone 2 is now complete!** The site now features a fully dynamic case study system with:
+**Case Study Refactor Complete!** The site has been fully migrated to use consistent "case study" terminology:
 
-- Dynamic `/work/[slug]` pages for all 12 case studies
+- **Terminology Update**: All references changed from "work/portfolio" to "case study" throughout the application
+- **Route Migration**: Case studies now use `/case-study/[slug]` URLs instead of `/work/[slug]`
+- **Asset Migration**: All media assets moved from `/public/work/` to `/public/case-study/` structure
+- **Navigation Updates**: Homepage and navigation use "Case Studies" terminology consistently
+- **Featured Content System**: Homepage now displays "Featured Case Studies" with improved terminology
+- **Comprehensive Testing**: All property-based tests updated and passing with new structure
+
+**Core Features Include:**
+- Dynamic `/case-study/[slug]` pages for all 12 case studies
 - MDX-based content management with YAML frontmatter
 - Automatic homepage tile generation from case study files
 - **Flexible Media Carousel System** - Automatically generates interactive carousels from asset folders
@@ -30,7 +38,7 @@ This project is under active development.
 - Responsive design across mobile, tablet, and desktop
 - Property-based testing for data integrity
 
-All project tiles now link to their respective case study pages, showcasing detailed project narratives with rich metadata, tech stacks, timelines, and testimonials.
+All case study pages showcase detailed project narratives with rich metadata, tech stacks, timelines, and testimonials.
 
 ## Project Roadmap
 
@@ -60,6 +68,8 @@ All project tiles now link to their respective case study pages, showcasing deta
 
 - ➡️ **Milestone 3: Content Enhancement & Polish**
 
+  - ✅ **Case Study Refactor:** Complete terminology migration from "work/portfolio" to "case study"
+
   - **Video Production:** Create and embed professional case study videos for all projects.
 
   - **Media Assets:** Upload high-quality images, diagrams, and screenshots for each case study.
@@ -73,6 +83,8 @@ All project tiles now link to their respective case study pages, showcasing deta
 - 📅 **Milestone 4: Advanced Features**
 
   - Add filtering and search functionality for case studies.
+
+  - Implement featured case study system with metadata-driven highlighting.
 
 ## Tech Stack
 
@@ -97,7 +109,7 @@ MaximusShurr.com/
 └── next-web-app/                 # Main Next.js application
     ├── app/                      # App Router pages
     │   ├── page.tsx              # Homepage with dynamic case study tiles
-    │   ├── work/[slug]/          # Dynamic case study pages
+    │   ├── case-study/[slug]/    # Dynamic case study pages
     │   ├── book/                 # Booking/contact page
     │   ├── resume/               # Resume page
     │   └── not-found.tsx         # Custom 404 page
@@ -117,7 +129,7 @@ MaximusShurr.com/
     │   ├── clairity-daily.mdx
     │   └── ... (12 total)
     └── public/                   # Static assets
-        └── work/                 # Case study media assets
+        └── case-study/           # Case study media assets
             └── [slug]/           # Auto-discovered media & social proof
 ```
 
@@ -191,7 +203,7 @@ The site features an automatic media carousel system that generates interactive 
 
 ### How It Works
 
-1. **Automatic Discovery**: The system scans `public/work/[slug]/` folders for media files
+1. **Automatic Discovery**: The system scans `public/case-study/[slug]/` folders for media files
 2. **Smart Filtering**: Includes all `.webp` and `.webm` files while excluding `icon.webp` from carousels
 3. **Intelligent Ordering**: Applies hierarchy - YouTube → Thumbnail → Videos (A-Z) → Images (A-Z)
 4. **Caption Generation**: Converts filenames to human-readable captions (hyphens become spaces)
@@ -201,7 +213,7 @@ The site features an automatic media carousel system that generates interactive 
 ### Media Asset Structure
 
 ```
-public/work/[slug]/
+public/case-study/[slug]/
 ├── thumbnail.webp      # Required - Homepage card thumbnail & carousel slide #2
 ├── icon.webp          # Optional - Homepage social proof badge (excluded from carousel)
 ├── Circuit-Design.webp # Media asset - becomes carousel slide
@@ -248,7 +260,7 @@ Case studies are authored as MDX files in `next-web-app/case_studies/`. Each fil
 
 ### File Naming Convention
 - Use kebab-case: `project-name.mdx`
-- The filename (without `.mdx`) becomes the URL slug: `/work/project-name`
+- The filename (without `.mdx`) becomes the URL slug: `/case-study/project-name`
 
 ### Frontmatter Structure
 
@@ -272,7 +284,7 @@ testimonial:
 ---
 ```
 
-**Note:** The `cover_image` field has been removed from frontmatter. Thumbnails are now automatically discovered from `thumbnail.webp` files in the corresponding `/work/[slug]/` media folder. Social proof logos are also automatically discovered from `icon.webp` files in the same folders.
+**Note:** The `cover_image` field has been removed from frontmatter. Thumbnails are now automatically discovered from `thumbnail.webp` files in the corresponding `/case-study/[slug]/` media folder. Social proof logos are also automatically discovered from `icon.webp` files in the same folders.
 
 ### Content Sections
 
@@ -327,7 +339,7 @@ This ensures:
 - Deterministic, repeatable media processing
 
 The system automatically:
-- Generates the case study page at `/work/[slug]`
+- Generates the case study page at `/case-study/[slug]`
 - Creates a homepage tile with cover image and metadata
 - Sorts projects by end date (most recent first)
 - Handles SEO metadata and social media previews

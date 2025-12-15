@@ -73,10 +73,10 @@ export default async function Home() {
               Book Your Free Strategy Session
             </Link>
             <Link 
-              href="#work"
+              href="#case-studies"
               className="bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200"
             >
-              View My Work
+              View Case Studies
             </Link>
           </div>
         </div>
@@ -158,9 +158,9 @@ export default async function Home() {
       </section>
 
       {/* Case Study Cards */}
-      <section id="work" className="py-20 bg-white">
+      <section id="case-studies" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-center mb-4">Selected Portfolio</h2>
+          <h2 className="text-3xl font-bold text-center mb-4">Featured Case Studies</h2>
           <p className="text-xl text-gray-600 text-center mb-12 max-w-3xl mx-auto">
             I&apos;ve helped build and ship products across various industries, from agtech to edtech and beyond.
           </p>
@@ -168,7 +168,7 @@ export default async function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {caseStudies.map((caseStudy) => (
               <Link 
-                href={`/work/${caseStudy.slug}`}
+                href={`/case-study/${caseStudy.slug}`}
                 key={caseStudy.slug}
                 className="block group"
               >

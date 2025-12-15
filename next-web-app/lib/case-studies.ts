@@ -4,7 +4,7 @@ import matter from 'gray-matter';
 import { CaseStudy, CaseStudyFrontmatter, CarouselData, MediaAsset, CaseStudyWithMedia, CaseStudyForHomepage } from './types';
 
 const CASE_STUDIES_DIR = path.join(process.cwd(), 'case_studies');
-const ASSETS_DIR = path.join(process.cwd(), 'public', 'work');
+const ASSETS_DIR = path.join(process.cwd(), 'public', 'case-study');
 
 /**
  * Extracts slug from filename (removes .mdx extension)
@@ -216,7 +216,7 @@ export async function getCarouselData(slug: string): Promise<CarouselData> {
       const ext = path.extname(filename).toLowerCase() as '.webp' | '.webm';
       return {
         filename,
-        path: `/work/${slug}/${filename}`,
+        path: `/case-study/${slug}/${filename}`,
         type: ext === '.webp' ? 'image' : 'video',
         caption: filenameToCaption(filename),
         extension: ext
@@ -287,12 +287,12 @@ export async function getCaseStudiesForHomepage(): Promise<CaseStudyForHomepage[
       
       // Check if thumbnail.webp exists
       const thumbnailPath = fs.existsSync(path.join(assetFolderPath, 'thumbnail.webp')) 
-        ? `/work/${caseStudy.slug}/thumbnail.webp`
+        ? `/case-study/${caseStudy.slug}/thumbnail.webp`
         : null;
       
       // Check if icon.webp exists
       const iconPath = fs.existsSync(path.join(assetFolderPath, 'icon.webp'))
-        ? `/work/${caseStudy.slug}/icon.webp`
+        ? `/case-study/${caseStudy.slug}/icon.webp`
         : null;
       
       return {
@@ -323,7 +323,7 @@ export async function getSocialProofLogos(): Promise<Array<{ name: string; src: 
       if (fs.existsSync(iconPath)) {
         logos.push({
           name: caseStudy.frontmatter.project_title,
-          src: `/work/${caseStudy.slug}/icon.webp`
+          src: `/case-study/${caseStudy.slug}/icon.webp`
         });
       }
     }
