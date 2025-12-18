@@ -1,6 +1,7 @@
 import Link from "next/link";
 import DentalROICalculator from "./DentalROICalculator";
 import ZeroAdminLabBooking from "./ZeroAdminLabBooking";
+import CaseStudyCard from "@/components/CaseStudyCard";
 import { 
   ShieldCheckIcon, 
   ClipboardDocumentListIcon, 
@@ -480,53 +481,29 @@ export default function DentalAutomationPage() {
       {/* Calculator Section */}
       <DentalROICalculator />
 
-      {/* Social Proof Section */}
+      {/* Case Study Section */}
       <section className="py-20 bg-gray-50">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-white rounded-2xl shadow-xl p-12 border border-gray-100">
-            <h2 className="text-3xl font-bold mb-8">
-              Deployed at Hughes Orthodontics
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              Read about our Proven Results
             </h2>
-            
-            <div className="grid md:grid-cols-2 gap-8 mb-8">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#FFBA4A] mb-2">5 Years</div>
-                <div className="text-gray-600">of Uptime</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#FFBA4A] mb-2">75%</div>
-                <div className="text-gray-600">Cost Reduction</div>
-              </div>
-            </div>
-            
-            <div className="grid md:grid-cols-3 gap-6 mb-8 text-sm">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <div className="font-bold text-blue-700">Before</div>
-                <div className="text-blue-600">~$800 per aligner kit</div>
-                <div className="text-blue-600">1 week turnaround</div>
-              </div>
-              <div className="bg-[#FFBA4A] bg-opacity-20 p-4 rounded-lg">
-                <div className="font-bold text-gray-700">After</div>
-                <div className="text-gray-600">~$200 per aligner kit</div>
-                <div className="text-gray-600">24 hour turnaround</div>
-              </div>
-              <div className="bg-green-50 p-4 rounded-lg">
-                <div className="font-bold text-green-700">Result</div>
-                <div className="text-green-600">10-20 retainers/week</div>
-                <div className="text-green-600">Minimal oversight</div>
-              </div>
-            </div>
-            
-            <Link 
-              href="/case-study/hughes-orthodontics-automation"
-              className="inline-flex items-center bg-[#FFBA4A] hover:bg-[#FFA726] text-gray-900 font-semibold py-3 px-6 rounded-full transition duration-200"
-            >
-              Read the Full Case Study
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
+            <p className="text-xl text-gray-600">
+              See how we transformed workflows with the Zero-Admin Lab Protocol
+            </p>
           </div>
+          
+          <CaseStudyCard
+            slug="hughes-orthodontics-automation"
+            projectTitle="Hughes Orthodontics 3D Lab"
+            oneLiner="Building an automated, in-house manufacturing lab that cut retainer costs by 75% and production time by 80%."
+            projectType="Operational Automation"
+            status="Complete"
+            techStack={["Python", "3D Printing", "Staff Training", "Software Architecture", "Digital Strategy"]}
+            startDate="Dec 2020"
+            endDate="Nov 2023"
+            showFeaturedBadge={true}
+          />
         </div>
       </section>
 
