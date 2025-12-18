@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import BookingCTA from "@/components/BookingCTA";
 import DentalROICalculator from "./DentalROICalculator";
 
@@ -38,75 +39,27 @@ export default function DentalAutomationPage() {
             Why Your Current Process is <span className="text-red-500">Bleeding Money</span>
           </h2>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            {/* The Old Way */}
-            <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-red-700 mb-6 text-center">
-                The DIY Way (9 Steps of Friction)
-              </h3>
-              <div className="space-y-4">
-                {[
-                  "Export STL",
-                  "Rename File", 
-                  "Open Slicer",
-                  "Import",
-                  "Orient",
-                  "Support",
-                  "Slice",
-                  "Upload",
-                  "Print"
-                ].map((step, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">
-                      {index + 1}
-                    </div>
-                    <span className="text-gray-700">{step}</span>
-                    {index < 8 && <span className="ml-auto text-red-500">→</span>}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 p-4 bg-red-100 rounded-lg">
-                <p className="text-red-700 font-semibold">Result: 2-3 hours per batch</p>
-                <p className="text-red-600">Staff burnout from repetitive clicking</p>
-              </div>
-            </div>
+          <p className="text-xl text-center text-gray-600 mb-8">
+            External labs are <strong>expensive</strong> and <strong>slow</strong>.
+            Plus, the admin overhead of going alone makes switching not worth the effort.
+          </p>
 
-            {/* The Hughes Protocol */}
-            <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-green-700 mb-6 text-center">
-                The Hughes Protocol (1 Step)
-              </h3>
-              <div className="space-y-6">
-                <div className="flex items-center">
-                  <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">
-                    1
-                  </div>
-                  <span className="text-gray-700">New Scan</span>
-                  <span className="ml-auto text-green-500">→</span>
-                </div>
-                
-                <div className="bg-[#FFBA4A] rounded-lg p-4 mx-8">
-                  <p className="text-center font-bold text-gray-900">
-                    [Your Python Script]
-                  </p>
-                  <p className="text-center text-sm text-gray-700 mt-1">
-                    Automated Processing
-                  </p>
-                </div>
-                
-                <div className="flex items-center">
-                  <div className="w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center text-sm font-bold mr-4">
-                    2
-                  </div>
-                  <span className="text-gray-700">Print</span>
-                </div>
-              </div>
-              <div className="mt-6 p-4 bg-green-100 rounded-lg">
-                <p className="text-green-700 font-semibold">Result: 30 minutes per batch</p>
-                <p className="text-green-600">Staff focuses on patients, not computers</p>
-              </div>
-            </div>
+          <h2 className="text-4xl font-bold text-center mb-16">
+            
+          </h2>
+          
+          {/* In-House Retainer Production Workflow Image */}
+          <div className="flex justify-center mb-8">
+            <Image
+              src="/dental-automation/in-house-retainer-production.jpeg"
+              alt="In-house retainer production workflow comparison showing the complexity of DIY vs automated solutions"
+              width={800}
+              height={600}
+              className="rounded-2xl shadow-lg border border-gray-200"
+              priority
+            />
           </div>
+
         </div>
       </section>
 
@@ -132,12 +85,12 @@ export default function DentalAutomationPage() {
             <div className="grid md:grid-cols-3 gap-6 mb-8 text-sm">
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="font-bold text-blue-700">Before</div>
-                <div className="text-blue-600">~$800 per retainer</div>
+                <div className="text-blue-600">~$800 per aligner kit</div>
                 <div className="text-blue-600">1 week turnaround</div>
               </div>
               <div className="bg-[#FFBA4A] bg-opacity-20 p-4 rounded-lg">
                 <div className="font-bold text-gray-700">After</div>
-                <div className="text-gray-600">~$200 per retainer</div>
+                <div className="text-gray-600">~$200 per aligner kit</div>
                 <div className="text-gray-600">24 hour turnaround</div>
               </div>
               <div className="bg-green-50 p-4 rounded-lg">
@@ -164,7 +117,7 @@ export default function DentalAutomationPage() {
       <DentalROICalculator />
 
       {/* Final CTA */}
-      <BookingCTA />
+      {/* <BookingCTA />, removed for now to focus on core copywriting */}
     </div>
   );
 }
