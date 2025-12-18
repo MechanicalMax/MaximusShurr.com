@@ -1,9 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function DentalROICalculator() {
-  const [isAligner, setIsAligner] = useState(false);
   const [monthlyVolume, setMonthlyVolume] = useState(50);
   const [currentLabFee, setCurrentLabFee] = useState(50);
   const [staffHourlyRate, setStaffHourlyRate] = useState(25);
@@ -22,37 +21,40 @@ export default function DentalROICalculator() {
     // DIY In-House (The Trap)
     const diy = {
       materialCost: 5,
-      softwareFee: isAligner ? 19 : 0,
+      softwareFee: 99, // $99/month for basic retainer preparation software
       adminLabor: (20/60) * staffHourlyRate, // 20 mins
       mfgLabor: (15/60) * staffHourlyRate, // 15 mins
-      unitCost: 5 + (isAligner ? 19 : 0) + (20/60) * staffHourlyRate + (15/60) * staffHourlyRate
+      unitCost: 5 + (99/monthlyVolume) + (20/60) * staffHourlyRate + (15/60) * staffHourlyRate
     };
 
     // "No-Admin" Protocol (The Solution)
     const noAdmin = {
       materialCost: 5,
-      softwareFee: isAligner ? 19 : 0,
+      softwareFee: 500, // $500/month for Automation & Support retainer
       adminLabor: 0, // 0 mins - THE KEY DIFFERENTIATOR
       mfgLabor: (10/60) * staffHourlyRate, // 10 mins (optimized)
-      unitCost: 5 + (isAligner ? 19 : 0) + (10/60) * staffHourlyRate
+      unitCost: 5 + (500/monthlyVolume) + (10/60) * staffHourlyRate
     };
 
     return {
       outsourced: {
         ...outsourced,
         monthlyCost: outsourced.unitCost * monthlyVolume,
+        monthlySubscription: 0,
         setupCost: 0,
         hiddenRDCost: 0
       },
       diy: {
         ...diy,
-        monthlyCost: diy.unitCost * monthlyVolume,
+        monthlyCost: (diy.unitCost * monthlyVolume),
+        monthlySubscription: 99,
         setupCost: 10000,
         hiddenRDCost: 25000 // 50 hrs @ $500/hr
       },
       noAdmin: {
         ...noAdmin,
-        monthlyCost: noAdmin.unitCost * monthlyVolume,
+        monthlyCost: (noAdmin.unitCost * monthlyVolume),
+        monthlySubscription: 500,
         setupCost: 10000,
         serviceCost: 7500,
         hiddenRDCost: 0
@@ -68,34 +70,8 @@ export default function DentalROICalculator() {
     <section id="calculator" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center mb-12">
-          The "No-Admin" ROI Calculator
+          The "No-Admin" Retainer ROI Calculator
         </h2>
-        
-        {/* Toggle Switch */}
-        <div className="flex justify-center mb-8">
-          <div className="bg-gray-100 p-1 rounded-full flex">
-            <button
-              onClick={() => setIsAligner(false)}
-              className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                !isAligner 
-                  ? 'bg-[#FFBA4A] text-gray-900 shadow-md' 
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              Retainers (Phase 1)
-            </button>
-            <button
-              onClick={() => setIsAligner(true)}
-              className={`px-6 py-2 rounded-full font-semibold transition-all ${
-                isAligner 
-                  ? 'bg-[#FFBA4A] text-gray-900 shadow-md' 
-                  : 'text-gray-600 hover:text-gray-900'
-              }`}
-            >
-              Aligners (Phase 2)
-            </button>
-          </div>
-        </div>
 
         {/* Input Controls */}
         <div className="bg-gray-50 rounded-2xl p-6 mb-8">
@@ -203,8 +179,8 @@ export default function DentalROICalculator() {
                 <span>${costs.diy.materialCost.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Software Fee:</span>
-                <span>${costs.diy.softwareFee.toFixed(2)}</span>
+                <span>Software Fee (monthly):</span>
+                <span>${(costs.diy.softwareFee/monthlyVolume).toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span>Admin Labor (20 min):</span>
@@ -226,6 +202,7 @@ export default function DentalROICalculator() {
               <div className="mt-4 p-3 bg-yellow-100 rounded">
                 <div className="text-xs">
                   <div>Setup Cost: ${costs.diy.setupCost.toLocaleString()}</div>
+                  <div>Monthly Software: ${costs.diy.monthlySubscription}</div>
                   <div className="text-red-600 font-bold">Hidden R&D: ${costs.diy.hiddenRDCost.toLocaleString()}</div>
                   <div className="text-red-600 text-xs mt-1">50 hrs @ ${doctorHourlyRate}/hr research</div>
                 </div>
@@ -245,8 +222,8 @@ export default function DentalROICalculator() {
                 <span>${costs.noAdmin.materialCost.toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Software Fee:</span>
-                <span>${costs.noAdmin.softwareFee.toFixed(2)}</span>
+                <span>Automation & Support:</span>
+                <span>${(costs.noAdmin.softwareFee/monthlyVolume).toFixed(2)}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-green-700 font-bold">Admin Labor (0 min):</span>
@@ -269,6 +246,7 @@ export default function DentalROICalculator() {
                 <div className="text-xs">
                   <div>Setup Cost: ${costs.noAdmin.setupCost.toLocaleString()}</div>
                   <div>Service Cost: ${costs.noAdmin.serviceCost.toLocaleString()}</div>
+                  <div>Monthly Retainer: ${costs.noAdmin.monthlySubscription}</div>
                   <div className="text-green-600 font-bold">Hidden R&D: ${costs.noAdmin.hiddenRDCost.toLocaleString()}</div>
                 </div>
               </div>
@@ -300,21 +278,11 @@ export default function DentalROICalculator() {
             </div>
           </div>
           
-          {!isAligner && (
-            <div className="mt-6 p-4 bg-green-100 rounded-lg">
-              <p className="text-green-800 font-semibold">
-                ✅ Powered by custom Python automation. No slicing, no data entry.
-              </p>
-            </div>
-          )}
-          
-          {isAligner && (
-            <div className="mt-6 p-4 bg-blue-100 rounded-lg">
-              <p className="text-blue-800 font-semibold">
-                💡 Even with uLab fees, aligner margins are exceptional: ~$40 cost vs. $5,000 patient fee
-              </p>
-            </div>
-          )}
+          <div className="mt-6 p-4 bg-green-100 rounded-lg">
+            <p className="text-green-800 font-semibold">
+              ✅ Powered by custom Python automation. No slicing, no data entry.
+            </p>
+          </div>
         </div>
       </div>
     </section>
