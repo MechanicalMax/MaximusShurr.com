@@ -5,7 +5,10 @@ import {
   ShieldCheckIcon, 
   ClipboardDocumentListIcon, 
   PlayCircleIcon, 
-  LockClosedIcon 
+  LockClosedIcon,
+  XMarkIcon,
+  ExclamationTriangleIcon,
+  SparklesIcon
 } from "@heroicons/react/24/outline";
 
 export const metadata = {
@@ -40,107 +43,129 @@ export default function DentalAutomationPage() {
       {/* The Problem */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-4">THE PROBLEM</h2>
+          <h2 className="text-4xl font-bold text-center mb-4">The Problem with Retainers</h2>
           <h3 className="text-2xl font-semibold text-center text-gray-700 mb-16">
             You Have Two Bad Options. We Are the Third.
           </h3>
           
-          <div className="grid lg:grid-cols-3 gap-8">
-            {/* Option 1: The Outsourcing Trap */}
-            <div className="bg-red-50 border-2 border-red-200 rounded-2xl p-8">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-red-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  1
+          {/* The Two Poor Options - Side by Side */}
+          <div className="mb-12">
+            <div className="text-center mb-8">
+              <h4 className="text-2xl font-bold text-gray-800 mb-2">Most Practices Only See This</h4>
+              <p className="text-lg text-gray-600">Both lead to the same outcome: frustration and wasted money</p>
+            </div>
+            
+            <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {/* Option 1: The Outsourcing Trap */}
+              <div className="bg-gradient-to-br from-red-100 to-red-200 border-4 border-red-400 rounded-2xl p-8 shadow-lg">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-red-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <XMarkIcon className="w-10 h-10" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-red-800">The Outsourcing Trap</h4>
+                  <p className="text-red-700 font-medium mt-2">Pay More, Wait Longer, Control Nothing</p>
                 </div>
-                <h4 className="text-xl font-bold text-red-700">The Outsourcing Trap</h4>
+                <ul className="space-y-4 text-gray-800">
+                  <li className="flex items-start">
+                    <span className="text-red-600 mr-3">•</span>
+                    <span><strong>$50–$100 per retainer</strong> in lab fees</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-red-600 mr-3">•</span>
+                    <span><strong>2+ weeks</strong> turnaround time</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-red-600 mr-3">•</span>
+                    <span><strong>Shipping costs</strong> and delays</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-red-600 mr-3">•</span>
+                    <span><strong>Zero control</strong> over quality or timing</span>
+                  </li>
+                </ul>
+                <div className="mt-6 p-4 bg-red-200 border-2 border-red-400 rounded-lg">
+                  <p className="text-red-900 font-bold text-center">
+                    Result: ~$25,000/year in "convenience fees"
+                  </p>
+                </div>
               </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">•</span>
-                  You pay $50–$100 per retainer
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">•</span>
-                  You wait 2 weeks
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">•</span>
-                  You pay shipping
-                </li>
-                <li className="flex items-start">
-                  <span className="text-red-500 mr-2">•</span>
-                  You have zero control
-                </li>
-              </ul>
-              <div className="mt-6 p-4 bg-red-100 rounded-lg">
-                <p className="text-red-800 font-semibold text-center">
-                  You are bleeding ~$25,000 a year in "convenience fees" just to avoid a headache.
-                </p>
+
+              {/* Option 2: The DIY Nightmare */}
+              <div className="bg-gradient-to-br from-orange-100 to-orange-200 border-4 border-orange-400 rounded-2xl p-8 shadow-lg">
+                <div className="text-center mb-6">
+                  <div className="w-20 h-20 bg-orange-600 text-white rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg">
+                    <ExclamationTriangleIcon className="w-10 h-10" />
+                  </div>
+                  <h4 className="text-2xl font-bold text-orange-800">The DIY Nightmare</h4>
+                  <p className="text-orange-700 font-medium mt-2">Buy Equipment, Become IT Support</p>
+                </div>
+                <ul className="space-y-4 text-gray-800">
+                  <li className="flex items-start">
+                    <span className="text-orange-600 mr-3">•</span>
+                    <span><strong>$10,000+</strong> in equipment costs</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-orange-600 mr-3">•</span>
+                    <span><strong>Staff frustration</strong> with confusing software</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-orange-600 mr-3">•</span>
+                    <span><strong>Resin smells</strong> and failed prints</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-orange-600 mr-3">•</span>
+                    <span><strong>You become</strong> the IT troubleshooter</span>
+                  </li>
+                </ul>
+                <div className="mt-6 p-4 bg-orange-200 border-2 border-orange-400 rounded-lg">
+                  <p className="text-orange-900 font-bold text-center">
+                    Result: Expensive "closet decoration"
+                  </p>
+                </div>
               </div>
             </div>
+          </div>
 
-            {/* Option 2: The DIY Nightmare */}
-            <div className="bg-yellow-50 border-2 border-yellow-300 rounded-2xl p-8">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-yellow-500 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  2
-                </div>
-                <h4 className="text-xl font-bold text-yellow-700">The DIY Nightmare</h4>
-              </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-yellow-500 mr-2">•</span>
-                  You buy a 3D printer
-                </li>
-                <li className="flex items-start">
-                  <span className="text-yellow-500 mr-2">•</span>
-                  Your staff hates it because the software is confusing
-                </li>
-                <li className="flex items-start">
-                  <span className="text-yellow-500 mr-2">•</span>
-                  The resin smells. The prints fail
-                </li>
-                <li className="flex items-start">
-                  <span className="text-yellow-500 mr-2">•</span>
-                  You become the IT guy
-                </li>
-              </ul>
-              <div className="mt-6 p-4 bg-yellow-100 rounded-lg">
-                <p className="text-yellow-800 font-semibold text-center">
-                  The printer eventually sits in a closet gathering dust.
-                </p>
-              </div>
-            </div>
-
+          {/* The Solution - Prominently Displayed */}
+          <div className="text-center mb-8">
+            <h4 className="text-3xl font-bold text-gray-800 mb-2">The Third Option</h4>
+            <p className="text-xl text-gray-600">Professional results without the professional headaches</p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
             {/* Option 3: The "Zero-Admin" Lab Protocol */}
-            <div className="bg-green-50 border-2 border-green-200 rounded-2xl p-8">
-              <div className="text-center mb-6">
-                <div className="w-16 h-16 bg-[#FFBA4A] text-gray-900 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
-                  3
-                </div>
-                <h4 className="text-xl font-bold text-green-700">The "Zero-Admin" Lab Protocol</h4>
+            <div className="bg-gradient-to-br from-green-100 to-emerald-200 border-4 border-green-500 rounded-2xl p-10 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+              <div className="text-center mb-8">
+                <h4 className="text-3xl font-bold text-green-800 mb-2">The "Zero-Admin" Lab Protocol</h4>
+                <p className="text-green-700 font-semibold text-lg">You Own the Equipment. We Own the Headache.</p>
               </div>
-              <ul className="space-y-3 text-gray-700">
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">•</span>
-                  You own the equipment
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">•</span>
-                  We own the headache
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">•</span>
-                  We install a medical-grade manufacturing line in your office
-                </li>
-                <li className="flex items-start">
-                  <span className="text-green-500 mr-2">•</span>
-                  Powered by custom automation code that removes the computer work entirely
-                </li>
-              </ul>
-              <div className="mt-6 p-4 bg-green-100 rounded-lg">
-                <p className="text-green-800 font-semibold text-center">
-                  ✅ Professional results without the professional headaches.
+              
+              <div className="grid md:grid-cols-2 gap-8">
+                <ul className="space-y-4 text-gray-800">
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3">•</span>
+                    <span><strong>You own</strong> the equipment and profits</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3">•</span>
+                    <span><strong>We handle</strong> all technical complexity</span>
+                  </li>
+                </ul>
+                <ul className="space-y-4 text-gray-800">
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3">•</span>
+                    <span><strong>Medical-grade</strong> manufacturing in your office</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-green-600 mr-3">•</span>
+                    <span><strong>Custom automation</strong> eliminates computer work</span>
+                  </li>
+                </ul>
+              </div>
+              
+              <div className="mt-8 p-6 bg-gradient-to-r from-green-200 to-emerald-300 border-2 border-green-500 rounded-xl">
+                <p className="text-green-900 font-bold text-xl text-center">
+                  Professional Results + Zero Administrative Burden = Pure Profit
                 </p>
               </div>
             </div>
@@ -231,7 +256,8 @@ export default function DentalAutomationPage() {
               </div>
               <p className="text-lg text-gray-700 leading-relaxed">
                 The printer is already queued. Your staff simply presses "Start." 45 minutes later, 
-                you have a 15-micron accurate dental model ready for thermoforming.
+                you have a 15-micron accurate dental model ready for post-processing and thermoforming.
+                <em> Now your staff has control of your practice&apos;s quality reputation</em> - not an external lab.
               </p>
             </div>
           </div>

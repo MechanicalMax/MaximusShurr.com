@@ -103,7 +103,7 @@ export default function DentalROICalculator() {
 
         {/* Input Controls */}
         <div className="bg-gray-50 rounded-2xl p-6 mb-8">
-          <h3 className="text-xl font-bold mb-4 text-center">Your Practice Parameters</h3>
+          <h3 className="text-xl font-bold mb-4 text-center">Enter Your Practice Parameters:</h3>
           <div className="grid md:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -333,7 +333,7 @@ export default function DentalROICalculator() {
 
         {/* Bottom Line Results */}
         <div className="bg-[#FFBA4A] bg-opacity-20 rounded-2xl p-8">
-          <h3 className="text-2xl font-bold mb-6 text-center">The Bottom Line</h3>
+          <h3 className="text-2xl font-bold mb-6 text-center">The Savings Bottom Line</h3>
           
           {/* Savings Comparison */}
           <div className="grid md:grid-cols-2 gap-6">
