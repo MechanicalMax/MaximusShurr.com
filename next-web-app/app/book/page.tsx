@@ -27,7 +27,7 @@ export default function BookPage() {
       </header>
 
       <main className="py-12 sm:px-12">
-        <BookingInlineEmbed />
+        <BookingInlineEmbed hideEventTypeDetails={false} />
       </main>
     </div>
   );

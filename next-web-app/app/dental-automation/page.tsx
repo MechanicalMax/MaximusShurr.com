@@ -1,6 +1,6 @@
 import Link from "next/link";
 import DentalROICalculator from "./DentalROICalculator";
-import ZeroAdminLabBooking from "./ZeroAdminLabBooking";
+import BookingInlineEmbed from "@/components/BookingInlineEmbed";
 import CaseStudyCard from "@/components/CaseStudyCard";
 import { 
   ShieldCheckIcon, 
@@ -539,7 +539,11 @@ export default function DentalAutomationPage() {
             </div>
             
             <div className="min-h-[600px] rounded-lg overflow-hidden border border-gray-200">
-              <ZeroAdminLabBooking />
+              <BookingInlineEmbed
+                namespace="zeroadminlab"
+                layout="column_view"
+                theme="auto"
+              />
             </div>
           </div>
         </div>
