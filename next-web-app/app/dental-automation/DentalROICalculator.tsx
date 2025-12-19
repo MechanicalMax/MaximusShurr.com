@@ -53,7 +53,7 @@ export default function DentalROICalculator() {
       monthlyCost: (PRICING.MATERIAL_COST_PER_UNIT * monthlyVolume) + COMPETITOR_PRICING.DIY_SOFTWARE_FEE + (((20/60) * staffHourlyRate) * monthlyVolume) + (((15/60) * staffHourlyRate) * monthlyVolume)
     };
 
-    // "Zero-Admin" Lab Protocol (The Solution) - Monthly Batch Costs
+    // Zero-Admin Lab Protocol (The Solution) - Monthly Batch Costs
     const noAdmin = {
       materialCost: PRICING.MATERIAL_COST_PER_UNIT * monthlyVolume,
       softwareFee: PRICING.AUTOMATION_RETAINER,
@@ -98,7 +98,7 @@ export default function DentalROICalculator() {
     <section id="calculator" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl font-bold text-center mb-12">
-          The "Zero-Admin" Lab Protocol ROI Calculator
+          The Zero-Admin Lab Protocol ROI Calculator
         </h2>
 
         {/* Input Controls */}
@@ -172,7 +172,7 @@ export default function DentalROICalculator() {
                     <span className="text-xs font-normal text-red-600">(The Trap)</span>
                   </th>
                   <th className="px-6 py-4 text-center text-sm font-semibold text-green-700 w-1/4 bg-green-50">
-                    "Zero-Admin" Lab Protocol<br />
+                    Zero-Admin Lab Protocol<br />
                     <span className="text-xs font-normal text-gray-600">(The Solution)</span>
                   </th>
                 </tr>
@@ -320,7 +320,7 @@ export default function DentalROICalculator() {
                 </div>
               </div>
               <div className="bg-green-100 p-4 rounded-lg">
-                <h5 className="font-semibold text-green-700 mb-2">"Zero-Admin" Lab Protocol</h5>
+                <h5 className="font-semibold text-green-700 mb-2">Zero-Admin Lab Protocol</h5>
                 <div className="space-y-1">
                   <div>Hardware: <span className="font-semibold">${costs.noAdmin.setupCost.toLocaleString()}</span></div>
                   <div>{PRICING.SERVICE_SETUP_NAME}: <span className="font-semibold">${costs.noAdmin.serviceCost.toLocaleString()}</span></div>
@@ -384,7 +384,7 @@ export default function DentalROICalculator() {
                     <ul className="text-red-600 space-y-0.5">
                       <li>• ${(costs.diy.setupCost + costs.diy.hiddenRDCost).toLocaleString()} at risk</li>
                       <li>• Back to outsourcing</li>
-                      <li>• "Closet decoration"</li>
+                      <li>• &ldquo;Closet decoration&rdquo;</li>
                     </ul>
                   </div>
                 </div>
@@ -392,7 +392,7 @@ export default function DentalROICalculator() {
             </div>
 
             <div className="bg-white p-6 rounded-lg border-2 border-green-200">
-              <h4 className="text-lg font-bold text-green-700 mb-4 text-center">"Zero-Admin" Lab Protocol</h4>
+              <h4 className="text-lg font-bold text-green-700 mb-4 text-center">Zero-Admin Lab Protocol</h4>
               <div className="space-y-3 mb-4">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-green-600">
@@ -434,7 +434,7 @@ export default function DentalROICalculator() {
 
         {/* Pricing Display */}
         <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-2xl p-6 mb-8 border-2 border-green-200">
-          <h3 className="text-xl font-bold mb-4 text-center text-green-800">These are your savings <strong className="underline">including</strong> the "Zero-Admin" Lab Protocol pricing!</h3>
+          <h3 className="text-xl font-bold mb-4 text-center text-green-800">These are your savings <strong className="underline">including</strong> the Zero-Admin Lab Protocol pricing!</h3>
           <div className="grid md:grid-cols-2 gap-6">
             <div className="bg-white p-4 rounded-lg border border-green-200">
               <h4 className="font-semibold text-green-700 mb-2">Monthly Retainer</h4>

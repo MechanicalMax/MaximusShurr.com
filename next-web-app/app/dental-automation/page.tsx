@@ -1,4 +1,3 @@
-import Link from "next/link";
 import DentalROICalculator from "./DentalROICalculator";
 import BookingInlineEmbed from "@/components/BookingInlineEmbed";
 import CaseStudyCard from "@/components/CaseStudyCard";
@@ -8,8 +7,7 @@ import {
   PlayCircleIcon, 
   LockClosedIcon,
   XMarkIcon,
-  ExclamationTriangleIcon,
-  SparklesIcon
+  ExclamationTriangleIcon
 } from "@heroicons/react/24/outline";
 
 export const metadata = {
@@ -24,11 +22,11 @@ export default function DentalAutomationPage() {
       <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4 py-20">
         <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            <span className="text-[#FFBA4A]">Stop Paying the "Lab Tax"</span><br />
+            <span className="text-[#FFBA4A]">Stop Paying the &ldquo;Lab Tax&rdquo;</span><br />
             Turn Retainers Into Profit—Without Hiring a Lab Tech
           </h1>
           <p className="text-xl text-gray-600 mb-10 max-w-4xl mx-auto">
-            The "Zero-Admin" Lab Protocol is the only in-house manufacturing workflow engineered by Purdue Systems Integrators to eliminate computer work for your staff.
+            The Zero-Admin Lab Protocol is the only in-house manufacturing workflow engineered by Purdue Systems Integrators to eliminate computer work for your staff.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
@@ -86,7 +84,7 @@ export default function DentalAutomationPage() {
                 </ul>
                 <div className="mt-6 p-4 bg-red-200 border-2 border-red-400 rounded-lg">
                   <p className="text-red-900 font-bold text-center">
-                    Result: ~$25,000/year in "convenience fees"
+                    Result: ~$25,000/year in &ldquo;convenience fees&rdquo;
                   </p>
                 </div>
               </div>
@@ -120,7 +118,7 @@ export default function DentalAutomationPage() {
                 </ul>
                 <div className="mt-6 p-4 bg-orange-200 border-2 border-orange-400 rounded-lg">
                   <p className="text-orange-900 font-bold text-center">
-                    Result: Expensive "closet decoration"
+                    Result: Expensive &ldquo;closet decoration&rdquo;
                   </p>
                 </div>
               </div>
@@ -134,10 +132,10 @@ export default function DentalAutomationPage() {
           </div>
           
           <div className="max-w-4xl mx-auto">
-            {/* Option 3: The "Zero-Admin" Lab Protocol */}
+            {/* Option 3: The Zero-Admin Lab Protocol */}
             <div className="bg-gradient-to-br from-green-100 to-emerald-200 border-4 border-green-500 rounded-2xl p-10 shadow-2xl transform hover:scale-105 transition-transform duration-300">
               <div className="text-center mb-8">
-                <h4 className="text-3xl font-bold text-green-800 mb-2">The "Zero-Admin" Lab Protocol</h4>
+                <h4 className="text-3xl font-bold text-green-800 mb-2">The Zero-Admin Lab Protocol</h4>
                 <p className="text-green-700 font-semibold text-lg">You Own the Equipment. We Own the Headache.</p>
               </div>
               
@@ -178,10 +176,10 @@ export default function DentalAutomationPage() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl font-semibold text-center text-gray-700 mb-4">
-            "I Don't Want My Staff Playing on Computers."
+            &ldquo;I Don&apos;t Want My Staff Playing on Computers.&rdquo;
           </h2>
           <p className="text-xl text-center text-gray-600 mb-12">
-            <strong>Neither do we.</strong> That's why we wrote the code to do it for them.
+            <strong>Neither do we.</strong> That&apos;s why we wrote the code to do it for them.
           </p>
           
           <div className="bg-blue-50 border border-blue-200 rounded-2xl p-6 mb-16 text-center">
@@ -256,7 +254,7 @@ export default function DentalAutomationPage() {
                 </div>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed">
-                The printer is already queued. Your staff simply presses "Start." 45 minutes later, 
+                The printer is already queued. Your staff simply presses &ldquo;Start.&rdquo; 45 minutes later, 
                 you have a 15-micron accurate dental model ready for post-processing and thermoforming.
                 <em> Now your staff has control of your practice&apos;s quality reputation</em> - not an external lab.
               </p>
@@ -286,12 +284,12 @@ export default function DentalAutomationPage() {
                 <div className="w-16 h-16 bg-blue-500 text-white rounded-full flex items-center justify-center mx-auto mb-4">
                   <ShieldCheckIcon className="w-8 h-8" />
                 </div>
-                <h4 className="text-2xl font-bold text-blue-700 mb-2">The "Zero-Exposure" Workflow</h4>
+                <h4 className="text-2xl font-bold text-blue-700 mb-2">The &ldquo;Zero-Exposure&rdquo; Workflow</h4>
                 <p className="text-sm text-blue-600 font-medium italic">(Minimal Contact Protocol)</p>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
                 Our SOPs are engineered to minimize staff contact with liquid resin. We train your team on 
-                "No-Touch" transfer techniques using specific tools, not their hands.
+                &ldquo;No-Touch&rdquo; transfer techniques using specific tools, not their hands.
               </p>
               <div className="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-4">
                 <p className="text-sm text-blue-800 font-medium">
@@ -310,7 +308,7 @@ export default function DentalAutomationPage() {
                 <p className="text-sm text-green-600 font-medium italic">(Complete Documentation)</p>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                We provide the full "Safety Stack": SDS (Safety Data Sheets), hazardous waste disposal logs, 
+                We provide the full &ldquo;Safety Stack&rdquo;: SDS (Safety Data Sheets), hazardous waste disposal logs, 
                 and ventilation guides.
               </p>
               <div className="bg-green-50 border-l-4 border-green-400 rounded-lg p-4">
@@ -330,12 +328,12 @@ export default function DentalAutomationPage() {
                 <p className="text-sm text-gray-600 font-medium italic">(Comprehensive Training)</p>
               </div>
               <p className="text-lg text-gray-700 leading-relaxed mb-4">
-                We don't just leave a manual. We provide instructional videos tailored to your workflows 
+                We don&apos;t just leave a manual. We provide instructional videos tailored to your workflows 
                 along with personal training and a help hotline.
               </p>
               <div className="bg-yellow-50 border-l-4 border-yellow-400 rounded-lg p-4">
                 <p className="text-sm text-yellow-800 font-medium">
-                  <strong>Expert Training:</strong> We train your team on machine maintenance, resin safety, and the "5-Minute Polish." 
+                  <strong>Expert Training:</strong> We train your team on machine maintenance, resin safety, and the &ldquo;5-Minute Polish.&rdquo; 
                   We empower your staff to feel like experts, not janitors.
                 </p>
               </div>
@@ -391,7 +389,7 @@ export default function DentalAutomationPage() {
               </div>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 We visit your practice to map your current software (iTero, Medit, etc.) and physical space. 
-                We measure your ventilation and counter space to design a custom "Clean Lab" layout.
+                We measure your ventilation and counter space to design a custom &ldquo;Clean Lab&rdquo; layout.
               </p>
               <div className="bg-blue-50 border-l-4 border-blue-400 rounded-lg p-5">
                 <p className="text-blue-800 font-medium">
@@ -408,12 +406,12 @@ export default function DentalAutomationPage() {
                   2
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold text-gray-900 mb-2">The "White Glove" Integration</h4>
+                  <h4 className="text-3xl font-bold text-gray-900 mb-2">The &ldquo;White Glove&rdquo; Integration</h4>
                   <p className="text-lg text-gray-500 font-medium italic">(Complete System Installation)</p>
                 </div>
               </div>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                We procure and install the hardware. We write custom Python scripts to bridge your scanner to your printer. 
+                We procure and install the hardware. We write custom Python scripts to bridge your scanner, printer, and any other in-house management software. 
                 We set up everything on your local network (secure, HIPAA-compliant, no cloud uploads).
               </p>
               <div className="grid md:grid-cols-2 gap-6">
@@ -445,8 +443,8 @@ export default function DentalAutomationPage() {
               </div>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
                 We train your team using our proprietary video curriculum and on-site training. 
-                We hand you the "Compliance Binder," which includes all safety logs and marketing materials 
-                to sell "Same-Day Retainers" to patients.
+                We hand you the &ldquo;Compliance Binder,&rdquo; which includes all safety logs and marketing materials 
+                to sell &ldquo;Same-Day Retainers&rdquo; to patients.
               </p>
               <div className="bg-yellow-50 border-l-4 border-yellow-400 rounded-lg p-5">
                 <p className="text-yellow-800 font-medium">
@@ -534,7 +532,7 @@ export default function DentalAutomationPage() {
                 Schedule Your Zero-Admin Lab Readiness Call
               </h3>
               <p className="text-gray-600">
-                Choose a time that works for you. We'll analyze your current workflow and recommend options that best suit your goals.
+                Choose a time that works for you. We&apos;ll analyze your current workflow and recommend options that best suit your goals.
               </p>
             </div>
             
