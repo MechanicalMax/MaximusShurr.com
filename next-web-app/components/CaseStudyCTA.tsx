@@ -4,6 +4,7 @@ interface BookingCTAProps {
   title?: string;
   description?: string;
   buttonText?: string;
+  link?: string;
   className?: string;
 }
 
@@ -11,6 +12,7 @@ export default function BookingCTA({
   title = "Don't Let Technical Hurdles Bottleneck Your Impact.",
   description = "You understand your industry. I understand the engineering required to scale it. Whether you need to automate a physical workflow or deploy a digital platform, I provide the blueprint.\nLet's spend 30 minutes mapping out how we can turn your vision into a deployed reality.",
   buttonText = "Book Your Free Strategy Session",
+  link = "/book",
   className = "",
 }: BookingCTAProps) {
   return (
@@ -21,7 +23,7 @@ export default function BookingCTA({
           {description}
         </p>
         <Link 
-          href="/book"
+          href={link}
           className="inline-block bg-white text-gray-900 hover:bg-gray-100 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
         >
           {buttonText}

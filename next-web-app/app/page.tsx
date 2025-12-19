@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookingCTA from "@/components/BookingCTA";
+import BookingCTA from "@/components/CaseStudyCTA";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
 import { getSocialProofLogos, getFeaturedCaseStudies } from "@/lib/case-studies";
 

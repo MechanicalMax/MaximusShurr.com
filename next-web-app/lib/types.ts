@@ -2,6 +2,13 @@
  * TypeScript interfaces for case study data structures
  */
 
+export interface BookingCTA {
+  title: string;
+  description: string;
+  buttonText: string;
+  link: string;
+}
+
 export interface CaseStudyFrontmatter {
   project_title: string;
   one_liner: string;
@@ -19,6 +26,7 @@ export interface CaseStudyFrontmatter {
     role: string;
   } | null;
   isFeatured?: boolean;
+  bookingCTA?: BookingCTA;
 }
 
 export interface CaseStudy {
