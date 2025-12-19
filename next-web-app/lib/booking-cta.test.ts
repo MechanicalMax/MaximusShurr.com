@@ -1,6 +1,5 @@
 import { describe, test, expect } from 'vitest';
 import { getCaseStudyBySlug, getCaseStudyWithMediaBySlug } from './case-studies';
-import { BookingCTA } from './types';
 
 /**
  * Tests for booking CTA functionality in case studies

@@ -20,7 +20,7 @@ describe('Case Study Page Integration', () => {
     
     if (caseStudyWithMedia) {
       // Verify the case study loads correctly
-      expect(caseStudyWithMedia.frontmatter.project_title).toBe('Hughes Orthodontics 3D Lab');
+      expect(caseStudyWithMedia.frontmatter.project_title).toBe('Hughes Orthodontics Workflow Automation');
       expect(caseStudyWithMedia.slug).toBe('hughes-orthodontics-automation');
       
       // Verify custom booking CTA is present
