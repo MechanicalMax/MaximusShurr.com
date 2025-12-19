@@ -11,8 +11,32 @@ import {
 } from "@heroicons/react/24/outline";
 
 export const metadata = {
-  title: "Dental Lab Automation - Stop Paying the Lab Tax | Maximus Shurr",
-  description: "The only in-house manufacturing protocol engineered by Purdue Systems Integrators to eliminate computer work for your dental staff. 75% cost reduction proven at Hughes Orthodontics.",
+  title: "Stop Paying $25,000/Year in Lab Fees - Zero-Admin Lab Protocol | Maximus Shurr",
+  description: "Turn your $50-100 retainer lab fees into $5 material costs. Our automated system eliminates staff computer work while you keep 100% of the profits. Proven 50% cost reduction at Hughes Orthodontics. No more 2-week delays or shipping costs.",
+  keywords: "dental lab automation, orthodontic retainer costs, in-house dental manufacturing, 3D printing dental lab, reduce lab fees, dental practice automation, same-day retainers, orthodontic lab savings",
+  openGraph: {
+    title: "Stop Paying the Lab Tax - Automated In-House Retainer Manufacturing",
+    description: "Cut retainer costs by 75% with zero staff computer work. Own your equipment, keep your profits, eliminate lab delays.",
+    type: "website",
+    url: "https://maximusshurr.com/dental-automation",
+    siteName: "Maximus Shurr - Mission Driven Technical Partner",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stop Paying $25,000/Year in Lab Fees",
+    description: "Turn $50-100 retainer lab fees into $5 material costs with automated in-house manufacturing.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function DentalAutomationPage() {
@@ -334,7 +358,7 @@ export default function DentalAutomationPage() {
               <div className="bg-yellow-50 border-l-4 border-yellow-400 rounded-lg p-4">
                 <p className="text-sm text-yellow-800 font-medium">
                   <strong>Expert Training:</strong> We train your team on machine maintenance, resin safety, and the &ldquo;5-Minute Polish.&rdquo; 
-                  We empower your staff to feel like experts, not janitors.
+                  We <strong>empower your staff</strong> to feel like experts, not janitors.
                 </p>
               </div>
             </div>
@@ -520,7 +544,8 @@ export default function DentalAutomationPage() {
               <p className="text-lg text-gray-900 font-semibold">
                 ✅ Free 30-minute consultation<br />
                 ✅ Custom ROI analysis for your practice<br />
-                ✅ No-obligation assessment
+                ✅ No-obligation assessment<br /><br />
+                <strong>⏰ I am a full-time student accepting only 2 pilot practices this semester</strong>
               </p>
             </div>
           </div>
