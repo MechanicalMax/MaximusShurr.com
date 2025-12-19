@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { getCaseStudies, getFeaturedCaseStudies } from '@/lib/case-studies';
 import { CaseStudy } from '@/lib/types';
-import ByTheNumbers from '@/components/ByTheNumbers';
+// import ByTheNumbers from '@/components/ByTheNumbers';
 import FeaturedCaseStudies from '@/components/FeaturedCaseStudies';
 import CaseStudyFilters from '@/components/CaseStudyFilters';
 import CaseStudyGrid from '@/components/CaseStudyGrid';
@@ -46,7 +46,7 @@ export default async function CaseStudyPage() {
       </section>
 
       {/* By the Numbers Section */}
-      <ByTheNumbers caseStudies={allCaseStudies} />
+      {/* <ByTheNumbers caseStudies={allCaseStudies} /> */}
 
       {/* Featured Case Studies Section */}
       {featuredCaseStudies.length > 0 && (

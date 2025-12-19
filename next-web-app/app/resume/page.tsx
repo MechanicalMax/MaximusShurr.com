@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import BookingCTA from '@/components/BookingCTA';
+import BookingCTA from '@/components/CaseStudyCTA';
 
 export const metadata: Metadata = {
     title: 'Resume | Maximus Shurr',

@@ -1,78 +1,66 @@
 ---
-project_title: "Hughes Orthodontics 3D Lab"
-one_liner: "Building an automated, in-house manufacturing lab that cut retainer costs by 75% and production time by 80%."
+project_title: "Hughes Orthodontics Workflow Automation"
+one_liner: "Cut retainer costs by 75% and production time by 80% by architecting an automated, in-house manufacturing lab"
 project_type: "Operational Automation"
 status: "Complete"
 live_url: "https://www.hughes-ortho.com/meet-the-team"
 repo_url: null
 cover_video_url: https://youtu.be/s8QNz5Hxbwc
-tech_stack: ["Python", "3D Printing", "Staff Training", "Software Architecture", "Digital Strategy"]
+tech_stack: ["Software Architecture", "Digital Strategy", "Staff Training", "Python", "3D Printing"]
 start_date: "Dec 2020"
 end_date: "Nov 2023"
 
 testimonial: null
 isFeatured: true
+bookingCTA:
+  title: "Curious if you could realize the $25,000 per year cost reductions too?"
+  description: "Use our dental automation ROI calculator to see if you would benefit from our Zero-Admin Lab Protocol system"
+  buttonText: "Check My Savings"
+  link: "/dental-automation"
 ---
-### Product Strategy: The "Business Thinking"
+### The Challenge: The "Time Assassin" Workflow
 
-When Hughes Orthodontics upgraded to an intraoral scanner, I saw an opportunity that went beyond just "digital records." They were sitting on a goldmine of data, but were still paying a premium to outsource the actual manufacturing.
+**The world of pink-goop impressions and external labs was a bottleneck of manual labor and high fees.**
+
+Despite upgrading to a modern intraoral scanner, Hughes Orthodontics was trapped in a "hybrid hell." They had digital data, but analog manufacturing.
 
 <InlineImage filename="Getting Braces.webp" alt="Getting Braces" />
 
-My strategy was **Vertical Integration**. By bringing manufacturing in-house, we could control the quality, speed, and brand reputation.
+- **The Financial Bleed:** Outsourcing aligners cost **hundreds of dollars per unit** with significant shipping fees, eating into margins.
 
-However, buying 3D printers isn't enough. The "hidden cost" of in-house manufacturing is labor. If a lab tech spends 4 hours a day clicking buttons, you haven't saved money—you've just moved the cost. My goal was to build a system that was **hardware-heavy but labor-light**, using software to automate the boring digital handoffs so the staff could focus on patients.
+- **The Time Trap:** Patients waited **7 days** for retainers. In a "Prime Delivery" world, this friction degraded the patient experience and delayed treatment completion.
 
-### The Problem
+- **The Hidden Labor Cost:** The internal team attempted DIY solutions, but the "digital handoff" was a manual nightmare. Staff spent **3+ hours** per batch clicking through cloud-based design tools—a "Time Assassin" that pulled them away from patient care.
 
-The traditional workflow was slow, expensive, and messy:
+### The Intervention: The Zero-Admin Protocol
 
-- **The Pink Goop:** For decades, they relied on physical impressions—uncomfortable for patients and hard to store.
+**I didn't just install printers; I engineered a headless manufacturing system.**
 
-- **The Outsourcing Cost:** Scans were shipped to an external lab, costing **~$800 per retainer** with significant shipping fees.
+<InlineImage filename="Software Automation.webp" alt="Preparing demo scans for 3D Printing" />
 
-- **The Time Lag:** Patients waited **one week** for their retainers. In the era of next-day shipping, a week-long wait degrades the customer experience and may slow down orthodontic results.
+The goal was simple: **Hardware-Heavy, Labor-Light.** To achieve this, I acted as the Lead Automation Engineer to build a "push-button" infrastructure.
 
-- **The Digital Bottleneck:** Even with the new scanner, processing the 3D files for printing was a manual nightmare, taking **2–3 hours** to prepare a batch of 10 models.
+- **Code-Based Automation (The Leverage):** I wrote a custom **Python & Selenium** human-in-the-loop script to bridge the gap between the scanner and the printer.
 
-### The Build
+    - **Parallel Processing:** The script spins up multiple browser instances simultaneously, slashing file preparation time from **3 hours to 30 minutes**.
 
-I didn't just buy machines; I engineered a workflow. I served as the **Lead Automation Engineer**, responsible for selecting the hardware, writing the integration software, and training the staff.
+    - **Slack Command Center:** I integrated the workflow into the office’s existing Slack channels. Staff simply "pushed" a scan to the channel, and the system handled the queuing.
+    
 
-- **The Hardware Fleet:**
-
-    - I deployed a **Formlabs** ecosystem (SLA printers, automated wash/cure stations) to ensure medical-grade accuracy.
+- **The Hardware Ecosystem:** I deployed a medical-grade **Formlabs** fleet (SLA printers, automated wash/cure stations) establishing strict FDA-compliant material protocols.
 
     <InlineImage filename="Installing The Printer.webp" alt="Setting up the Formlabs 3D printing system" />
 
-    - I established strict material protocols to meet FDA compliance for dental appliances.
+- **The "Playbook" Handoff:** I trained non-technical assistants to run the entire lab using a simplified UI. The complex engineering was hidden behind the code, making the system dependent on the *process*, not the *person*.
 
-- **Software Integration:**
+### The Results: High Velocity, Low Drag
 
-    - I wrote a **Python & Selenium** automation to bridge the gap between their disparate systems.
+**The practice transformed from a dependent service provider into a independent vertically integrated manufacturer.**
 
-    <InlineImage filename="Software Automation.webp" alt="Preparing demo scans for 3D Printing" />
+- **75% Cost Reduction:** Unit cost plummeted from **~$100 (outsourced)** to **~$25 (in-house)**, unlocking massive margin expansion.
 
-    - **Slack Integration:** The script scraped patient names directly from the office's Slack coordination channel.
+- **85% Faster Turnaround:** The "Time Delay" variable in the Value Equation was crushed. Patients now receive retainers in **24 hours** instead of 1 week.
 
-    - **Parallel Processing:** Instead of waiting for cloud-based design tools to load one by one, my script spun up parallel instances, cutting the design time for 10 models from **~3 hours down to 30 minutes.**
+- **Zero-Admin Scale:** The lab now produces **10–20 retainers per week** with minimal human oversight. The automation handles the boring work; the staff handles the smiles.
 
-- **Operational Scale:**
-
-    - I trained non-technical dental assistants to run the entire lab. By simplifying the UI and automating file management, I made the system "push-button" easy to use.
-
-    - I trained the orthodontist on specialized **uLab Systems** software for complex cases, enabling high-margin specialized treatments to be done in-house.
-
-### The Outcome
-
-This project transformed the practice from a service provider into a manufacturer ready to compete with Invisalign.
-
-**75% Cost Reduction:** Unit cost dropped from **~$800 (outsourced)** to **~$200 (in-house).**
-
-**85% Faster Turnaround:** Patients now receive retainers in **24 hours** instead of 1 week.
-
-**Capacity for Growth:** The lab now produces **10–20 retainers per week** with minimal human oversight.
-
-<InlineImage filename="Prints.webp" alt="High-quality models ready for vacuum sealing" />
-
-**Founder's Lesson:** In hindsight, I was too young to realize I didn't just "have a job"—I had built a scalable business model. I turned a cost center into a competitive advantage, enabling the practice to expand without the prohibitive costs of external labs. Today, I could deploy this same system for a new client in less than a month.
+<InlineImage filename="Prints.webp" alt="High-quality models ready for thermoforming" />

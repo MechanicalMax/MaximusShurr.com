@@ -3,7 +3,7 @@ import { getCaseStudyWithMediaBySlug, generateCaseStudyParams } from '@/lib/case
 import CaseStudyHeader from '@/components/CaseStudyHeader';
 import CaseStudyTestimonial from '@/components/CaseStudyTestimonial';
 import CaseStudyContent from '@/components/CaseStudyContent';
-import BookingCTA from '@/components/BookingCTA';
+import BookingCTA from '@/components/CaseStudyCTA';
 
 export async function generateStaticParams() {
   return await generateCaseStudyParams();
@@ -57,9 +57,10 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
       )}
       <CaseStudyContent content={caseStudyWithMedia.content} />
       <BookingCTA 
-        title="Facing problems like this one?"
-        description="Schedule a free 30-minute strategy session to get a proven plan that will get your systems ready for the modern world and stop draining time out of your day."
-        buttonText="Book Your Free Strategy Session"
+        title={caseStudyWithMedia.frontmatter.bookingCTA?.title || "Facing problems like this one?"}
+        description={caseStudyWithMedia.frontmatter.bookingCTA?.description || "Schedule a free 30-minute strategy session to get a proven plan that will get your systems ready for the modern world and stop draining time out of your day."}
+        buttonText={caseStudyWithMedia.frontmatter.bookingCTA?.buttonText || "Book Your Free Strategy Session"}
+        link={caseStudyWithMedia.frontmatter.bookingCTA?.link || "/book"}
       />
     </div>
   );

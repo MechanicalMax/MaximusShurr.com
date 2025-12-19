@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookingCTA from "@/components/BookingCTA";
+import BookingCTA from "@/components/CaseStudyCTA";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
 import { getSocialProofLogos, getFeaturedCaseStudies } from "@/lib/case-studies";
 
@@ -60,6 +60,12 @@ export default async function Home() {
               className="bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200"
             >
               View Case Studies
+            </Link>
+            <Link
+              href="/dental-automation"
+              className="bg-cyan-500 hover:bg-cyan-400 text-white font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl ring-2 ring-cyan-200 hover:ring-cyan-300"
+            >
+              💰 Dentists Save $25k Annually
             </Link>
           </div>
         </div>

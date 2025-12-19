@@ -2,9 +2,8 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
-import Link from 'next/link';
-import Image from 'next/image';
 import { CaseStudy } from '@/lib/types';
+import CaseStudyCard from './CaseStudyCard';
 
 interface Props {
   caseStudies: CaseStudy[];
@@ -63,11 +62,6 @@ export default function CaseStudyGrid({ caseStudies }: Props) {
     return () => clearTimeout(timeoutId);
   }, [selectedSkills, selectedStatuses]);
 
-  // Generate thumbnail path for case study
-  const getThumbnailPath = (slug: string): string => {
-    return `/case-study/${slug}/thumbnail.webp`;
-  };
-
   if (filteredCaseStudies.length === 0) {
     return (
       <div className="text-center py-12">
@@ -89,77 +83,21 @@ export default function CaseStudyGrid({ caseStudies }: Props) {
   return (
     <div className="case-study-grid-container" key={animationKey}>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredCaseStudies.map((caseStudy, index) => {
-          return (
-            <Link 
-              href={`/case-study/${caseStudy.slug}`}
-              key={caseStudy.slug}
-              className="block group"
-            >
-              <div 
-                className="h-full bg-white rounded-xl overflow-hidden border border-gray-100 
-                  hover:border-[#FFBA4A] hover:shadow-lg transition-all duration-300
-                  case-study-grid-item entering"
-                style={{
-                  animationDelay: `${index * 100}ms`
-                }}
-              >
-              {/* Thumbnail */}
-              <div className="h-48 bg-gray-100 relative overflow-hidden">
-                <Image
-                  src={getThumbnailPath(caseStudy.slug)}
-                  alt={caseStudy.frontmatter.project_title}
-                  width={500}
-                  height={300}
-                  className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              
-              {/* Content */}
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-gray-900 group-hover:text-[#FFBA4A] transition-colors">
-                  {caseStudy.frontmatter.project_title}
-                </h3>
-                <p className="text-gray-600 mb-4 line-clamp-2">
-                  {caseStudy.frontmatter.one_liner}
-                </p>
-                
-                {/* Project Type and Status */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="text-xs bg-gray-100 text-gray-700 px-2 py-1 rounded">
-                    {caseStudy.frontmatter.project_type}
-                  </span>
-                  <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded">
-                    {caseStudy.frontmatter.status}
-                  </span>
-                </div>
-                
-                {/* Tech Stack */}
-                <div className="flex flex-wrap gap-1">
-                  {caseStudy.frontmatter.tech_stack.slice(0, 4).map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="text-xs bg-[#FFBA4A] text-gray-900 px-2 py-1 rounded font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {caseStudy.frontmatter.tech_stack.length > 4 && (
-                    <span className="text-xs text-gray-500 px-2 py-1">
-                      +{caseStudy.frontmatter.tech_stack.length - 4} more
-                    </span>
-                  )}
-                </div>
-                
-                {/* Date Range */}
-                <div className="mt-4 text-sm text-gray-500">
-                  {caseStudy.frontmatter.start_date} - {caseStudy.frontmatter.end_date || 'Present'}
-                </div>
-              </div>
-            </div>
-          </Link>
-          );
-        })}
+        {filteredCaseStudies.map((caseStudy, index) => (
+          <CaseStudyCard
+            key={caseStudy.slug}
+            slug={caseStudy.slug}
+            projectTitle={caseStudy.frontmatter.project_title}
+            oneLiner={caseStudy.frontmatter.one_liner}
+            projectType={caseStudy.frontmatter.project_type}
+            status={caseStudy.frontmatter.status}
+            techStack={caseStudy.frontmatter.tech_stack}
+            startDate={caseStudy.frontmatter.start_date}
+            endDate={caseStudy.frontmatter.end_date}
+            variant="grid"
+            animationDelay={index * 100}
+          />
+        ))}
       </div>
     </div>
   );
