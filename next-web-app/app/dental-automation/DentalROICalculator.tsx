@@ -301,30 +301,30 @@ export default function DentalROICalculator() {
           </div>
 
           {/* Setup Costs & Hidden Fees Section */}
-          <div className="bg-gray-50 border-t border-gray-200 p-6">
+          <div className="bg-gray-50 border-t border-gray-200 p-4 sm:p-6">
             <h4 className="text-lg font-semibold text-gray-900 mb-4">One-Time Setup & Hidden Costs</h4>
-            <div className="grid grid-cols-3 gap-6 text-sm">
-              <div className="bg-red-100 p-4 rounded-lg">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 text-sm">
+              <div className="bg-red-100 p-3 sm:p-4 rounded-lg min-h-0">
                 <h5 className="font-semibold text-red-700 mb-2">Outsourced Lab</h5>
                 <div className="space-y-1">
-                  <div>Setup Cost: <span className="font-semibold">${costs.outsourced.setupCost.toLocaleString()}</span></div>
-                  <div>Hidden R&D: <span className="font-semibold">${costs.outsourced.hiddenRDCost.toLocaleString()}</span></div>
+                  <div className="break-words">Setup Cost: <span className="font-semibold">${costs.outsourced.setupCost.toLocaleString()}</span></div>
+                  <div className="break-words">Hidden R&D: <span className="font-semibold">${costs.outsourced.hiddenRDCost.toLocaleString()}</span></div>
                 </div>
               </div>
-              <div className="bg-yellow-100 p-4 rounded-lg">
+              <div className="bg-yellow-100 p-3 sm:p-4 rounded-lg min-h-0">
                 <h5 className="font-semibold text-yellow-700 mb-2">DIY In-House</h5>
                 <div className="space-y-1">
-                  <div>Hardware: <span className="font-semibold">${costs.diy.setupCost.toLocaleString()}</span></div>
-                  <div className="text-red-600 font-bold">Research Time: ${costs.diy.hiddenRDCost.toLocaleString()}</div>
-                  <div className="text-xs text-red-600">{PRICING.RESEARCH_HOURS_SAVED} hrs @ ${doctorHourlyRate}/hr</div>
+                  <div className="break-words">Hardware: <span className="font-semibold">${costs.diy.setupCost.toLocaleString()}</span></div>
+                  <div className="text-red-600 font-bold break-words">Research Time: ${costs.diy.hiddenRDCost.toLocaleString()}</div>
+                  <div className="text-xs text-red-600 break-words">{PRICING.RESEARCH_HOURS_SAVED} hrs @ ${doctorHourlyRate}/hr</div>
                 </div>
               </div>
-              <div className="bg-green-100 p-4 rounded-lg">
+              <div className="bg-green-100 p-3 sm:p-4 rounded-lg min-h-0">
                 <h5 className="font-semibold text-green-700 mb-2">Zero-Admin Lab Protocol</h5>
                 <div className="space-y-1">
-                  <div>Hardware: <span className="font-semibold">${costs.noAdmin.setupCost.toLocaleString()}</span></div>
-                  <div>{PRICING.SERVICE_SETUP_NAME}: <span className="font-semibold">${costs.noAdmin.serviceCost.toLocaleString()}</span></div>
-                  <div className="text-green-600 font-bold">Research Time: ${costs.noAdmin.hiddenRDCost.toLocaleString()}</div>
+                  <div className="break-words">Hardware: <span className="font-semibold">${costs.noAdmin.setupCost.toLocaleString()}</span></div>
+                  <div className="break-words text-sm">{PRICING.SERVICE_SETUP_NAME}: <span className="font-semibold">${costs.noAdmin.serviceCost.toLocaleString()}</span></div>
+                  <div className="text-green-600 font-bold break-words">Research Time: ${costs.noAdmin.hiddenRDCost.toLocaleString()}</div>
                 </div>
               </div>
             </div>

@@ -44,7 +44,7 @@ export default function DentalAutomationPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold text-center mb-4">The Problem with Retainers</h2>
           <h3 className="text-2xl font-semibold text-center text-gray-700 mb-16">
-            You Have Two Bad Options. We Are the Third.
+            You Have Two Bad Options
           </h3>
           
           {/* The Two Poor Options - Side by Side */}
