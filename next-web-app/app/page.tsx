@@ -61,6 +61,12 @@ export default async function Home() {
             >
               View Case Studies
             </Link>
+            <Link
+              href="/dental-automation"
+              className="bg-cyan-500 hover:bg-cyan-400 text-white font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl ring-2 ring-cyan-200 hover:ring-cyan-300"
+            >
+              💰 Dentists Save $25k Annually
+            </Link>
           </div>
         </div>
       </section>
