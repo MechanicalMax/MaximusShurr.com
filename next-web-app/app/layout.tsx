@@ -10,7 +10,7 @@ const roboto = Roboto({
   weight: ["400", "500", "700"],
 });
 
-const defaultTitle = "Maximus Shurr - The Mission-Driven Technical Partner";
+const defaultTitle = "Maximus Shurr - Full-Stack Mechanical Engineer & Product Strategist";
 const defaultDescription = "Maximus Shurr turns ideas into production-ready applications that help people live happier, healthier, and more fulfilling lives.";
 
 export const metadata: Metadata = {
@@ -64,14 +64,14 @@ export default function RootLayout({
         <nav className="bg-gray-900">
           <div className="container mx-auto px-4">
             <div className="flex justify-between items-center py-4">
-              <div className="text-white font-bold text-2xl mr-4">Maximus Shurr <br></br><em className="opacity-50 text-xl">The Mission Driven Technical Partner</em></div>
+              <div className="text-white font-bold text-2xl mr-4">Maximus Shurr <br></br><em className="opacity-50 text-xl">Full-Stack Mechanical Engineer & Product Strategist</em></div>
               <div className="flex flex-wrap justify-end gap-4 items-center">
                 {/* Text Links */}
                 <div className="flex flex-wrap gap-4 justify-end w-full sm:w-auto">
                   <Link href="/" className="text-white hover:text-gray-300">Home</Link>
                   <Link href="/case-study" className="text-white hover:text-gray-300">Case Studies</Link>
-                  <Link href="/book" className="text-white hover:text-gray-300">Book</Link>
-                  <Link href="/resume" className="text-white hover:text-gray-300">Resume</Link>
+                  <Link href="/contact" className="text-white hover:text-gray-300">Contact</Link>
+                  <Link href="/get-to-know-maximus" className="text-white hover:text-gray-300">Get To Know Maximus</Link>
                 </div>
                 {/* Icon Links */}
                 <div className="flex flex-wrap justify-end w-full sm:w-auto">

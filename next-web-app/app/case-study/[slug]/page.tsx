@@ -60,7 +60,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
         title={caseStudyWithMedia.frontmatter.bookingCTA?.title || "Facing problems like this one?"}
         description={caseStudyWithMedia.frontmatter.bookingCTA?.description || "Schedule a free 30-minute strategy session to get a proven plan that will get your systems ready for the modern world and stop draining time out of your day."}
         buttonText={caseStudyWithMedia.frontmatter.bookingCTA?.buttonText || "Book Your Free Strategy Session"}
-        link={caseStudyWithMedia.frontmatter.bookingCTA?.link || "/book"}
+        link={caseStudyWithMedia.frontmatter.bookingCTA?.link || "/contact"}
       />
     </div>
   );
