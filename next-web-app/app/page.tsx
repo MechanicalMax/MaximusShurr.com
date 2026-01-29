@@ -39,35 +39,41 @@ export default async function Home() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-20">
-        <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            <span className="text-[#FFBA4A]">You Have the Vision<br /></span>
-            I build the technology that connects the <em>digital</em> and <em>physical</em> worlds
+      <section className="relative min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-20 md:py-28">
+        {/* Text Content */}
+        <div className="max-w-2xl md:max-w-3xl text-center md:text-left px-4 sm:px-6 lg:px-8">
+          <h1 className="text-[#FFBA4A] text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
+            Full-Stack Mechanical Engineer & Product Strategist.
           </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I am Maximus Shurr. I don&apos;t just write code; I engineer realities. As a Mechanical Engineer and Full-Stack Developer, I possess the rare ability to translate physical operations into scalable digital software. You bring the mission. I bring the velocity. Let&apos;s build a platform that doesn&apos;t just work—it transforms.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/book"
-              className="bg-[#FFBA4A] hover:bg-[#FFA726] text-gray-900 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
-            >
-              Book Your Free Strategy Session
-            </Link>
+          <h2 className="text-base sm:text-lg md:text-xl text-gray-600 mb-10">
+            I bridge the gap between complex mechanical design and business impact. 
+            From 'Zero-to-One' prototyping to corporate R&D automation, I build systems that work.
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Link 
               href="/case-study"
+              className="bg-[#FFBA4A] hover:bg-[#FFA726] text-gray-900 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
+            >
+              View Selected Works
+            </Link>
+            <Link 
+              href="/contact"
               className="bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200"
             >
-              View Case Studies
-            </Link>
-            <Link
-              href="/dental-automation"
-              className="bg-cyan-500 hover:bg-cyan-400 text-white font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl ring-2 ring-cyan-200 hover:ring-cyan-300"
-            >
-              💰 Dentists Save $25k Annually
+              Check Résumé
             </Link>
           </div>
+        </div>
+
+        {/* Image */}
+        <div className="flex justify-center mb-10 md:mb-0 md:ml-10">
+          <Image 
+            src="/icon.jpg" 
+            alt="Maximus Shurr Headshot" 
+            width={500} 
+            height={500} 
+            className="w-48 sm:w-64 md:w-80 lg:w-[500px] h-auto rounded-full object-cover shadow-lg"
+          />
         </div>
       </section>
 
