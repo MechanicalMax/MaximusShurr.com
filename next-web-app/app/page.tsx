@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookingCTA from "@/components/CaseStudyCTA";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
 import { getFeaturedCaseStudies } from "@/lib/case-studies";
 
@@ -19,7 +18,7 @@ export default async function Home() {
           </h1>
           <h2 className="text-base sm:text-lg md:text-xl text-gray-600 mb-10">
             I bridge the gap between complex mechanical design and business impact. 
-            From 'Zero-to-One' prototyping to corporate R&D automation, I build systems that work.
+            From &apos;Zero-to-One&apos; prototyping to corporate R&D automation, I build systems that work.
           </h2>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Link 
@@ -125,8 +124,7 @@ export default async function Home() {
               <Link href="/get-to-know-maximus" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
                 About Me
               </Link>{' '}
-              page, I break down my journey from 13-year-old robotics YouTuber to an Honors Mechanical Engineering Student/Founder, and why I believe
-              communication is the most important skill in life.
+              page, I break down my journey from 13-year-old robotics YouTuber to an Honors Mechanical Engineering Student/Founder.
             </p>
             <p>
               I also share my work on other places, like my{' '}

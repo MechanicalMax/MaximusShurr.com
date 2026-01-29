@@ -25,7 +25,7 @@ export default function BookPage() {
         </div>
       </header>
 
-      <main className="py-12 sm:px-12">
+      <main className="text-gray-700 py-12 sm:px-12">
         <h2 className="text-2xl font-bold mb-6">Resume Line Items</h2>
         <div className="overflow-x-auto mb-12">
           <table className="w-full border-collapse border border-gray-300 bg-white rounded-lg shadow-sm">
