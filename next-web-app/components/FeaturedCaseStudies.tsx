@@ -50,16 +50,10 @@ export default function FeaturedCaseStudies({ caseStudies, className = "" }: Pro
 
         {/* Featured Grid Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-          {sortedCaseStudies.map((caseStudy, index) => {
-            // First featured item gets special treatment on larger screens
-            const isHero = index === 0 && caseStudies.length > 1;
-            
+          {sortedCaseStudies.map((caseStudy) => {
             return (
               <div
                 key={caseStudy.slug}
-                className={`
-                  ${isHero ? 'lg:col-span-2 xl:col-span-2' : ''}
-                `}
               >
                 <CaseStudyCard
                   slug={caseStudy.slug}
@@ -71,7 +65,6 @@ export default function FeaturedCaseStudies({ caseStudies, className = "" }: Pro
                   startDate={caseStudy.frontmatter.start_date}
                   endDate={caseStudy.frontmatter.end_date}
                   showFeaturedBadge={true}
-                  variant={isHero ? 'hero' : 'default'}
                 />
               </div>
             );
