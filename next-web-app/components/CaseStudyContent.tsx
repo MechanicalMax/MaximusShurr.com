@@ -1,5 +1,6 @@
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import InlineImage from './InlineImage';
+import PdfDownloadButton from './PdfDownloadButton';
 import { ComponentProps } from 'react';
 
 interface Props {
@@ -29,6 +30,7 @@ const components = {
   strong: (props: ComponentProps<'strong'>) => <strong className="font-bold text-gray-900" {...props} />,
   em: (props: ComponentProps<'em'>) => <em className="italic" {...props} />,
   InlineImage: InlineImage,
+  PdfDownloadButton: PdfDownloadButton,
 };
 
 export default function CaseStudyContent({ content }: Props) {

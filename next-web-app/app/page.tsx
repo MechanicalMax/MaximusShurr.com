@@ -1,147 +1,87 @@
 import Image from "next/image";
 import Link from "next/link";
-import BookingCTA from "@/components/CaseStudyCTA";
 import FeaturedCaseStudies from "@/components/FeaturedCaseStudies";
-import { getSocialProofLogos, getFeaturedCaseStudies } from "@/lib/case-studies";
-
-// Narrative arc chapters
-const narrativeChapters : {title: string, story: string, text: string}[] = [
-  {
-    title: "The Spark",
-    story: "It wasn't just a puzzle. It was a realization.",
-    text: "At 10 years old, I taught myself to solve a Rubik's Cube. But the thrill wasn't in the plastic or the stickers—it was in the feeling of empowerment. it was proof that I could figure anything out if I tried hard enough. I wanted everyone to feel that sense of agency. I started \"Mechanical Max\" not to show off, but to lift others up and show them that they were capable of more than they thought."
-  },
-  {
-    title: 'The Lesson',
-    story: 'I stopped chasing titles and started chasing impact.',
-    text: "For years, I was stuck in the \"performance trap.\" I chased grades and elections, thinking external validation was the only path. But when I lost a major election, the system broke for me. It was a wake-up call. I realized that a résumé is not a legacy. True fulfillment comes from service. I stopped looking for permission to lead and started looking for problems to solve."
-  },
-  {
-    title: "The Pivot",
-    story: "Fluent in Hardware, Dangerous in Software",
-    text: "Most developers fear hardware. Most mechanical engineers fear code. I live in the middle. My background isnt just theory; its getting my hands dirty in R&D labs and writing Python scripts to automate physical machines. Whether its IoT, 3D printing workflows, or Next.js web apps, I understand how to make the digital world talk to the physical one."
-  },
-  {
-    title: "The Mission",
-    story: "Velocity with Purpose",
-    text: "I am not looking for a \"gig.\" I am looking for partners who want to use technology to create sustainable good. I balance the rigorous physics of engineering with the infinite scalability of software. My goal is simple: To build tools that help people live happier, healthier, more fulfilling lives. Most apps distract us; I build technology that allows us to be more."
-  }
-];
+import { getFeaturedCaseStudies } from "@/lib/case-studies";
 
 export default async function Home() {
   // Fetch featured case studies for the featured section
   const featuredCaseStudies = await getFeaturedCaseStudies();
   
-  // Fetch social proof logos from case study folders
-  const socialProofLogos = await getSocialProofLogos();
-
-  
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900">
       {/* Hero Section */}
-      <section className="relative min-h-[80vh] flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-4 py-20">
-        <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-          <h1 className="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            <span className="text-[#FFBA4A]">You Have the Vision<br /></span>
-            I build the technology that connects the <em>digital</em> and <em>physical</em> worlds
+      <section className="relative min-h-[80vh] flex flex-col-reverse md:flex-row items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 px-6 py-20 md:py-28">
+        {/* Text Content */}
+        <div className="max-w-2xl md:max-w-3xl text-center md:text-left px-4 sm:px-6 lg:px-8">
+          <h1 className="text-[#FFBA4A] text-4xl sm:text-5xl md:text-6xl font-bold leading-tight mb-6">
+            Full-Stack Mechanical Engineer & Product Strategist.
           </h1>
-          <p className="text-xl text-gray-600 mb-10 max-w-3xl mx-auto">
-            I am Maximus Shurr. I don&apos;t just write code; I engineer realities. As a Mechanical Engineer and Full-Stack Developer, I possess the rare ability to translate physical operations into scalable digital software. You bring the mission. I bring the velocity. Let&apos;s build a platform that doesn&apos;t just work—it transforms.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link 
-              href="/book"
-              className="bg-[#FFBA4A] hover:bg-[#FFA726] text-gray-900 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
-            >
-              Book Your Free Strategy Session
-            </Link>
+          <h2 className="text-base sm:text-lg md:text-xl text-gray-600 mb-10">
+            I bridge the gap between complex mechanical design and business impact. 
+            From &apos;Zero-to-One&apos; prototyping to corporate R&D automation, I build systems that work.
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <Link 
               href="/case-study"
+              className="bg-[#FFBA4A] hover:bg-[#FFA726] text-gray-900 font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105"
+            >
+              View Selected Works
+            </Link>
+            <Link 
+              href="/contact"
               className="bg-white hover:bg-gray-50 text-gray-800 font-semibold py-3 px-8 border border-gray-200 rounded-full transition duration-200"
             >
-              View Case Studies
-            </Link>
-            <Link
-              href="/dental-automation"
-              className="bg-cyan-500 hover:bg-cyan-400 text-white font-semibold py-3 px-8 rounded-full transition duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl ring-2 ring-cyan-200 hover:ring-cyan-300"
-            >
-              💰 Dentists Save $25k Annually
+              Check Résumé
             </Link>
           </div>
         </div>
+
+        {/* Image */}
+        <div className="flex justify-center mb-10 md:mb-0 md:ml-10">
+          <Image 
+            src="/icon.jpg" 
+            alt="Maximus Shurr Headshot" 
+            width={500} 
+            height={500} 
+            className="w-48 sm:w-64 md:w-80 lg:w-[500px] h-auto rounded-full object-cover shadow-lg"
+          />
+        </div>
       </section>
 
-      {/* Social Proof Bar */}
-      <section className="py-12 bg-white overflow-hidden relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <p className="text-center text-sm font-semibold uppercase text-gray-500 tracking-wider mb-8">
-            Trusted by teams at
-          </p>
-
-          {/* Outer container that holds scroll area + fixed fades */}
-          <div className="relative">
-            {/* Scrollable content */}
-            <div className="overflow-x-auto scrollbar-hide group">
-              <div className="flex animate-scroll-ltr group-hover:[animation-play-state:paused] w-max">
-                {[...socialProofLogos, ...socialProofLogos].map((logo, i) => (
-                  <div key={i} className="flex-shrink-0 mx-8">
-                    <Image
-                      src={logo.src}
-                      alt={logo.name}
-                      width={120}
-                      height={48}
-                      className="h-12 w-auto select-none"
-                      draggable={false}
-                    />
-                  </div>
-                ))}
-              </div>
+      {/* Portfolio Navigation Section */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 text-center mb-12">
+            How to navigate this portfolio
+          </h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Need Technical Depth & Complex Assembly?
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                See <Link href="/case-study/botimus" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">BOTIMUS</Link>.
+                A full design review of a complex robotic system, showcasing my ability to manage constraints, electronics, and mechanical integration.
+              </p>
             </div>
-
-            {/* Fixed gradient fades at edges */}
-            <div className="pointer-events-none absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10" />
-          </div>
-        </div>
-      </section>
-
-      {/* Narrative Arc (Responsive Sticky Scroll) */}
-      <section className="relative bg-gray-50">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <h2 className="text-3xl font-bold text-center mb-6">Meet Maximus</h2>
-          <svg className="w-24 h-24 m-auto" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#FFBA4A" strokeWidth="2.088"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fillRule="evenodd" clipRule="evenodd" d="M12 3C12.5523 3 13 3.44772 13 4V17.5858L18.2929 12.2929C18.6834 11.9024 19.3166 11.9024 19.7071 12.2929C20.0976 12.6834 20.0976 13.3166 19.7071 13.7071L12.7071 20.7071C12.3166 21.0976 11.6834 21.0976 11.2929 20.7071L4.29289 13.7071C3.90237 13.3166 3.90237 12.6834 4.29289 12.2929C4.68342 11.9024 5.31658 11.9024 5.70711 12.2929L11 17.5858V4C11 3.44772 11.4477 3 12 3Z" fill=""></path> </g></svg>
-
-          <div className="relative">
-            {narrativeChapters.map((section, index) => (
-              <div
-                key={index}
-                className="relative h-[160vh] flex items-center justify-center"
-              >
-                <div
-                  className="sticky top-[12vh] max-w-3xl w-full bg-white rounded-2xl shadow-xl border border-gray-100 transition-all duration-700 p-6 sm:p-8 flex flex-col text-center"
-                  style={{
-                    // make sure tall cards auto-expand on smaller screens
-                    minHeight: "70vh",
-                    maxHeight: "80vh",
-                  }}
-                >
-                  <div className="flex-1 overflow-y-auto px-1 sm:px-2">
-                    <h3 className="text-2xl font-bold mb-3">
-                      <span className="text-[#FFBA4A] text-4xl font-extrabold mr-2">
-                        {index + 1}.
-                      </span>
-                      {section.title}
-                    </h3>
-                    <h4 className="text-lg font-medium text-gray-600 mb-5">
-                      {section.story}
-                    </h4>
-                    <p className="text-gray-600 text-base leading-relaxed text-justify">
-                      {section.text}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Need Business-Aware R&D?
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                See <Link href="/case-study/corteva-automation-engineer" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">Corteva R&D</Link> and <Link href="/case-study/leafspec-llc" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">LeafSpec LLC</Link>.
+                Examples of how I apply engineering principles to solve business problems—automating workflows, reducing costs, and navigating corporate structures.
+              </p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-lg">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                Need Precision & Regulation Awareness?
+              </h3>
+              <p className="text-gray-600 leading-relaxed">
+                See <Link href="/case-study/hughes-orthodontics-automation" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">Automating Hughes Orthodontics</Link>.
+                High-stakes medical device manufacturing workflow automation where safety and throughput constraints were paramount.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -171,8 +111,63 @@ export default async function Home() {
         </section>
       </div>
 
-      {/* Final CTA */}
-      <BookingCTA />
+      {/* Beyond the Code */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-8">
+            👋 I&apos;m more than just CAD files!
+          </h2>
+          <div className="text-lg text-gray-600 leading-relaxed space-y-6">
+            <p>
+              Engineering is just my toolbox, what I&apos;m really looking for is a career where I build businesses around
+              products that help people live happier, healthier, more fulfilling lives. On my{' '}
+              <Link href="/get-to-know-maximus" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
+                About Me
+              </Link>{' '}
+              page, I break down my journey from 13-year-old robotics YouTuber to an Honors Mechanical Engineering Student/Founder.
+            </p>
+            <p>
+              I also share my work on other places, like my{' '}
+              <Link target="_blank" href="https://www.linkedin.com/m/in/maxshurr/" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
+                LinkedIn
+              </Link>,{' '}
+              <Link target="_blank" href="https://github.com/MechanicalMax" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
+                GitHub
+              </Link>, and the OG{' '}
+              <Link target="_blank" href="https://youtube.com/c/mechanicalmax" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
+                Mechanical Max
+              </Link>{' '}
+              YouTube channel!
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA with Orange Background */}
+      <section className="py-20 bg-gradient-to-br from-[#FFBA4A] to-[#FFA726]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">
+            Let&apos;s Build Something High-Value.
+          </h2>
+          <p className="text-lg text-gray-800 mb-10 leading-relaxed">
+            I am currently wrapping up my Honors Mechanical Engineering degree at Purdue (May 2026) and am available for full-time roles starting July 2026.
+          </p>
+          <Link 
+            href="/contact"
+            className="inline-flex items-center bg-white hover:bg-gray-50 text-gray-900 font-bold py-4 px-10 rounded-full transition duration-200 transform hover:scale-105 shadow-lg hover:shadow-xl"
+          >
+            <span className="mr-2">Check Résumé</span>
+            <svg 
+              className="w-5 h-5 group-hover:translate-x-1 transition-transform" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }

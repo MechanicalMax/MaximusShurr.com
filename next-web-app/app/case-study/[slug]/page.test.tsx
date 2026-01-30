@@ -86,7 +86,7 @@ describe('Case Study Page Integration', () => {
       const fallbackTitle = "Facing problems like this one?";
       const fallbackDescription = "Schedule a free 30-minute strategy session to get a proven plan that will get your systems ready for the modern world and stop draining time out of your day.";
       const fallbackButtonText = "Book Your Free Strategy Session";
-      const fallbackLink = "/book";
+      const fallbackLink = "/contact";
       
       // These would be the values passed to BookingCTA component
       const actualTitle = botimusCase.frontmatter.bookingCTA?.title || fallbackTitle;

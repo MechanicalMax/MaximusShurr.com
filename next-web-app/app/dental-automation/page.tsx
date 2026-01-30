@@ -19,7 +19,7 @@ export const metadata = {
     description: "Cut retainer costs by 75% with zero staff computer work. Own your equipment, keep your profits, eliminate lab delays.",
     type: "website",
     url: "https://maximusshurr.com/dental-automation",
-    siteName: "Maximus Shurr - Mission Driven Technical Partner",
+    siteName: "Maximus Shurr - Full-Stack Mechanical Engineer & Product Strategist",
   },
   twitter: {
     card: "summary_large_image",

@@ -1,92 +1,84 @@
 ---
-project_title: "Corteva R&D Automation Engineer"
-one_liner: "Built a custom IoT data rig and web app to automate R&D lab processes for a Fortune 500 company."
-project_type: "Hybrid (HW+SW)"
-status: "Complete"
+project_title: "Corteva R&D Automation"
+one_liner: "Unblocking a 3-year stalled R&D project via rapid prototyping and Python automation."
+project_type: "Corporate R&D"
+status: "Shipped / In Use"
 live_url: null
 repo_url: null
-cover_video_url: https://youtu.be/ZmDBWHBHTFI
-tech_stack: ["Python", "Web Development", "Generative AI", "Computer Aided Design (CAD)", "Internet of Things (IoT)", "Software Architecture", "Rapid Prototyping", "Staff Training", "Leadership"]
+cover_video_url: null
+tech_stack: ["R&D Engineering", "Systems Integration", "Strategy & Branding", "CAD/Sim", "Python", "Internet of Things (IoT)", "SolidWorks", "Rapid Prototyping", "GitHub"]
 start_date: "Jan 2025"
 end_date: "Jul 2025"
 
 testimonial:
-  text: "My colleagues and I really enjoyed Maximus's 6 months as our intern. He was quick to learn new skills when necessary, even quicker to teach us his impressive software and AI knowledge, and excellent at breaking down problems to their fundament principles. His ability to communicate complex topics to people with various technical backgrounds is also a mature skill that resulted in higher quality deliverables. Full of drive and ambition, he was an excellent addition to our team, and I'm excited to see how he will exceed expectations in his future opportunities."
+  text: "Maximus was excellent at breaking down problems to their fundamental principles... His ability to communicate complex topics to people with various technical backgrounds resulted in higher quality deliverables."
   author: "Lukas Smith"
   role: "R&D Engineer, Corteva Agriscience"
 
 isFeatured: true
+
+bookingCTA:
+  title: "Have an R&D project stuck in 'Pilot Purgatory'?"
+  description: "I specialize in unblocking stalled engineering initiatives with rapid iteration."
 ---
+
 ### Product Strategy: The "Business Thinking"
 
-My role at Corteva wasn't just to "write code" or "design parts"—it was to bridge the gap between leadership, scientists, and engineering. I worked on three distinct projects, but they all shared a common strategy: **Velocity through modularity**.
+**The Challenge:** Corporate R&D often trades velocity for perfection, leading to stalled initiatives.
+My role at Corteva wasn't just to "write code" or "design parts"—it was to bridge the gap between leadership's data needs and the scientists' physical reality.
+
+**The Strategy:** *Velocity through Modularity.*
+I worked on three distinct projects that all shared a common solution: breaking complex, stalled problems into small, testable variables.
+* **Hardware:** Prioritized laser cutting (rapid iteration) over 3D printing (slow fidelity) to prove physics concepts faster.
+* **Software:** Chose **Django** because it integrated seamlessly with the existing team's Python skillset, ensuring the tools would *live on after I left* (Maintainability as a Feature).
 
 <InlineImage filename="First Day in Corporate.webp" alt="Starting my internship at Corteva's R&D facility" />
 
-Whether it was a stalled hardware project or a blind spot in data collection, my approach was to break complex problems into small, testable steps.
-
-- **Velocity over Perfection:** On the hardware side, I prioritized rapid iteration (laser cutting) over "perfect" manufacturing methods to prove physics concepts faster.
-
-- **Maintainability as a Feature:** I chose **Django (Python)** and standard Git workflows not because they were flashy, but because they integrated seamlessly with the existing engineering team's skillset, ensuring the tools would *live on after I left.*
-
 ### The Problem
 
-I tackled three specific bottlenecks that were slowing down R&D operations:
+I was brought in to tackle three specific bottlenecks that were slowing down R&D operations:
 
-<InlineImage filename="The Complex.webp" alt="Corteva's massive R&D facility where I worked" />
+<InlineImage filename="The Complex.webp" alt="Corteva's massive R&D facility" />
 
-1. **The "Intern-Proof" Project (Granule Dispersion Rig):** This project had stubbornly *stalled for three years*. The goal was to observe fertilizer/pesticide granules dissolving in a flowing stream, but turbulence and lighting issues prevented a clear image. Previous attempts failed because the problem wasn't broken down into testable variables.
-
-2. **The "Data Silo" (Robotic Migration):** During a massive robotic storage migration, leadership was flying blind. The tracking process was entirely paper-based. Scientists wrote numbers on clipboards, manually entered them into Excel, and used calculators for totals. Leadership had no real-time data to make informed decisions.
-
-3. **The "Cost Barrier" (Temperature Monitoring):** The lab needed widespread temperature sensing, but commercial solutions were cost-prohibitive (~$800 for 4 readings) and rigid, making it difficult to scale data collection across the facility.
+1.  **The 3-Year Blocker (Granule Dispersion Rig):** A critical project to visualize fertilizer dissolution had been stalled for three years. Turbulence and lighting issues prevented clear data collection, and previous attempts failed by trying to solve everything at once.
+2.  **The "Data Silo" (Robotic Migration):** Leadership was flying blind during a massive storage migration. The process was entirely paper-based (clipboards and calculators), meaning no real-time data existed to make decisions.
+3.  **The "Cost Barrier" (IoT Monitoring):** The lab needed widespread temperature sensing, but commercial solutions were cost-prohibitive (~$800/unit) and rigid.
 
 ### The Build
 
 I acted as a full-stack technical partner, handling mechanical design, software architecture, and team culture.
 
-- **Cracking the "Intern-Proof" Project:**
+**1. Cracking the "Stalled" Project**
+I treated the rig as a physics problem first and a design problem second.
+* **Variable Isolation:** We needed to validate flow physics before finalizing the enclosure.
+* **Rapid Iteration:** I executed **eight mechanical iterations** using laser-cut plates. This allowed us to iterate *daily* rather than weekly, eventually creating a rig that stabilized the granule for perfect data capture.
 
-    - I treated the rig as a physics problem first and a design problem second. I realized we needed to validate the flow physics before finalizing the enclosure.
+<InlineImage filename="Prototype.webp" alt="Mechanical prototype for the granule dispersion rig" />
 
-    - I executed **eight mechanical iterations** rapidly. I chose **laser cutting** over 3D printing for the early prototypes. Even though it was technically more challenging to design water-tight seals for flat plates than to outsource to a manufacturing company, it allowed us to  iterate daily rather than weekly.
+**2. The Data Historian (Django)**
+I built a custom web app connected to an on-premise database to replace the clipboard workflow.
+* **Outcome:** The app provided leadership with instant dashboards of migration progress without adding friction to the scientists' workflow.
 
-    <InlineImage filename="Prototype.webp" alt="One of the mechanical prototypes I built for the granule dispersion rig" />
+**3. IoT Cost Engineering**
+I engineered a custom sensor using a **Raspberry Pi** and thermocouples in a **3D-printed case**.
+* **Firmware:** I wrote the Python firmware to send data directly to internal servers, avoiding vendor lock-in.
+* **Economics:** I drove the cost down to **&lt;$250 for 8 readings**, compared to the commercial standard of ~$800 for 4 readings.
 
-    - We tested shape, focal length, and material clarity in isolation, eventually creating a rig that stabilized the granule in the flow for perfect dissolution videos ready for study.
+<InlineImage filename="IoT Device.webp" alt="Custom IoT temperature monitoring device" />
 
-- **The Data Historian (Django):**
+**4. Culture & AI Operations**
+I noticed gaps in the team's version control habits, so I ran lectures on **modern Git collaboration**.
+* I also deployed **custom AI agents** to streamline documentation, turning tedious form-filling into a simple conversation with Copilot.
 
-    - I built a **Django web app** connected to an on-premise centralized database. This replaced the clipboard workflow with a digital scanning system.
-
-    - The app automated searching and totaling, providing leadership with instant dashboards of migration progress without interrupting scientists' workflow.
-
-- **IoT Cost Engineering:**
-
-    - I engineered a custom sensor using a **Raspberry Pi** and thermocouples housed in a **3D-printed case**.
-
-    <InlineImage filename="IoT Device.webp" alt="Custom IoT temperature monitoring device I built" />
-
-    - I wrote the firmware in **Python** using custom internal protocols to send data directly to our servers. By avoiding vendor lock-in, I ensured any engineer on the team could maintain it.
-
-- **Culture & AI Operations:**
-
-    - I noticed communication gaps in the team's coding workflow, so I ran lectures on **modern Git collaboration**.
-
-    <InlineImage filename="Department Lunch.webp" alt="Group outing with leadership and engineering staff" />
-
-    - I built **custom AI agents** to streamline documentation, turning tedious form-filling into a simple conversation with Copilot, keeping engineers focused on building rather than paperwork. But more importantly, leadership finally had the information they needed to make informed decisions that helped the entire team.
+<InlineImage filename="Department Lunch.webp" alt="Group outing with leadership and engineering staff" />
 
 ### The Outcome
 
 By applying a "startup mindset" to corporate R&D, we achieved significant operational improvements:
 
-- **Solved the 3-Year Blocker:** Delivered the first working prototype for the granule dispersion rig, enabling scientists to finally visualize and record the dissolution process.
+* **Unblocked the 3-Year Stalled Project:** Delivered the first working prototype for the granule dispersion rig, finally allowing scientists to record the dissolution process.
+* **75% Cost Reduction:** My custom IoT architecture slashed hardware costs while increasing data granularity.
+* **Operational Visibility:** Transformed the robotic migration from a "black box" into a data-driven operation.
+* **Legacy:** My work on Git and AI documentation modernized the team's workflow, leaving them faster than I found them.
 
-- **75% Cost Reduction:** My custom IoT device costs **&lt;$250 for 8 readings**, compared to commercial units costing **~$800 for 4 readings**.
-
-- **Instant Visibility:** The Data Historian transformed the robotic migration from a "black box" into a data-driven operation, allowing leadership to make decisions based on real-time progress.
-
-- **Cultural Impact:** My work on Git and AI documentation modernized the team's workflow, bridging the communication gap between executive leadership and the engineers on the ground.
-
-<InlineImage filename="Last Day in Corporate.webp" alt="Packing up on my last day, ready for the next challenge" />
+<InlineImage filename="Last Day in Corporate.webp" alt="Packing up on my last day" />

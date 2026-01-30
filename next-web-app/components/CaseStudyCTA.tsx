@@ -12,7 +12,7 @@ export default function BookingCTA({
   title = "Don't Let Technical Hurdles Bottleneck Your Impact.",
   description = "You understand your industry. I understand the engineering required to scale it. Whether you need to automate a physical workflow or deploy a digital platform, I provide the blueprint.\nLet's spend 30 minutes mapping out how we can turn your vision into a deployed reality.",
   buttonText = "Book Your Free Strategy Session",
-  link = "/book",
+  link = "/contact",
   className = "",
 }: BookingCTAProps) {
   return (

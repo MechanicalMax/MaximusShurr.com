@@ -1,69 +1,83 @@
 ---
-project_title: "BOTIMUS: 3D Printed Battlebot"
-one_liner: "A 43-hour solo engineering sprint that tested the limits of rapid prototyping, prioritization and my own endurance."
-project_type: "Robotics & IoT"
-status: "Destroyed"
+project_title: "BOTIMUS: 72-Hour Engineering Sprint"
+one_liner: "A solo 'Design-to-Combat' sprint utilizing Python kinematics and parallel manufacturing to outperform 4-person teams."
+project_type: "Robotics & Systems Engineering"
+status: "Battle Tested / Retired"
 live_url: null
 repo_url: null
-cover_video_url: https://youtu.be/JdljH51MiJI
-tech_stack: ["Python", "Computer Aided Design (CAD)", "Internet of Things (IoT)", "3D Printing", "Product Development", "Rapid Prototyping"]
+cover_video_url: "https://youtu.be/JdljH51MiJI"
+tech_stack: ["R&D Engineering", "Systems Integration", "CAD/Sim", "Programming", "Python", "PTC Creo", "C++", "Internet of Things (IoT)", "3D Printing"]
 start_date: "Oct 2025"
 end_date: "Oct 2025"
 
 testimonial: null
+isFeatured: true
+
+bookingCTA:
+  title: "I build systems under pressure."
+  description: "From simulation to fabrication, I handle the full vertical stack."
+  buttonText: "See My Engineering Process"
+  link: "/assets/Maximus%20Shurr%20BOTIMUS%20Full%20Design%20Review.pdf"
 ---
-### Product Strategy: The "Business Thinking"
 
-This wasn't just a toy design class project; it was an exercise in **Extreme Constraints.**
+<PdfDownloadButton fileUrl="/assets/Maximus%20Shurr%20BOTIMUS%20Full%20Design%20Review.pdf" label="Download Full Design Review" />
 
-Most students worked in teams of four over several weeks. I worked alone, with only three days on the clock. My strategy was **"Parallel Execution."** I couldn't afford the traditional "Design -> Build -> Test" waterfall. I had to design the electronics housing while the chassis was printing, and simulate the flipper physics in Python while the glue was drying.
+### Product Strategy: The "Constraint Innovation"
 
-This project was about calculating the **Minimum Viable Product (MVP)** for combat. I used free-body diagrams to calculate the exact force needed to flip an opponent, ensuring I didn't waste a single gram of weight or amp of power on unnecessary features.
+**The Challenge:** Build a combat-ready robot in **72 hours** as a **solo engineer**, competing against 4-person teams with weeks of lead time.
+
+**The Strategy:** *Simulation-First, Parallel Execution.*
+I couldn't afford the traditional "Design → Build → Test" waterfall. I implemented a **Just-In-Time (JIT)** workflow:
+* **Phase 1 (Simulation):** used Python to derive torque requirements before opening CAD.
+* **Phase 2 (Parallel Fab):** Designed the electronics housing *while* the chassis was printing.
+* **Phase 3 (Edge Logic):** Wrote C++ kinematic mixing algorithms that ran locally on the ESP32 to eliminate Wi-Fi latency.
 
 ### The Problem
 
-I faced a "David vs. Goliath" scenario on two fronts:
+I faced a "David vs. Goliath" scenario defined by three hard constraints:
 
 <InlineImage filename="Component Layout.webp" alt="Planning the component layout for maximum efficiency" />
 
-- **The Resource Gap:** I was a solo engineer competing against teams with 4x the manpower and weeks of lead time.
-
-- **The Physics Constraint:** My bot was 3D printed (plastic). The competition included bots with metal saw blades. I needed to design a bot that could win through agility and leverage, not brute durability.
-
-- **The Human Limit:** I had 72 hours to do 100 hours of work.
+1.  **The Resource Gap:** I was a solo engineer competing against "Standard Competitor Units" (4 engineers).
+2.  **The Physics Constraint:** My chassis was PLA (Plastic). Competitors used metal saw blades. I had to design for **agility over durability**.
+3.  **The Time Limit:** A 72-hour hard stop. No extensions. No do-overs.
 
 ### The Build
 
-I treated this as a 43-hour hackathon, combining every skill in my arsenal.
+I treated this as a 43-hour active engineering sprint, assuming ownership of the full technical stack.
 
-- **Simulation-Led Design:**
+**1. Python-Driven Kinematics (The "No-Guessing" Rule)**
+Most students guessed their lever lengths. I calculated mine.
+* I wrote a **Python Jupyter Notebook** to map the "Design Space" of the flipper mechanism.
+* **The Optimization:** The simulation identified that a **4.5cm lever arm** provided the local maximum for torque (1.33kg output), ensuring I could lift opponents without stalling the servo.
+* *Result:* I skipped the "trial and error" phase entirely. The first prototype worked.
 
-    - Before touching CAD, I used **Python** to run physics simulations on the flipper mechanism. I calculated torque requirements and lever arm lengths to ensure the flipper would actually work under load.
+<InlineImage filename="Mechanism.webp" alt="The flipper mechanism designed from theory" />
 
-    <InlineImage filename="Mechanism.webp" alt="The flipper mechanism designed from theory" />
+**2. Top-Down CAD Architecture (PTC Creo)**
+To support the JIT manufacturing, I used a **"Master Model" methodology**.
+* I created a "Skeleton Model" defining the bounding box and COTS component locations.
+* All structural parts referenced this skeleton. If I moved the battery in the master sketch, the chassis mounts updated automatically, preventing assembly conflicts during the rush.
 
-    - I used these calculations to drive the **SolidWorks** design, adhering to "Form Follows Function."
+**3. IoT Edge Computing**
+I didn't just remote-control the bot; I programmed it to drive itself.
+* **Architecture:** Used an **ESP32** as an intelligent edge node.
+* **Kinematic Mixing:** The differential drive logic (Left = Y + X, Right = Y - X) ran *on the chip*, not the phone. This meant that even if the Wi-Fi stuttered, the motor control remained smooth.
 
-- **Rapid Manufacturing:**
-
-    - I optimized my print settings for speed without sacrificing structural integrity, using the 3D printer as a "force multiplier" that ran while I slept (or tried to... it’s a studio apartment).
-
-    <InlineImage filename="Electronics Testing.webp" alt="Testing the IoT electronics and control systems" />
-
-    - I integrated **IoT electronics** for remote control, creating a custom responsive drive system.
+<InlineImage filename="Electronics Testing.webp" alt="Testing the IoT electronics and control systems" />
 
 ### The Outcome
 
-The result was a mix of triumph, disaster, and profound learning.
-
-- **The Victory:** Despite the odds, **I won my section**, defeating teams that had spent weeks on their builds. My "simulation-first" approach paid off in the arena.
+**The Victory:**
+Despite the resource asymmetry, **BOTIMUS won the Division Championship**.
+* **Tactical Advantage:** The "Combat Cockpit" UX allowed me to maneuver while firing the weapon blindly, a feature competitors lacked.
+* **Kinematic Superiority:** The 4.5cm lever arm (derived from Python) successfully pinned two opponents, validating the math.
 
 <InlineImage filename="Ready For Battle.webp" alt="BOTIMUS ready for competition" />
 
-- **The Defeat:** In the finals, reality caught up. A metal-blade bot tore Botimus to pieces.
+**The Failure (And the Lesson):**
+In the Grand Finals, reality caught up. A Kinetic Energy Weapon (Rotary Saw) sheared the left motor mount.
+* **Root Cause:** My "Monocoque" printing strategy (Strong Skin / Weak Core) was optimized for blunt force, not shear force. The saw bypassed the skin and tore through the 10% infill.
+* **The Takeaway:** Velocity gets you to the market, but material science keeps you there. I learned that **System Threat Assessment** is just as important as functional requirements.
 
 <InlineImage filename="Competition.webp" alt="The battlebot competition in action" />
-
-- **The Human Lesson:** I was so "locked in" that I missed a virtual exam for another class. It was a wake-up call that **velocity has a cost**. I learned that true success isn't just about the product you build, but maintaining the balance required to keep building tomorrow.
-
-- **The "Why":** Botimus is gone, but the feeling remains. I proved to myself that when I give 100%, I can out-build teams and out-think constraints. It was the most "alive" I have ever felt as an engineer.
