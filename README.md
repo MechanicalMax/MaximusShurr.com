@@ -19,7 +19,7 @@ This site serves as my digital headquarters, showcasing my unique position as bo
 
 This project is under active development with major recent updates.
 
-**Latest Updates (December 2024):**
+**Latest Updates (January 2025):**
 
 **Case Study Platform Enhancement:**
 
@@ -32,6 +32,7 @@ This project is under active development with major recent updates.
 - **Individual Case Study CTAs**: Contextual call-to-action sections on each case study page
 - **Cover Image Migration**: Removed deprecated `cover_image` frontmatter field with comprehensive test validation
 - **Brand Positioning Update**: Refined messaging to emphasize digital-physical world connection and engineering expertise
+- **Tech Stack Categorization**: Added high-level skill category tags to all 12 case studies for improved filtering and discovery
 
 **Core Platform Features:**
 - **Dynamic Case Study System**: 12 detailed project showcases with `/case-study/[slug]` routing
@@ -88,7 +89,7 @@ This project is under active development with major recent updates.
 
   - ✅ **Conversion Optimization:** Strategic CTAs and booking funnels
 
-  - ✅ **Brand Positioning Update:** Refined messaging emphasizing digital-physical world connection
+  - ✅ **Tech Stack Categorization:** Added high-level skill category tags to all 12 case studies for improved filtering and discovery
 
   - ✅ **Code Quality:** Comprehensive testing and deprecated field removal
 
@@ -127,32 +128,67 @@ MaximusShurr.com/
 └── next-web-app/                 # Main Next.js application
     ├── app/                      # App Router pages
     │   ├── page.tsx              # Homepage with dynamic case study tiles
-    │   ├── case-study/[slug]/    # Dynamic case study pages
-    │   ├── book/                 # Booking/contact page
-    │   ├── resume/               # Resume page
+    │   ├── case-study/           # Case study routes
+    │   │   ├── page.tsx          # Case study listing page with filters
+    │   │   └── [slug]/           # Dynamic case study pages
+    │   │       ├── page.tsx      # Individual case study page
+    │   │       └── page.test.tsx # Case study page tests
+    │   ├── contact/              # Contact/booking page
+    │   │   └── page.tsx
+    │   ├── dental-automation/    # Specialized landing page
+    │   │   ├── page.tsx
+    │   │   └── DentalROICalculator.tsx
+    │   ├── get-to-know-maximus/  # About page
+    │   │   └── page.tsx
+    │   ├── layout.tsx            # Root layout with navigation
+    │   ├── globals.css           # Global styles and Tailwind
     │   └── not-found.tsx         # Custom 404 page
     ├── components/               # Reusable React components
     │   ├── CaseStudyHeader.tsx   # Project metadata display
     │   ├── CaseStudyFilters.tsx  # Advanced filtering system
     │   ├── CaseStudyGrid.tsx     # Animated case study grid
+    │   ├── CaseStudyCard.tsx     # Individual case study cards
     │   ├── FeaturedCaseStudies.tsx # Homepage featured section
     │   ├── ByTheNumbers.tsx      # Portfolio metrics with animations
     │   ├── CaseStudyTestimonial.tsx # Client testimonials
     │   ├── CaseStudyContent.tsx  # MDX content renderer
+    │   ├── CaseStudyCTA.tsx      # Conversion-optimized call-to-action
+    │   ├── CaseStudyVideo.tsx    # Video embed component
     │   ├── MediaCarousel.tsx     # Automatic media carousel
     │   ├── InlineImage.tsx       # Inline media references
-    │   └── BookingCTA.tsx        # Conversion-optimized call-to-action
+    │   ├── PdfDownloadButton.tsx # PDF download component
+    │   └── BookingInlineEmbed.jsx # Cal.com booking embed
     ├── lib/                      # Core business logic
     │   ├── case-studies.ts       # Case study data fetching & validation
     │   ├── types.ts              # TypeScript interfaces
-    │   └── *.test.ts             # Property-based tests
-    ├── case_studies/             # MDX content files
-    │   ├── corteva-automation-engineer.mdx
+    │   ├── case-studies.property.test.ts # Property-based tests
+    │   └── booking-cta.test.ts   # Booking CTA tests
+    ├── case_studies/             # MDX content files (12 total)
+    │   ├── ai-door-lock.mdx
+    │   ├── botimus.mdx
     │   ├── clairity-daily.mdx
-    │   └── ... (12 total)
-    └── public/                   # Static assets
-        └── case-study/           # Case study media assets
-            └── [slug]/           # Auto-discovered media & social proof
+    │   ├── corteva-automation-engineer.mdx
+    │   ├── hennis-hairshop.mdx
+    │   ├── hughes-orthodontics-automation.mdx
+    │   ├── leafspec-llc.mdx
+    │   ├── mechanical-max.mdx
+    │   ├── roblox-tycoon-game.mdx
+    │   ├── rocket-data-collector.mdx
+    │   ├── sibley-makerspace.mdx
+    │   └── unity-vr-developer.mdx
+    ├── public/                   # Static assets
+    │   ├── assets/               # General assets (PDFs, etc.)
+    │   ├── case-study/           # Case study media assets
+    │   │   └── [slug]/           # Auto-discovered media & social proof
+    │   └── icon.jpg              # Site favicon
+    ├── scripts/                  # Build and optimization scripts
+    │   └── optimize-case-study-assets.js # Media optimization script
+    ├── package.json              # Dependencies and scripts
+    ├── next.config.ts            # Next.js configuration
+    ├── tailwind.config.js        # Tailwind CSS configuration
+    ├── tsconfig.json             # TypeScript configuration
+    ├── vitest.config.ts          # Vitest testing configuration
+    └── eslint.config.mjs         # ESLint configuration
 ```
 
 ## Getting Started
@@ -296,7 +332,7 @@ status: "Complete | In Progress | Ongoing"
 live_url: "https://example.com" # or null
 repo_url: "https://github.com/..." # or null
 cover_video_url: "https://youtube.com/..." # or null
-tech_stack: ["React", "Node.js", "PostgreSQL"]
+tech_stack: ["Product Development", "CAD/Sim", "Programming", "React", "Node.js", "PostgreSQL"]
 start_date: "Jan 2025"
 end_date: "Jul 2025" # or null for ongoing
 testimonial:
@@ -306,6 +342,14 @@ testimonial:
 # or testimonial: null
 ---
 ```
+
+**Tech Stack Categories:**
+The `tech_stack` array now includes high-level skill categories at the beginning, followed by specific technologies:
+
+- **High-Level Categories**: "Product Development", "R&D Engineering", "Systems Integration", "CAD/Sim", "Programming", "Strategy & Branding", "Rapid Prototyping"
+- **Specific Technologies**: "React", "Python", "SolidWorks", "3D Printing", etc.
+
+This dual-level approach enables both broad skill-based filtering and detailed technology discovery.
 
 **Note:** The `cover_image` field has been removed from frontmatter. Thumbnails are now automatically discovered from `thumbnail.webp` files in the corresponding `/case-study/[slug]/` media folder. Social proof logos are also automatically discovered from `icon.webp` files in the same folders.
 

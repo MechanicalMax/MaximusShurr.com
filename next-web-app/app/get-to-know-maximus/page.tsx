@@ -57,7 +57,7 @@ export default function GetToKnowMaximusPage() {
                     {/* Block 3: The Pivot */}
                     <section className="prose prose-lg max-w-none py-3">
                         <h3 className="text-3xl font-bold text-gray-900 mb-6">
-                            Fluent in Hardware, Dangerous in Software.
+                            Fluent in Hardware, Tactical in Software.
                         </h3>
                         <p className="text-gray-700 leading-relaxed">
                             Most developers fear hardware. Most mechanical engineers fear code. I live in the middle. My background isn&apos;t just theory; it&apos;s getting my hands dirty in R&D labs and writing Python scripts to automate physical machines. Whether it&apos;s IoT, 3D printing workflows, or Next.js web apps, I understand how to make the digital world talk to the physical one.
