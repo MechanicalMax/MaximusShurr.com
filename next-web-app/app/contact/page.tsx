@@ -20,7 +20,7 @@ export default function BookPage() {
           </Link>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Let&apos;s get to Work</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            I am currently finishing my Honors Mechanical Engineering degree at Purdue University and am available for full-time roles starting July 2026.
+            I am currently finishing my Honors Mechanical Engineering degree at Purdue University and am available for full-time on-site roles starting June 1st, 2026.
           </p>
         </div>
       </header>
@@ -46,11 +46,19 @@ export default function BookPage() {
               </tr>
               <tr>
                 <td className="border border-gray-300 px-4 py-3 font-medium">Availability</td>
-                <td className="border border-gray-300 px-4 py-3">July 2026 (Relocation Ready)</td>
+                <td className="border border-gray-300 px-4 py-3">On-Site Relocation Ready June 1, 2026</td>
               </tr>
               <tr className="bg-gray-50">
                 <td className="border border-gray-300 px-4 py-3 font-medium">Certification</td>
-                <td className="border border-gray-300 px-4 py-3">F.E. Exam Scheduled (Mechanical) – Feb 2, 2026</td>
+                <td className="border border-gray-300 px-4 py-3">
+                  Fundamentals of Engineering (Mechanical F.E. Exam) <Link 
+                    href="https://www.credly.com/badges/e636838a-fd89-45ce-8b00-77f45bf856ac" 
+                    target="_blank"
+                    className="text-[#FFBA4A] hover:text-[#FFA726] underline"
+                  >
+                    Passed on Feb 2, 2026
+                  </Link>
+                </td>
               </tr>
               <tr>
                 <td className="border border-gray-300 px-4 py-3 font-medium">Location</td>
@@ -58,7 +66,7 @@ export default function BookPage() {
               </tr>
               <tr className="bg-gray-50">
                 <td className="border border-gray-300 px-4 py-3 font-medium">Status</td>
-                <td className="border border-gray-300 px-4 py-3">U.S. Citizen</td>
+                <td className="border border-gray-300 px-4 py-3">U.S. Citizen - Born and Raised in Indiana</td>
               </tr>
             </tbody>
           </table>
