@@ -2,10 +2,10 @@
 project_title: "Clairity Daily"
 one_liner: "A 70-day sprint to build an AI-native learning platform that transformed my career from solo founder to mission-driven technical partner"
 project_type: "Software MVP"
-status: "Live"
-live_url: "https://clairitydaily.com"
-repo_url: null
-cover_video_url: null
+status: "Complete"
+live_url: null
+repo_url: "https://github.com/MechanicalMax/clairity-daily"
+cover_video_url: "https://youtu.be/tJDRFb6OUlo"
 tech_stack: ["Product Development", "Strategy & Branding", "Programming", "Generative AI", "Web Development", "Market Research", "Software Architecture", "Game Design", "GitHub"]
 start_date: "Jun 2025"
 end_date: "Aug 2025"
@@ -34,17 +34,40 @@ I saw two barriers holding people back:
 
 This was pure velocity. I compressed a year's worth of learning into a single summer.
 
-- **The Game:** I created **"Bridge the Gap,"** a daily challenge that gamified AI literacy. Instead of consuming content, users had to deconstruct it—guessing the prompts and models behind the output.
+- **The Game:** I created **"Bridge the Gap,"** a daily challenge that gamified AI literacy. Instead of consuming content, users had to deconstruct it—guessing the prompts and models behind the output. Each day, an admin-seeded scenario and AI-generated output were published. Players selected a model (GPT-4o-mini, Llama 3.1, or Gemini 2.0 Flash) and wrote a prompt to recreate it. Scores were computed in real time using **cosine similarity** between embeddings of the player's output and the goal output — weighted across model selection (10 pts), prompt similarity (50 pts), and output similarity (40 pts).
 
 - **The AI Dev Suite:** I tried every AI-accelerated tool I could find—**Cursor**, **Windsurf**, **Claude Code**, and **v0**—to write production-grade code at lightning speed while maintaining security and architecture control.
 
 <InlineImage filename="Bridge The Gap.webp" alt="The Bridge the Gap game interface I designed" />
 
-- **Full-Stack Execution:** I didn't just write the **Next.js** code. I designed the artwork, built the **Supabase** backend, set up the **Vercel AI Gateway**, and even hit the podcast circuit to promote it. I was in the arena every single day, turning a vision into a tangible reality.
+- **Full-Stack Execution:** I didn't just write the **Next.js** code. I designed the artwork, built the **Supabase** backend, set up the **Vercel AI Gateway**, and even hit the podcast circuit to promote it. I was in the arena every single day, turning a vision into a tangible reality.
+
+### How It Was Built
+
+The stack was chosen for speed and production credibility — nothing experimental, everything integrated.
+
+| Layer | Technology |
+|---|---|
+| Framework | Next.js 15 (App Router, React 19) |
+| Styling | Tailwind CSS v4 |
+| Auth & Billing | Clerk (JWT, RBAC, Pricing Table) |
+| Database | Supabase (PostgreSQL, schema-isolated per game) |
+| AI Inference | Vercel AI SDK + AI Gateway |
+| Embeddings | OpenAI `text-embedding-3-small` |
+| Hosting | Vercel |
+| DNS / CDN | Cloudflare |
+
+<InlineImage filename="Supabase Schema.webp" alt="Example schema for Bridge the Gap" />
+
+The architecture separated game data into five Supabase tables: public game metadata, a protected goal output, the goal prompt and model, pre-computed similarity vectors, and per-user submissions and scores. Clerk JWTs were wired directly into Supabase as the access token, with a separate admin client for privileged server-side operations.
+
+Access was gated by date: today's game was free for any signed-in user, past games required a paid subscription enforced via Clerk's `play_past_games` feature flag.
 
 ### The Outcome
 
 The app works perfectly, but the real product was *me*.
+
+<InlineImage filename="Lifetime Users - Clerk.webp" alt="Lifetime Users - Clerk" />
 
 - **The Reality Check:** While the code was clean and the design was slick, users didn't stick around. I learned the most valuable lesson of startups: **Validate before you build.** Passion is the fuel, but the market is the steering wheel.
 
@@ -54,4 +77,19 @@ The app works perfectly, but the real product was *me*.
 
 - **A New Mission:** I now use my technical velocity to help *other* founders build their dreams. I've realized that I'm happiest when I'm the technical partner who brings the visionary idea to life.
 
-- **The "Why":** Clarity Daily didn't become a unicorn, but it led me to a life I love. I now spend my days helping others create that sense of joy and wonder, ensuring they build scalable, value-driven products that actually make a difference.
+- **The "Why":** Clairity Daily didn't become a unicorn, but it led me to a life I love. I now spend my days helping others create that sense of joy and wonder, ensuring they build scalable, value-driven products that actually make a difference.
+
+### What I Learned
+
+**Infrastructure should follow signal, not precede it.** I built a stateful user system, persistent scoring, RLS policies, and an embedding pipeline before validating whether people wanted to come back the next day. A stateless prototype with no auth and no database could have tested the core game loop in a fraction of the time.
+
+**Separate "can I build this?" from "should this exist?"** This project answered the first question definitively — yes, I can design, build, and deploy a full-stack AI product solo. But the second question requires earlier and more focused validation. I invested in infrastructure, UX polish, and system design before confirming daily retention or willingness to return.
+
+**A deliberate shutdown is a good outcome.** Continuing would have meant deeper product validation, ongoing infrastructure maintenance, and a longer-term commitment without a clear signal. The highest-ROI decision was to archive the project, extract the lessons, and move forward. That's not failure — that's judgment.
+
+### Further Reading
+
+The full technical breakdown and retrospective live in the GitHub repository:
+
+- **[ARCHITECTURE.md](https://github.com/MechanicalMax/clairity-daily/blob/main/ARCHITECTURE.md)** — the complete system design, data models, game mechanics, and every integration decision
+- **[RETROSPECTIVE.md](https://github.com/MechanicalMax/clairity-daily/blob/main/RETROSPECTIVE.md)** — what worked, what didn't, and what this project opened up next
