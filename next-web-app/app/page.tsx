@@ -60,8 +60,7 @@ export default async function Home() {
                 Need Technical Depth & Complex Assembly?
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                See <Link href="/case-study/botimus" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">BOTIMUS</Link>.
-                A full design review of a complex robotic system, showcasing my ability to manage constraints, electronics, and mechanical integration.
+                See <Link href="/case-study/botimus" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">BOTIMUS</Link> for a full design review of a combat robot built solo in 72 hours, or <Link href="/case-study/elstar" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">ELSTAR</Link> for award-winning computer vision and inverse kinematics on a portable pathogen detection device.
               </p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
