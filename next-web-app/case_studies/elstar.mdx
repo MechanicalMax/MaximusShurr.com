@@ -1,0 +1,45 @@
+---
+project_slug: "elstar-2-0"
+project_title: "ELSTAR 2.0: Portable Pathogen Detection"
+one_liner: "Bringing rapid, on-site bacterial identification out of the lab and into the field."
+project_type: "Hybrid (HW+SW)"
+status: "Complete"
+live_url: null
+repo_url: "https://github.com/elstar-purdue/ELSTAR2.0"
+cover_video_url: null
+tech_stack: ["Python", "OpenCV", "Inverse Kinematics", "Raspberry Pi", "Hardware Integration"]
+start_date: "Jan 2026"
+end_date: "May 2026"
+testimonial: null
+---
+
+### Product Strategy: The "Business Thinking"
+
+Great engineering isn't just about building complex systems; it's about solving the right problems for the right people. Existing bacterial identification methods were trapped in the lab—expensive, slow, and highly destructive. Our mandate was to build a non-destructive, highly portable Elastic Light Scattering (ELS) device for under $2,000. 
+
+But my biggest strategic challenge on this project wasn't writing the code; it was managing the friction between atoms and bits. As the lead software engineer on a team of six, I was responsible for the brains of the operation. Our project manager didn't write code, which meant I had to become the "translator." I learned how to effectively communicate technical timelines to non-technical stakeholders. Instead of just saying "the algorithm is hard," I learned to clearly explain *why* inverse kinematics takes time to debug, identify the exact bottlenecks, and outline how we could unblock our solutions to ship on time. 
+
+I stopped being just a coder and became a true **Technical Partner**—ensuring everyone knew exactly what had to happen to make the project work.
+
+### The Problem
+
+* Current pathogen identification methods are costly and require bulky lab equipment, preventing rapid, on-site diagnostics.
+* The hardware required extreme precision to hit microscopic targets, demanding a portable device that fit within a strict 6-inch cubic footprint and weighed less than 1.8 kg.
+* The system needed to rapidly locate random bacterial colonies on an 88mm petri dish and perfectly align a laser over them using a complex mechanical "record player" style rotating bed and arm.
+
+### The Build
+
+I was the lead software engineer, responsible for bringing the physical hardware to life through complex algorithms and hardware integration.
+
+* **Image Flattening:** I implemented a camera calibration pipeline to normalize the raw images from our 105-degree FOV wide-angle lens, correcting severe optical bulging so the geometric data was usable.
+* **Computer Vision:** I developed a blob detection algorithm using OpenCV contour analysis to scan the flattened image, identifying real bacterial colonies (like *Kocuria*) and extracting their exact x-y coordinates.
+* **Inverse Kinematics:** I wrote the coordinate conversion algorithm to translate 2D (x-y) pixel coordinates into physical rotational angles (θ and ɸ). This allowed the Raspberry Pi to command the serial bus servos to perfectly align the laser payload over the bacteria.
+* **Resilience Under Fire:** When a fried PCB and a dead Raspberry Pi threatened to derail our final integration days before the deadline, I adapted our codebase to work on legacy hardware we scavenged to keep the project alive.
+
+### The Outcome
+
+* **Award-Winning:** We won 2nd place out of 86 teams for the "Outstanding Prototype Award" in Purdue's Mechanical Engineering Senior Design.
+* **Proven Accuracy:** Achieved an 85% success rate in dynamically locating real bacterial colonies using the vision algorithm.
+* **Hardware Validation:** Successfully captured microscopic ELS scatter patterns, validating the core functionality of the laser and CMOS sensor payload.
+* **Under Budget:** Smashed our $2,000 budget constraint, delivering the final prototype and incubator system for roughly $1,780.
+* **The Real Lesson:** I proved to myself that I can sit squarely between the physical constraints of mechanical engineering and the digital logic of software. I don't just write code; I bridge the gap to make machines move with purpose.
