@@ -11,30 +11,14 @@ export default function FeaturedCaseStudies({ caseStudies, className = "" }: Pro
     return null;
   }
 
-  // Sort featured case studies by duration (longest projects first)
+  // Sort featured case studies by start date (most recent first)
   const sortedCaseStudies = [...caseStudies].sort((a, b) => {
     const parseDate = (dateStr: string | null): Date => {
-      if (!dateStr) {
-        // Treat null/ongoing projects as current date
-        return new Date();
-      }
-      // Parse "MMM YYYY" format
+      if (!dateStr) return new Date(0);
       return new Date(dateStr);
     };
-    
-    const calculateDuration = (startDate: string, endDate: string | null): number => {
-      const start = parseDate(startDate);
-      const end = parseDate(endDate);
-      
-      // Return duration in milliseconds
-      return end.getTime() - start.getTime();
-    };
-    
-    const durationA = calculateDuration(a.frontmatter.start_date, a.frontmatter.end_date);
-    const durationB = calculateDuration(b.frontmatter.start_date, b.frontmatter.end_date);
-    
-    // Sort descending (longest duration first)
-    return durationB - durationA;
+
+    return parseDate(b.frontmatter.start_date).getTime() - parseDate(a.frontmatter.start_date).getTime();
   });
 
   return (

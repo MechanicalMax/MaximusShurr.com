@@ -63,13 +63,17 @@ export default async function Home() {
                 See <Link href="/case-study/botimus" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">BOTIMUS</Link> for a full design review of a combat robot built solo in 72 hours, or <Link href="/case-study/elstar" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">ELSTAR</Link> for award-winning computer vision and inverse kinematics on a portable pathogen detection device.
               </p>
             </div>
-            <div className="bg-gray-50 p-6 rounded-lg">
+            <div className="bg-gray-50 p-6 rounded-lg border-2 border-amber-200 shadow-md relative">
+              <span className="absolute -top-3 left-6 bg-amber-100 text-amber-800 text-xs font-semibold px-3 py-1 rounded-full border border-amber-200">
+                Active Project
+              </span>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
                 Need Business-Aware R&D?
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                See <Link href="/case-study/corteva-automation-engineer" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">Corteva R&D</Link> and <Link href="/case-study/leafspec-llc" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">LeafSpec LLC</Link>.
-                Examples of how I apply engineering principles to solve business problems—automating workflows, reducing costs, and navigating corporate structures.
+                See <Link href="/case-study/ammortal-prototype-engineer" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">Ammortal</Link>,{' '}
+                <Link href="/case-study/corteva-automation-engineer" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">Corteva R&D</Link> and <Link href="/case-study/leafspec-llc" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">LeafSpec LLC</Link>.
+                Examples of how I apply engineering principles to solve business problems—ruggedizing hardware for scale, automating workflows, reducing costs, and navigating corporate structures.
               </p>
             </div>
             <div className="bg-gray-50 p-6 rounded-lg">
