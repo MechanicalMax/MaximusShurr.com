@@ -127,7 +127,10 @@ export default async function Home() {
               <Link href="/get-to-know-maximus" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
                 About Me
               </Link>{' '}
-              page, I break down my journey from 13-year-old robotics YouTuber to an Honors Mechanical Engineering Student/Founder.
+              page, I break down my journey from 13-year-old robotics YouTuber to a{' '}
+              <Link href="/case-study/ammortal-prototype-engineer" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
+                full-time Prototype Engineer
+              </Link>.{' '}
             </p>
             <p>
               I also share my work on other places, like my{' '}
@@ -153,7 +156,11 @@ export default async function Home() {
             Let&apos;s Build Something High-Value.
           </h2>
           <p className="text-lg text-gray-800 mb-10 leading-relaxed">
-            I am currently wrapping up my Honors Mechanical Engineering degree at Purdue (May 2026) and am available for full-time roles starting July 2026.
+            I am currently working full-time as a{' '}
+            <Link href="/case-study/ammortal-prototype-engineer" className="text-gray-900 hover:text-gray-700 font-semibold underline">
+              Prototype Engineer at Ammortal
+            </Link>
+            {' '}— building the next generation of wellness experiences. Have a project in mind? Let&apos;s talk.
           </p>
           <Link 
             href="/contact"

@@ -545,7 +545,7 @@ export default function DentalAutomationPage() {
                 ✅ Free 30-minute consultation<br />
                 ✅ Custom ROI analysis for your practice<br />
                 ✅ No-obligation assessment<br /><br />
-                <strong>⏰ I am a full-time student accepting only 2 pilot practices this semester</strong>
+                <strong>⏰ Now working full-time as a <a href="/case-study/ammortal-prototype-engineer" className="underline">Prototype Engineer at Ammortal</a> — accepting a limited number of dental automation pilot practices</strong>
               </p>
             </div>
           </div>
