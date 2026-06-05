@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DentalROICalculator from "./DentalROICalculator";
 import BookingInlineEmbed from "@/components/BookingInlineEmbed";
 import CaseStudyCard from "@/components/CaseStudyCard";
@@ -545,7 +546,7 @@ export default function DentalAutomationPage() {
                 ✅ Free 30-minute consultation<br />
                 ✅ Custom ROI analysis for your practice<br />
                 ✅ No-obligation assessment<br /><br />
-                <strong>⏰ I am a full-time student accepting only 2 pilot practices this semester</strong>
+                <strong>⏰ Now working full-time as a <Link href="/case-study/ammortal-prototype-engineer" className="underline">Prototype Engineer at Ammortal</Link> — accepting a limited number of dental automation pilot practices</strong>
               </p>
             </div>
           </div>

@@ -20,7 +20,11 @@ export default function BookPage() {
           </Link>
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Let&apos;s get to Work</h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            I am currently finishing my Honors Mechanical Engineering degree at Purdue University and am available for full-time on-site roles starting June 1st, 2026.
+            I am currently working full-time as a{' '}
+            <Link href="/case-study/ammortal-prototype-engineer" className="text-[#FFBA4A] hover:text-[#FFA726] font-semibold underline">
+              Prototype Engineer at Ammortal
+            </Link>
+            . Reach out if you have a project worth building together.
           </p>
         </div>
       </header>
@@ -45,8 +49,12 @@ export default function BookPage() {
                 <td className="border border-gray-300 px-4 py-3">May 14, 2026</td>
               </tr>
               <tr>
-                <td className="border border-gray-300 px-4 py-3 font-medium">Availability</td>
-                <td className="border border-gray-300 px-4 py-3">On-Site Relocation Ready June 1, 2026</td>
+                <td className="border border-gray-300 px-4 py-3 font-medium">Current Role</td>
+                <td className="border border-gray-300 px-4 py-3">
+                  <Link href="/case-study/ammortal-prototype-engineer" className="text-[#FFBA4A] hover:text-[#FFA726] underline font-medium">
+                    Prototype Engineer @ Ammortal
+                  </Link>{' '} Full-Time (May 2026 to Present)
+                </td>
               </tr>
               <tr className="bg-gray-50">
                 <td className="border border-gray-300 px-4 py-3 font-medium">Certification</td>
@@ -62,7 +70,7 @@ export default function BookPage() {
               </tr>
               <tr>
                 <td className="border border-gray-300 px-4 py-3 font-medium">Location</td>
-                <td className="border border-gray-300 px-4 py-3">Currently West Lafayette, IN (Ready to explore other U.S. States!)</td>
+                <td className="border border-gray-300 px-4 py-3">Asheville, NC</td>
               </tr>
               <tr className="bg-gray-50">
                 <td className="border border-gray-300 px-4 py-3 font-medium">Status</td>

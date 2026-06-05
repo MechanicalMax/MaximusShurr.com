@@ -23,15 +23,15 @@ interface Props {
 
 // Status color mapping
 const STATUS_COLORS: Record<string, string> = {
-  'Completed': 'bg-green-100 text-green-800 border-green-200',
-  'In Progress': 'bg-blue-100 text-blue-800 border-blue-200',
-  'Ongoing': 'bg-blue-100 text-blue-800 border-blue-200',
-  'Launched': 'bg-green-100 text-green-800 border-green-200',
-  'Prototype': 'bg-yellow-100 text-yellow-800 border-yellow-200',
-  'Concept': 'bg-gray-100 text-gray-800 border-gray-200',
-  'Paused': 'bg-red-100 text-red-800 border-red-200',
-  'Archived': 'bg-gray-100 text-gray-800 border-gray-200',
+  'Active': 'bg-amber-100 text-amber-800 border-amber-200',
+  'Complete': 'bg-green-50 text-green-700 border-green-200',
+  'Shipped / In Use': 'bg-teal-50 text-teal-700 border-teal-200',
+  'Battle Tested / Retired': 'bg-slate-100 text-slate-600 border-slate-200',
+  'Evolved': 'bg-violet-50 text-violet-700 border-violet-200',
 };
+
+// Statuses that should be pinned to the front regardless of count
+const PINNED_STATUSES_ORDER = ['Active'];
 
 const DEFAULT_STATUS_COLOR = 'bg-gray-100 text-gray-800 border-gray-200';
 
@@ -147,7 +147,14 @@ export default function CaseStudyFilters({ caseStudies }: Props) {
       count: data.count,
       color: STATUS_COLORS[name] || DEFAULT_STATUS_COLOR
     }))
-    .sort((a, b) => b.count - a.count); // Sort by frequency
+    .sort((a, b) => {
+      const aPin = PINNED_STATUSES_ORDER.indexOf(a.name);
+      const bPin = PINNED_STATUSES_ORDER.indexOf(b.name);
+      if (aPin !== -1 && bPin !== -1) return aPin - bPin;
+      if (aPin !== -1) return -1;
+      if (bPin !== -1) return 1;
+      return b.count - a.count; // Sort remaining by frequency
+    });
 
   const handleSkillToggle = (skill: string) => {
     setSelectedSkills(prev => 
