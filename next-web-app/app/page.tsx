@@ -43,6 +43,7 @@ export default async function Home() {
             alt="Maximus Shurr Headshot" 
             width={500} 
             height={500} 
+            priority
             className="w-48 sm:w-64 md:w-80 lg:w-[500px] h-auto rounded-full object-cover shadow-lg"
           />
         </div>

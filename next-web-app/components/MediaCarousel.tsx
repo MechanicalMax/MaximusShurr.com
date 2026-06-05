@@ -331,7 +331,7 @@ function ImageSlide({ filename, path, caption, priority = false }: {
   }
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-black">
+    <div className="relative w-full h-full flex items-center justify-center bg-black">
       <Image
         src={path}
         alt={caption}
