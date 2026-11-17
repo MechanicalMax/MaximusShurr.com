@@ -24,16 +24,16 @@ describe('Booking CTA Functionality', () => {
       expect(typeof bookingCTA.link).toBe('string');
       
       // Verify the specific values we set
-      expect(bookingCTA.title).toBe("Curious if you could realize the $25,000 per year cost reductions too?");
-      expect(bookingCTA.description).toBe("Use our dental automation ROI calculator to see if you would benefit from our Zero-Admin Lab Protocol system");
-      expect(bookingCTA.buttonText).toBe("Check My Savings");
+      expect(bookingCTA.title).toBe("Stop bleeding margin on external labs.");
+      expect(bookingCTA.description).toBe("I build 'Zero-Admin' in-house manufacturing systems for orthodontists.");
+      expect(bookingCTA.buttonText).toBe("Calculate your ROI");
       expect(bookingCTA.link).toBe("/dental-automation");
     }
   });
 
   test('should handle case studies without bookingCTA gracefully', async () => {
     // Get all case studies and find one without bookingCTA
-    const caseStudy = await getCaseStudyBySlug('botimus'); // This one likely doesn't have custom CTA
+    const caseStudy = await getCaseStudyBySlug('clairity-daily'); // This one doesn't have custom CTA
     
     if (caseStudy) {
       // bookingCTA should be undefined or null for case studies without it
@@ -50,9 +50,9 @@ describe('Booking CTA Functionality', () => {
     if (caseStudyWithMedia?.frontmatter.bookingCTA) {
       const bookingCTA = caseStudyWithMedia.frontmatter.bookingCTA;
       
-      expect(bookingCTA.title).toBe("Curious if you could realize the $25,000 per year cost reductions too?");
-      expect(bookingCTA.description).toBe("Use our dental automation ROI calculator to see if you would benefit from our Zero-Admin Lab Protocol system");
-      expect(bookingCTA.buttonText).toBe("Check My Savings");
+      expect(bookingCTA.title).toBe("Stop bleeding margin on external labs.");
+      expect(bookingCTA.description).toBe("I build 'Zero-Admin' in-house manufacturing systems for orthodontists.");
+      expect(bookingCTA.buttonText).toBe("Calculate your ROI");
       expect(bookingCTA.link).toBe("/dental-automation");
     }
   });

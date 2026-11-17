@@ -20,7 +20,7 @@ describe('Case Study Page Integration', () => {
     
     if (caseStudyWithMedia) {
       // Verify the case study loads correctly
-      expect(caseStudyWithMedia.frontmatter.project_title).toBe('Hughes Orthodontics Workflow Automation');
+      expect(caseStudyWithMedia.frontmatter.project_title).toBe('Hughes Orthodontics Automation');
       expect(caseStudyWithMedia.slug).toBe('hughes-orthodontics-automation');
       
       // Verify custom booking CTA is present
@@ -30,9 +30,9 @@ describe('Case Study Page Integration', () => {
         const bookingCTA = caseStudyWithMedia.frontmatter.bookingCTA;
         
         // Verify the custom CTA values match what we set
-        expect(bookingCTA.title).toBe("Curious if you could realize the $25,000 per year cost reductions too?");
-        expect(bookingCTA.description).toBe("Use our dental automation ROI calculator to see if you would benefit from our Zero-Admin Lab Protocol system");
-        expect(bookingCTA.buttonText).toBe("Check My Savings");
+        expect(bookingCTA.title).toBe("Stop bleeding margin on external labs.");
+        expect(bookingCTA.description).toBe("I build 'Zero-Admin' in-house manufacturing systems for orthodontists.");
+        expect(bookingCTA.buttonText).toBe("Calculate your ROI");
         expect(bookingCTA.link).toBe("/dental-automation");
       }
       
@@ -46,14 +46,14 @@ describe('Case Study Page Integration', () => {
 
   test('should handle case studies without custom booking CTA gracefully', async () => {
     // Test with a case study that doesn't have custom booking CTA
-    const caseStudyWithMedia = await getCaseStudyWithMediaBySlug('botimus');
+    const caseStudyWithMedia = await getCaseStudyWithMediaBySlug('clairity-daily');
     
     expect(caseStudyWithMedia).not.toBeNull();
     
     if (caseStudyWithMedia) {
       // Should load normally without booking CTA
       expect(caseStudyWithMedia.frontmatter.project_title).toBeDefined();
-      expect(caseStudyWithMedia.slug).toBe('botimus');
+      expect(caseStudyWithMedia.slug).toBe('clairity-daily');
       
       // bookingCTA should be undefined for case studies without it
       expect(caseStudyWithMedia.frontmatter.bookingCTA).toBeUndefined();
@@ -67,20 +67,20 @@ describe('Case Study Page Integration', () => {
   test('should provide fallback values for BookingCTA component props', async () => {
     // Test both scenarios: with and without custom booking CTA
     const hughesCase = await getCaseStudyWithMediaBySlug('hughes-orthodontics-automation');
-    const botimusCase = await getCaseStudyWithMediaBySlug('botimus');
+    const defaultCase = await getCaseStudyWithMediaBySlug('clairity-daily');
     
     // Hughes case should use custom values
     if (hughesCase?.frontmatter.bookingCTA) {
       const customCTA = hughesCase.frontmatter.bookingCTA;
-      expect(customCTA.title).toBe("Curious if you could realize the $25,000 per year cost reductions too?");
-      expect(customCTA.description).toBe("Use our dental automation ROI calculator to see if you would benefit from our Zero-Admin Lab Protocol system");
-      expect(customCTA.buttonText).toBe("Check My Savings");
+      expect(customCTA.title).toBe("Stop bleeding margin on external labs.");
+      expect(customCTA.description).toBe("I build 'Zero-Admin' in-house manufacturing systems for orthodontists.");
+      expect(customCTA.buttonText).toBe("Calculate your ROI");
       expect(customCTA.link).toBe("/dental-automation");
     }
     
-    // Botimus case should fall back to default values (handled by the page component)
-    if (botimusCase) {
-      expect(botimusCase.frontmatter.bookingCTA).toBeUndefined();
+    // Default case should fall back to default values (handled by the page component)
+    if (defaultCase) {
+      expect(defaultCase.frontmatter.bookingCTA).toBeUndefined();
       
       // The page component should use fallback values:
       const fallbackTitle = "Facing problems like this one?";
@@ -89,10 +89,10 @@ describe('Case Study Page Integration', () => {
       const fallbackLink = "/contact";
       
       // These would be the values passed to BookingCTA component
-      const actualTitle = botimusCase.frontmatter.bookingCTA?.title || fallbackTitle;
-      const actualDescription = botimusCase.frontmatter.bookingCTA?.description || fallbackDescription;
-      const actualButtonText = botimusCase.frontmatter.bookingCTA?.buttonText || fallbackButtonText;
-      const actualLink = botimusCase.frontmatter.bookingCTA?.link || fallbackLink;
+      const actualTitle = defaultCase.frontmatter.bookingCTA?.title || fallbackTitle;
+      const actualDescription = defaultCase.frontmatter.bookingCTA?.description || fallbackDescription;
+      const actualButtonText = defaultCase.frontmatter.bookingCTA?.buttonText || fallbackButtonText;
+      const actualLink = defaultCase.frontmatter.bookingCTA?.link || fallbackLink;
       
       expect(actualTitle).toBe(fallbackTitle);
       expect(actualDescription).toBe(fallbackDescription);

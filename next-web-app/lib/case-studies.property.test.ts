@@ -103,7 +103,7 @@ describe('Case Studies Data Layer - Property-Based Tests', () => {
       if (caseStudy) {
         // Property: Frontmatter object should not have cover_image property
         expect(caseStudy.frontmatter).not.toHaveProperty('cover_image');
-        expect((caseStudy.frontmatter as Record<string, unknown>).cover_image).toBeUndefined();
+        expect((caseStudy.frontmatter as unknown as Record<string, unknown>).cover_image).toBeUndefined();
       }
     }
   }, 10000);
